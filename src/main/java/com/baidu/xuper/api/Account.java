@@ -205,7 +205,7 @@ public class Account {
 
     public static String xchainAKToEVMAddress(String akAddress) throws Exception {
         if (akAddress == null) {
-            throw new RuntimeException("getAKAddress() is null");
+            throw new RuntimeException("akAddress is null");
         }
         byte[] rawAddr = Base58.decode(akAddress);
 
