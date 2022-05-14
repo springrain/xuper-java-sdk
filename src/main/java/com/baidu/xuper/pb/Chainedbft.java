@@ -2443,10 +2443,10 @@ public final class Chainedbft {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
-      if (!getPublicKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, publicKey_);
       }
       if (!sign_.isEmpty()) {
@@ -2461,10 +2461,10 @@ public final class Chainedbft {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
-      if (!getPublicKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, publicKey_);
       }
       if (!sign_.isEmpty()) {

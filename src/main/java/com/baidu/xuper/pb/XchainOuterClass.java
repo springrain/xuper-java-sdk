@@ -1196,10 +1196,10 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getLogidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(logid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, logid_);
       }
-      if (!getFromNodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromNode_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, fromNode_);
       }
       if (error_ != com.baidu.xuper.pb.XchainOuterClass.XChainErrorEnum.SUCCESS.getNumber()) {
@@ -1214,10 +1214,10 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getLogidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(logid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, logid_);
       }
-      if (!getFromNodeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromNode_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, fromNode_);
       }
       if (error_ != com.baidu.xuper.pb.XchainOuterClass.XChainErrorEnum.SUCCESS.getNumber()) {
@@ -2086,10 +2086,10 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, amount_);
       }
       if (frozenHeight_ != 0L) {
@@ -2104,10 +2104,10 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, amount_);
       }
       if (frozenHeight_ != 0L) {
@@ -3478,22 +3478,22 @@ public final class XchainOuterClass {
       if (!txid_.isEmpty()) {
         output.writeBytes(1, txid_);
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getFromAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromAddr_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, fromAddr_);
       }
-      if (!getFromPubkeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromPubkey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, fromPubkey_);
       }
-      if (!getFromScrkeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromScrkey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, fromScrkey_);
       }
       for (int i = 0; i < account_.size(); i++) {
         output.writeMessage(6, account_.get(i));
       }
-      if (!getNonceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 8, nonce_);
       }
       if (timestamp_ != 0L) {
@@ -3524,23 +3524,23 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, txid_);
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getFromAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromAddr_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, fromAddr_);
       }
-      if (!getFromPubkeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromPubkey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, fromPubkey_);
       }
-      if (!getFromScrkeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromScrkey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, fromScrkey_);
       }
       for (int i = 0; i < account_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, account_.get(i));
       }
-      if (!getNonceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, nonce_);
       }
       if (timestamp_ != 0L) {
@@ -5551,7 +5551,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       if (!txid_.isEmpty()) {
@@ -5579,7 +5579,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       if (!txid_.isEmpty()) {
@@ -7909,7 +7909,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       if (!blockid_.isEmpty()) {
@@ -7934,7 +7934,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       if (!blockid_.isEmpty()) {
@@ -9000,7 +9000,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bcname_);
       }
       if (!blockid_.isEmpty()) {
@@ -9021,7 +9021,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bcname_);
       }
       if (!blockid_.isEmpty()) {
@@ -9905,7 +9905,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bcname_);
       }
       if (height_ != 0L) {
@@ -9923,7 +9923,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bcname_);
       }
       if (height_ != 0L) {
@@ -12007,10 +12007,10 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bcname_);
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, balance_);
       }
       if (error_ != com.baidu.xuper.pb.XchainOuterClass.XChainErrorEnum.SUCCESS.getNumber()) {
@@ -12025,10 +12025,10 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bcname_);
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, balance_);
       }
       if (error_ != com.baidu.xuper.pb.XchainOuterClass.XChainErrorEnum.SUCCESS.getNumber()) {
@@ -12873,7 +12873,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, address_);
       }
       for (int i = 0; i < bcs_.size(); i++) {
@@ -12892,7 +12892,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, address_);
       }
       for (int i = 0; i < bcs_.size(); i++) {
@@ -13906,7 +13906,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, balance_);
       }
       if (isFrozen_ != false) {
@@ -13921,7 +13921,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, balance_);
       }
       if (isFrozen_ != false) {
@@ -14638,7 +14638,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bcname_);
       }
       for (int i = 0; i < tfd_.size(); i++) {
@@ -14656,7 +14656,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bcname_);
       }
       for (int i = 0; i < tfd_.size(); i++) {
@@ -15708,7 +15708,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, address_);
       }
       for (int i = 0; i < tfds_.size(); i++) {
@@ -15727,7 +15727,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, address_);
       }
       for (int i = 0; i < tfds_.size(); i++) {
@@ -20311,7 +20311,7 @@ public final class XchainOuterClass {
       if (coinbase_ != false) {
         output.writeBool(7, coinbase_);
       }
-      if (!getNonceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 8, nonce_);
       }
       if (timestamp_ != 0L) {
@@ -20332,7 +20332,7 @@ public final class XchainOuterClass {
       for (int i = 0; i < contractRequests_.size(); i++) {
         output.writeMessage(25, contractRequests_.get(i));
       }
-      if (!getInitiatorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initiator_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 26, initiator_);
       }
       for (int i = 0; i < authRequire_.size(); i++) {
@@ -20386,7 +20386,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, coinbase_);
       }
-      if (!getNonceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, nonce_);
       }
       if (timestamp_ != 0L) {
@@ -20413,7 +20413,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(25, contractRequests_.get(i));
       }
-      if (!getInitiatorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initiator_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(26, initiator_);
       }
       {
@@ -25666,7 +25666,7 @@ public final class XchainOuterClass {
       for (int i = 0; i < lockKeyList_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, lockKeyList_.getRaw(i));
       }
-      if (!getUtxoTotalBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(utxoTotal_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, utxoTotal_);
       }
       if (avgDelay_ != 0L) {
@@ -25717,7 +25717,7 @@ public final class XchainOuterClass {
         size += dataSize;
         size += 1 * getLockKeyListList().size();
       }
-      if (!getUtxoTotalBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(utxoTotal_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, utxoTotal_);
       }
       if (avgDelay_ != 0L) {
@@ -28950,7 +28950,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public boolean containsFailedTxs(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetFailedTxs().getMap().containsKey(key);
     }
     /**
@@ -28985,7 +28985,7 @@ public final class XchainOuterClass {
     public java.lang.String getFailedTxsOrDefault(
         java.lang.String key,
         java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetFailedTxs().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -29001,7 +29001,7 @@ public final class XchainOuterClass {
 
     public java.lang.String getFailedTxsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.String> map =
           internalGetFailedTxs().getMap();
       if (!map.containsKey(key)) {
@@ -30860,7 +30860,7 @@ public final class XchainOuterClass {
       @java.lang.Override
       public boolean containsFailedTxs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetFailedTxs().getMap().containsKey(key);
       }
       /**
@@ -30895,7 +30895,7 @@ public final class XchainOuterClass {
       public java.lang.String getFailedTxsOrDefault(
           java.lang.String key,
           java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetFailedTxs().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -30911,7 +30911,7 @@ public final class XchainOuterClass {
 
       public java.lang.String getFailedTxsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.String> map =
             internalGetFailedTxs().getMap();
         if (!map.containsKey(key)) {
@@ -30935,7 +30935,7 @@ public final class XchainOuterClass {
 
       public Builder removeFailedTxs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableFailedTxs().getMutableMap()
             .remove(key);
         return this;
@@ -30958,8 +30958,11 @@ public final class XchainOuterClass {
       public Builder putFailedTxs(
           java.lang.String key,
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableFailedTxs().getMutableMap()
             .put(key, value);
         return this;
@@ -31878,7 +31881,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       if (meta_ != null) {
@@ -31906,7 +31909,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       if (meta_ != null) {
@@ -34957,7 +34960,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public boolean containsSumSpeeds(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetSumSpeeds().getMap().containsKey(key);
     }
     /**
@@ -34984,7 +34987,7 @@ public final class XchainOuterClass {
     public double getSumSpeedsOrDefault(
         java.lang.String key,
         double defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Double> map =
           internalGetSumSpeeds().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -34996,7 +34999,7 @@ public final class XchainOuterClass {
 
     public double getSumSpeedsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Double> map =
           internalGetSumSpeeds().getMap();
       if (!map.containsKey(key)) {
@@ -35038,7 +35041,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public boolean containsBcSpeeds(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetBcSpeeds().getMap().containsKey(key);
     }
     /**
@@ -35065,7 +35068,7 @@ public final class XchainOuterClass {
     public com.baidu.xuper.pb.XchainOuterClass.BCSpeeds getBcSpeedsOrDefault(
         java.lang.String key,
         com.baidu.xuper.pb.XchainOuterClass.BCSpeeds defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.BCSpeeds> map =
           internalGetBcSpeeds().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -35077,7 +35080,7 @@ public final class XchainOuterClass {
 
     public com.baidu.xuper.pb.XchainOuterClass.BCSpeeds getBcSpeedsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.BCSpeeds> map =
           internalGetBcSpeeds().getMap();
       if (!map.containsKey(key)) {
@@ -35486,7 +35489,7 @@ public final class XchainOuterClass {
       @java.lang.Override
       public boolean containsSumSpeeds(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetSumSpeeds().getMap().containsKey(key);
       }
       /**
@@ -35513,7 +35516,7 @@ public final class XchainOuterClass {
       public double getSumSpeedsOrDefault(
           java.lang.String key,
           double defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Double> map =
             internalGetSumSpeeds().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -35525,7 +35528,7 @@ public final class XchainOuterClass {
 
       public double getSumSpeedsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Double> map =
             internalGetSumSpeeds().getMap();
         if (!map.containsKey(key)) {
@@ -35545,7 +35548,7 @@ public final class XchainOuterClass {
 
       public Builder removeSumSpeeds(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableSumSpeeds().getMutableMap()
             .remove(key);
         return this;
@@ -35564,7 +35567,7 @@ public final class XchainOuterClass {
       public Builder putSumSpeeds(
           java.lang.String key,
           double value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         
         internalGetMutableSumSpeeds().getMutableMap()
             .put(key, value);
@@ -35614,7 +35617,7 @@ public final class XchainOuterClass {
       @java.lang.Override
       public boolean containsBcSpeeds(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetBcSpeeds().getMap().containsKey(key);
       }
       /**
@@ -35641,7 +35644,7 @@ public final class XchainOuterClass {
       public com.baidu.xuper.pb.XchainOuterClass.BCSpeeds getBcSpeedsOrDefault(
           java.lang.String key,
           com.baidu.xuper.pb.XchainOuterClass.BCSpeeds defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.BCSpeeds> map =
             internalGetBcSpeeds().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -35653,7 +35656,7 @@ public final class XchainOuterClass {
 
       public com.baidu.xuper.pb.XchainOuterClass.BCSpeeds getBcSpeedsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.BCSpeeds> map =
             internalGetBcSpeeds().getMap();
         if (!map.containsKey(key)) {
@@ -35673,7 +35676,7 @@ public final class XchainOuterClass {
 
       public Builder removeBcSpeeds(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableBcSpeeds().getMutableMap()
             .remove(key);
         return this;
@@ -35692,8 +35695,11 @@ public final class XchainOuterClass {
       public Builder putBcSpeeds(
           java.lang.String key,
           com.baidu.xuper.pb.XchainOuterClass.BCSpeeds value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableBcSpeeds().getMutableMap()
             .put(key, value);
         return this;
@@ -35935,7 +35941,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public boolean containsBcSpeed(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetBcSpeed().getMap().containsKey(key);
     }
     /**
@@ -35962,7 +35968,7 @@ public final class XchainOuterClass {
     public double getBcSpeedOrDefault(
         java.lang.String key,
         double defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Double> map =
           internalGetBcSpeed().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -35974,7 +35980,7 @@ public final class XchainOuterClass {
 
     public double getBcSpeedOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Double> map =
           internalGetBcSpeed().getMap();
       if (!map.containsKey(key)) {
@@ -36352,7 +36358,7 @@ public final class XchainOuterClass {
       @java.lang.Override
       public boolean containsBcSpeed(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetBcSpeed().getMap().containsKey(key);
       }
       /**
@@ -36379,7 +36385,7 @@ public final class XchainOuterClass {
       public double getBcSpeedOrDefault(
           java.lang.String key,
           double defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Double> map =
             internalGetBcSpeed().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -36391,7 +36397,7 @@ public final class XchainOuterClass {
 
       public double getBcSpeedOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Double> map =
             internalGetBcSpeed().getMap();
         if (!map.containsKey(key)) {
@@ -36411,7 +36417,7 @@ public final class XchainOuterClass {
 
       public Builder removeBcSpeed(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableBcSpeed().getMutableMap()
             .remove(key);
         return this;
@@ -36430,7 +36436,7 @@ public final class XchainOuterClass {
       public Builder putBcSpeed(
           java.lang.String key,
           double value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         
         internalGetMutableBcSpeed().getMutableMap()
             .put(key, value);
@@ -38952,7 +38958,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getRawUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rawUrl_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, rawUrl_);
       }
       unknownFields.writeTo(output);
@@ -38968,7 +38974,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getRawUrlBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rawUrl_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, rawUrl_);
       }
       size += unknownFields.getSerializedSize();
@@ -40811,16 +40817,16 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
       }
-      if (!getPublickeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publickey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, publickey_);
       }
-      if (!getTotalNeedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(totalNeed_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, totalNeed_);
       }
       if (!userSign_.isEmpty()) {
@@ -40842,16 +40848,16 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
-      if (!getPublickeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publickey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, publickey_);
       }
-      if (!getTotalNeedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(totalNeed_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, totalNeed_);
       }
       if (!userSign_.isEmpty()) {
@@ -42230,7 +42236,7 @@ public final class XchainOuterClass {
       for (int i = 0; i < utxoList_.size(); i++) {
         output.writeMessage(2, utxoList_.get(i));
       }
-      if (!getTotalSelectedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(totalSelected_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, totalSelected_);
       }
       unknownFields.writeTo(output);
@@ -42250,7 +42256,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, utxoList_.get(i));
       }
-      if (!getTotalSelectedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(totalSelected_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, totalSelected_);
       }
       size += unknownFields.getSerializedSize();
@@ -43593,16 +43599,16 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, version_);
       }
       if (!digest_.isEmpty()) {
         output.writeBytes(3, digest_);
       }
-      if (!getPrevVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(prevVersion_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, prevVersion_);
       }
       if (xuperApiVersion_ != 0) {
@@ -43617,17 +43623,17 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
-      if (!getVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(version_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, version_);
       }
       if (!digest_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, digest_);
       }
-      if (!getPrevVersionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(prevVersion_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, prevVersion_);
       }
       if (xuperApiVersion_ != 0) {
@@ -44724,19 +44730,19 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getRuntimeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(runtime_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, runtime_);
       }
-      if (!getCompilerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(compiler_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, compiler_);
       }
       if (!digest_.isEmpty()) {
         output.writeBytes(3, digest_);
       }
-      if (!getVmCompilerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(vmCompiler_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, vmCompiler_);
       }
-      if (!getContractTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractType_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, contractType_);
       }
       unknownFields.writeTo(output);
@@ -44748,20 +44754,20 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getRuntimeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(runtime_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, runtime_);
       }
-      if (!getCompilerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(compiler_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, compiler_);
       }
       if (!digest_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, digest_);
       }
-      if (!getVmCompilerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(vmCompiler_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, vmCompiler_);
       }
-      if (!getContractTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractType_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, contractType_);
       }
       size += unknownFields.getSerializedSize();
@@ -45939,7 +45945,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       if (desc_ != null) {
@@ -45948,7 +45954,7 @@ public final class XchainOuterClass {
       if (!code_.isEmpty()) {
         output.writeBytes(4, code_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, address_);
       }
       if (!pubkey_.isEmpty()) {
@@ -45970,7 +45976,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       if (desc_ != null) {
@@ -45981,7 +45987,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(4, code_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, address_);
       }
       if (!pubkey_.isEmpty()) {
@@ -48600,7 +48606,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       unknownFields.writeTo(output);
@@ -48616,7 +48622,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       size += unknownFields.getSerializedSize();
@@ -50371,7 +50377,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       unknownFields.writeTo(output);
@@ -50387,7 +50393,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       size += unknownFields.getSerializedSize();
@@ -52056,10 +52062,10 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
       }
       unknownFields.writeTo(output);
@@ -52075,10 +52081,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
       size += unknownFields.getSerializedSize();
@@ -52928,10 +52934,10 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getCandidateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(candidate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, candidate_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, txid_);
       }
       unknownFields.writeTo(output);
@@ -52943,10 +52949,10 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getCandidateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(candidate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, candidate_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, txid_);
       }
       size += unknownFields.getSerializedSize();
@@ -54715,10 +54721,10 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
       }
       unknownFields.writeTo(output);
@@ -54734,10 +54740,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
       size += unknownFields.getSerializedSize();
@@ -55587,7 +55593,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, txid_);
       }
       unknownFields.writeTo(output);
@@ -55603,7 +55609,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, txid_);
       }
       size += unknownFields.getSerializedSize();
@@ -56423,10 +56429,10 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
       }
       unknownFields.writeTo(output);
@@ -56442,10 +56448,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
       size += unknownFields.getSerializedSize();
@@ -57295,10 +57301,10 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getCandidateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(candidate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, candidate_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, txid_);
       }
       unknownFields.writeTo(output);
@@ -57310,10 +57316,10 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getCandidateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(candidate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, candidate_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, txid_);
       }
       size += unknownFields.getSerializedSize();
@@ -59194,10 +59200,10 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
       }
       unknownFields.writeTo(output);
@@ -59213,10 +59219,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
       size += unknownFields.getSerializedSize();
@@ -60066,10 +60072,10 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, voter_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, txid_);
       }
       unknownFields.writeTo(output);
@@ -60081,10 +60087,10 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, voter_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, txid_);
       }
       size += unknownFields.getSerializedSize();
@@ -61930,7 +61936,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       if (term_ != 0L) {
@@ -61949,7 +61955,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       if (term_ != 0L) {
@@ -63678,7 +63684,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       unknownFields.writeTo(output);
@@ -63694,7 +63700,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       size += unknownFields.getSerializedSize();
@@ -65374,7 +65380,7 @@ public final class XchainOuterClass {
       if (blockNum_ != 0L) {
         output.writeInt64(2, blockNum_);
       }
-      if (!getProposerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(proposer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, proposer_);
       }
       if (proposerNum_ != 0L) {
@@ -65400,7 +65406,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, blockNum_);
       }
-      if (!getProposerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(proposer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, proposer_);
       }
       if (proposerNum_ != 0L) {
@@ -66494,13 +66500,13 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       for (int i = 0; i < requests_.size(); i++) {
         output.writeMessage(3, requests_.get(i));
       }
-      if (!getInitiatorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initiator_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, initiator_);
       }
       for (int i = 0; i < authRequire_.size(); i++) {
@@ -66519,14 +66525,14 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       for (int i = 0; i < requests_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, requests_.get(i));
       }
-      if (!getInitiatorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initiator_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, initiator_);
       }
       {
@@ -67853,7 +67859,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       if (response_ != null) {
@@ -67872,7 +67878,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       if (response_ != null) {
@@ -68979,7 +68985,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public boolean containsArgs(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetArgs().getMap().containsKey(key);
     }
     /**
@@ -69006,7 +69012,7 @@ public final class XchainOuterClass {
     public com.google.protobuf.ByteString getArgsOrDefault(
         java.lang.String key,
         com.google.protobuf.ByteString defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetArgs().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -69018,7 +69024,7 @@ public final class XchainOuterClass {
 
     public com.google.protobuf.ByteString getArgsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetArgs().getMap();
       if (!map.containsKey(key)) {
@@ -69129,13 +69135,13 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getModuleNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moduleName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, moduleName_);
       }
-      if (!getContractNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, contractName_);
       }
-      if (!getMethodNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(methodName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, methodName_);
       }
       com.google.protobuf.GeneratedMessageV3
@@ -69147,7 +69153,7 @@ public final class XchainOuterClass {
       for (int i = 0; i < resourceLimits_.size(); i++) {
         output.writeMessage(5, resourceLimits_.get(i));
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, amount_);
       }
       unknownFields.writeTo(output);
@@ -69159,13 +69165,13 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getModuleNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moduleName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, moduleName_);
       }
-      if (!getContractNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, contractName_);
       }
-      if (!getMethodNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(methodName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, methodName_);
       }
       for (java.util.Map.Entry<java.lang.String, com.google.protobuf.ByteString> entry
@@ -69182,7 +69188,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, resourceLimits_.get(i));
       }
-      if (!getAmountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(amount_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, amount_);
       }
       size += unknownFields.getSerializedSize();
@@ -69839,7 +69845,7 @@ public final class XchainOuterClass {
       @java.lang.Override
       public boolean containsArgs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetArgs().getMap().containsKey(key);
       }
       /**
@@ -69866,7 +69872,7 @@ public final class XchainOuterClass {
       public com.google.protobuf.ByteString getArgsOrDefault(
           java.lang.String key,
           com.google.protobuf.ByteString defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetArgs().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -69878,7 +69884,7 @@ public final class XchainOuterClass {
 
       public com.google.protobuf.ByteString getArgsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetArgs().getMap();
         if (!map.containsKey(key)) {
@@ -69898,7 +69904,7 @@ public final class XchainOuterClass {
 
       public Builder removeArgs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableArgs().getMutableMap()
             .remove(key);
         return this;
@@ -69917,8 +69923,11 @@ public final class XchainOuterClass {
       public Builder putArgs(
           java.lang.String key,
           com.google.protobuf.ByteString value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableArgs().getMutableMap()
             .put(key, value);
         return this;
@@ -73459,7 +73468,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBucketBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bucket_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bucket_);
       }
       if (!key_.isEmpty()) {
@@ -73480,7 +73489,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBucketBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bucket_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bucket_);
       }
       if (!key_.isEmpty()) {
@@ -74231,7 +74240,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBucketBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bucket_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bucket_);
       }
       if (!key_.isEmpty()) {
@@ -74249,7 +74258,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBucketBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bucket_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bucket_);
       }
       if (!key_.isEmpty()) {
@@ -74932,7 +74941,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPublicKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, publicKey_);
       }
       if (!sign_.isEmpty()) {
@@ -74947,7 +74956,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPublicKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, publicKey_);
       }
       if (!sign_.isEmpty()) {
@@ -75568,7 +75577,7 @@ public final class XchainOuterClass {
       if (rule_ != com.baidu.xuper.pb.XchainOuterClass.PermissionRule.NULL.getNumber()) {
         output.writeEnum(1, rule_);
       }
-      if (acceptValue_ != 0D) {
+      if (java.lang.Double.doubleToRawLongBits(acceptValue_) != 0) {
         output.writeDouble(2, acceptValue_);
       }
       unknownFields.writeTo(output);
@@ -75584,7 +75593,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, rule_);
       }
-      if (acceptValue_ != 0D) {
+      if (java.lang.Double.doubleToRawLongBits(acceptValue_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(2, acceptValue_);
       }
@@ -76959,7 +76968,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public boolean containsSets(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetSets().getMap().containsKey(key);
     }
     /**
@@ -76994,7 +77003,7 @@ public final class XchainOuterClass {
     public com.baidu.xuper.pb.XchainOuterClass.AkSet getSetsOrDefault(
         java.lang.String key,
         com.baidu.xuper.pb.XchainOuterClass.AkSet defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.AkSet> map =
           internalGetSets().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -77010,7 +77019,7 @@ public final class XchainOuterClass {
 
     public com.baidu.xuper.pb.XchainOuterClass.AkSet getSetsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.AkSet> map =
           internalGetSets().getMap();
       if (!map.containsKey(key)) {
@@ -77085,7 +77094,7 @@ public final class XchainOuterClass {
           internalGetSets(),
           SetsDefaultEntryHolder.defaultEntry,
           1);
-      if (!getExpressionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(expression_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, expression_);
       }
       unknownFields.writeTo(output);
@@ -77107,7 +77116,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(1, sets__);
       }
-      if (!getExpressionBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(expression_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, expression_);
       }
       size += unknownFields.getSerializedSize();
@@ -77455,7 +77464,7 @@ public final class XchainOuterClass {
       @java.lang.Override
       public boolean containsSets(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetSets().getMap().containsKey(key);
       }
       /**
@@ -77490,7 +77499,7 @@ public final class XchainOuterClass {
       public com.baidu.xuper.pb.XchainOuterClass.AkSet getSetsOrDefault(
           java.lang.String key,
           com.baidu.xuper.pb.XchainOuterClass.AkSet defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.AkSet> map =
             internalGetSets().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -77506,7 +77515,7 @@ public final class XchainOuterClass {
 
       public com.baidu.xuper.pb.XchainOuterClass.AkSet getSetsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.baidu.xuper.pb.XchainOuterClass.AkSet> map =
             internalGetSets().getMap();
         if (!map.containsKey(key)) {
@@ -77530,7 +77539,7 @@ public final class XchainOuterClass {
 
       public Builder removeSets(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableSets().getMutableMap()
             .remove(key);
         return this;
@@ -77553,8 +77562,11 @@ public final class XchainOuterClass {
       public Builder putSets(
           java.lang.String key,
           com.baidu.xuper.pb.XchainOuterClass.AkSet value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableSets().getMutableMap()
             .put(key, value);
         return this;
@@ -78030,7 +78042,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public boolean containsAksWeight(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetAksWeight().getMap().containsKey(key);
     }
     /**
@@ -78065,7 +78077,7 @@ public final class XchainOuterClass {
     public double getAksWeightOrDefault(
         java.lang.String key,
         double defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Double> map =
           internalGetAksWeight().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -78081,7 +78093,7 @@ public final class XchainOuterClass {
 
     public double getAksWeightOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Double> map =
           internalGetAksWeight().getMap();
       if (!map.containsKey(key)) {
@@ -78708,7 +78720,7 @@ public final class XchainOuterClass {
       @java.lang.Override
       public boolean containsAksWeight(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetAksWeight().getMap().containsKey(key);
       }
       /**
@@ -78743,7 +78755,7 @@ public final class XchainOuterClass {
       public double getAksWeightOrDefault(
           java.lang.String key,
           double defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Double> map =
             internalGetAksWeight().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -78759,7 +78771,7 @@ public final class XchainOuterClass {
 
       public double getAksWeightOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Double> map =
             internalGetAksWeight().getMap();
         if (!map.containsKey(key)) {
@@ -78783,7 +78795,7 @@ public final class XchainOuterClass {
 
       public Builder removeAksWeight(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableAksWeight().getMutableMap()
             .remove(key);
         return this;
@@ -78806,7 +78818,7 @@ public final class XchainOuterClass {
       public Builder putAksWeight(
           java.lang.String key,
           double value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         
         internalGetMutableAksWeight().getMutableMap()
             .put(key, value);
@@ -79458,16 +79470,16 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAccountNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(accountName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, accountName_);
       }
-      if (!getContractNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, contractName_);
       }
-      if (!getMethodNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(methodName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, methodName_);
       }
       if (confirmed_ != false) {
@@ -79489,16 +79501,16 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAccountNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(accountName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, accountName_);
       }
-      if (!getContractNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, contractName_);
       }
-      if (!getMethodNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(methodName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, methodName_);
       }
       if (confirmed_ != false) {
@@ -80823,13 +80835,13 @@ public final class XchainOuterClass {
       if (!pubkey_.isEmpty()) {
         output.writeBytes(2, pubkey_);
       }
-      if (!getAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(addr_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, addr_);
       }
-      if (!getPeerIDBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(peerID_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, peerID_);
       }
-      if (!getTimestampBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(timestamp_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, timestamp_);
       }
       unknownFields.writeTo(output);
@@ -80849,13 +80861,13 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, pubkey_);
       }
-      if (!getAddrBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(addr_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, addr_);
       }
-      if (!getPeerIDBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(peerID_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, peerID_);
       }
-      if (!getTimestampBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(timestamp_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, timestamp_);
       }
       size += unknownFields.getSerializedSize();
@@ -83188,10 +83200,10 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
       }
       unknownFields.writeTo(output);
@@ -83207,10 +83219,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
       size += unknownFields.getSerializedSize();
@@ -84126,7 +84138,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       for (int i = 0; i < account_.size(); i++) {
@@ -84145,7 +84157,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       {
@@ -85104,10 +85116,10 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAccountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(account_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, account_);
       }
       unknownFields.writeTo(output);
@@ -85123,10 +85135,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAccountBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(account_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, account_);
       }
       size += unknownFields.getSerializedSize();
@@ -87025,10 +87037,10 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getContractNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, contractName_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, txid_);
       }
       if (!desc_.isEmpty()) {
@@ -87046,10 +87058,10 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getContractNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(contractName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, contractName_);
       }
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, txid_);
       }
       if (!desc_.isEmpty()) {
@@ -88060,10 +88072,10 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
       }
       if (totalAmount_ != 0L) {
@@ -88091,10 +88103,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
       if (totalAmount_ != 0L) {
@@ -89460,7 +89472,7 @@ public final class XchainOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bcname_);
       }
       if (response_ != null) {
@@ -89482,7 +89494,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getBcnameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcname_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bcname_);
       }
       if (response_ != null) {
@@ -90564,7 +90576,7 @@ public final class XchainOuterClass {
       if (status_ != 0) {
         output.writeInt32(1, status_);
       }
-      if (!getMessageBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
       }
       if (!body_.isEmpty()) {
@@ -90583,7 +90595,7 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, status_);
       }
-      if (!getMessageBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
       }
       if (!body_.isEmpty()) {
@@ -91454,7 +91466,7 @@ public final class XchainOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getEffectiveTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(effectiveTxid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, effectiveTxid_);
       }
       if (marked_ != false) {
@@ -91463,10 +91475,10 @@ public final class XchainOuterClass {
       if (effectiveHeight_ != 0L) {
         output.writeInt64(3, effectiveHeight_);
       }
-      if (!getPublicKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, publicKey_);
       }
-      if (!getSignBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sign_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, sign_);
       }
       unknownFields.writeTo(output);
@@ -91478,7 +91490,7 @@ public final class XchainOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getEffectiveTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(effectiveTxid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, effectiveTxid_);
       }
       if (marked_ != false) {
@@ -91489,10 +91501,10 @@ public final class XchainOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, effectiveHeight_);
       }
-      if (!getPublicKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, publicKey_);
       }
-      if (!getSignBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sign_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, sign_);
       }
       size += unknownFields.getSerializedSize();

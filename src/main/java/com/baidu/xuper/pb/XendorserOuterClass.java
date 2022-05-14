@@ -425,10 +425,10 @@ public final class XendorserOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getRequestNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, requestName_);
       }
-      if (!getBcNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, bcName_);
       }
       if (fee_ != null) {
@@ -450,10 +450,10 @@ public final class XendorserOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getRequestNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, requestName_);
       }
-      if (!getBcNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bcName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, bcName_);
       }
       if (fee_ != null) {
@@ -1755,10 +1755,10 @@ public final class XendorserOuterClass {
       if (header_ != null) {
         output.writeMessage(1, getHeader());
       }
-      if (!getResponseNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(responseName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, responseName_);
       }
-      if (!getEndorserAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(endorserAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, endorserAddress_);
       }
       if (endorserSign_ != null) {
@@ -1780,10 +1780,10 @@ public final class XendorserOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getHeader());
       }
-      if (!getResponseNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(responseName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, responseName_);
       }
-      if (!getEndorserAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(endorserAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, endorserAddress_);
       }
       if (endorserSign_ != null) {
