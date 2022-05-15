@@ -66,7 +66,7 @@ public class XuperClient {
     }
 
     public void close() {
-        channel.shutdownNow();
+        channel.shutdown();
         if (xendorserClient != null) {
             xendorserClient.close();
         }

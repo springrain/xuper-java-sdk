@@ -20,7 +20,7 @@ public class XendorserClient {
     }
 
     public void close() {
-        channel.shutdownNow();
+        channel.shutdown();
     }
 
     XendorserGrpc.XendorserBlockingStub getBlockingClient() {
