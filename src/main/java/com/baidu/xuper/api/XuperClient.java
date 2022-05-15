@@ -38,7 +38,14 @@ public class XuperClient {
      * @param target the address of xchain node, like 127.0.0.1:37101
      */
     public XuperClient(String target) {
-        this(target,4194304);
+        this(target,true);
+    }
+
+    /**
+     * @param target the address of xchain node, like 127.0.0.1:37101
+     */
+    public XuperClient(String target,boolean xendorser) {
+        this(target,4194304,xendorser);
     }
 
     /**
@@ -46,19 +53,27 @@ public class XuperClient {
      * @param maxInboundMessageSize Sets the maximum message size allowed to be received on the channel, like 52428800 (50M)
      */
     public XuperClient(String target,Integer maxInboundMessageSize) {
+        this(target,maxInboundMessageSize,true);
+    }
+
+    /**
+     * @param target the address of xchain node, like 127.0.0.1:37101
+     * @param maxInboundMessageSize Sets the maximum message size allowed to be received on the channel, like 52428800 (50M)
+     */
+    public XuperClient(String target,Integer maxInboundMessageSize,boolean xendorser) {
         this(ManagedChannelBuilder.forTarget(target)
                 .maxInboundMessageSize(maxInboundMessageSize)
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
                 .usePlaintext()
-                .build());
+                .build(),xendorser);
     }
 
 
-    private XuperClient(ManagedChannel channel) {
+    private XuperClient(ManagedChannel channel,boolean xendorser) {
         this.channel = channel;
         blockingClient = XchainGrpc.newBlockingStub(channel);
-        if (Config.hasConfigFile()) {
+        if (xendorser&&Config.hasConfigFile()) {
             xendorserClient = new XendorserClient(Config.getInstance().getEndorseServiceHost());
         } else {
             xendorserClient = null;
