@@ -63,6 +63,7 @@ public class XuperClient {
     public XuperClient(String target,Integer maxInboundMessageSize,boolean xendorser) {
         this(ManagedChannelBuilder.forTarget(target)
                 .maxInboundMessageSize(maxInboundMessageSize)
+                .directExecutor()
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
                 .usePlaintext()
@@ -81,7 +82,7 @@ public class XuperClient {
     }
 
     public void close() {
-        channel.shutdown();
+        channel.shutdownNow();
         if (xendorserClient != null) {
             xendorserClient.close();
         }
