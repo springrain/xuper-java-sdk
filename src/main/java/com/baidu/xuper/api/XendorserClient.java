@@ -11,6 +11,7 @@ public class XendorserClient {
     public XendorserClient(String target) {
         this(ManagedChannelBuilder.forTarget(target)
                 .usePlaintext()
+                .directExecutor()
                 .build());
     }
 
