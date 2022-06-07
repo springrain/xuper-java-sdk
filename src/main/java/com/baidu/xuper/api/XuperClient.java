@@ -359,6 +359,28 @@ public class XuperClient {
     }
 
     /**
+     * queryBlockByHeight  get Block
+     * @param blockHeight the height of block
+     * @return
+     */
+    public XchainOuterClass.InternalBlock queryBlockByHeight(long blockHeight) {
+        XchainOuterClass.BlockHeight request =  XchainOuterClass.BlockHeight.newBuilder()
+                .setHeader(Common.newHeader())
+                .setBcname(chainName)
+                .setHeight(blockHeight)
+                //.setBlockid(ByteString.copyFrom(Hex.decode(blockid)))
+                //.setNeedContent(true)
+                .build();
+        XchainOuterClass.Block response = blockingClient.getBlockByHeight(request);
+        Common.checkResponseHeader(response.getHeader(), "query transaction");
+        return response.getBlock();
+    }
+
+
+
+
+
+    /**
      * getSystemStatus get system status contains all blockchains
      *
      * @return instance of SystemsStatus
