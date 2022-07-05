@@ -1,14 +1,17 @@
 package com.baidu.xuper.config;
 
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+
 public class Config {
+    public static final String CRYPTO_CHAIN = "xchain";
+    public static final String CRYPTO_GM = "gm";
+
     private static Config singletonConfig;
     private static String confFilePath;
     private static InputStream confFileInputStream;
@@ -17,7 +20,8 @@ public class Config {
     private ComplianceCheck complianceCheck;
     private String minNewChainAmount;
     private String crypto;
-    
+    private Integer txVersion;
+
     private Config() {
     }
 
@@ -58,7 +62,8 @@ public class Config {
     private static Config getDefaultConfig() {
         singletonConfig = new Config();
         singletonConfig.minNewChainAmount = "100";
-        singletonConfig.crypto = "xchain";
+        singletonConfig.crypto = CRYPTO_CHAIN;
+//        singletonConfig.crypto = CRYPTO_GM;
         singletonConfig.endorseServiceHost = "";
 
         ComplianceCheck c = new ComplianceCheck();
@@ -69,6 +74,7 @@ public class Config {
         c.complianceCheckEndorseServiceAddr = "TYyA3y8wdFZyzExtcbRNVd7ZZ2XXcfjdw";
 
         singletonConfig.complianceCheck = c;
+        singletonConfig.txVersion = 1;
         return singletonConfig;
     }
 
@@ -104,6 +110,14 @@ public class Config {
         this.crypto = crypto;
     }
 
+    public Integer getTxVersion() {
+        return txVersion;
+    }
+
+    public void setTxVersion(Integer txVersion) {
+        this.txVersion = txVersion;
+    }
+
     public static class ComplianceCheck {
         private boolean isNeedComplianceCheck;
         private boolean isNeedComplianceCheckFee;
@@ -111,11 +125,11 @@ public class Config {
         private String complianceCheckEndorseServiceFeeAddr;
         private String complianceCheckEndorseServiceAddr;
 
-        public boolean getIsNeedComplianceCheck() {
+        public boolean isNeedComplianceCheck() {
             return isNeedComplianceCheck;
         }
 
-        public boolean getIsNeedComplianceCheckFee() {
+        public boolean isNeedComplianceCheckFee() {
             return isNeedComplianceCheckFee;
         }
 

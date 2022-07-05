@@ -14,4 +14,6 @@ complianceCheck:
   complianceCheckEndorseServiceAddr: jknGxa6eyum1JrATWvSJKW3thJ9GKHA9n
 #创建平行链所需要的最低费用
 minNewChainAmount: "100"
+##默认:xchain,国密:gm
 crypto: "xchain"
+txVersion: 1
