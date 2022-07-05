@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -122,7 +120,6 @@ public class Account {
     }
 
     /**
-     <<<<<<< HEAD
      * 字节数组转16进制大写字符串
      *
      * @param bytes
@@ -307,17 +304,7 @@ public class Account {
         return create(cli.createECKeyPair());
     }
 
-
-    class privatePubKey {
-        String CurvName;
-        BigInteger D;
-        BigInteger X;
-        BigInteger Y;
-    }
-
     /**
-     * >>>>>>> upstream/master
-     *
      * @return 公私钥相关。
      */
     public ECKeyPair getKeyPair() {
