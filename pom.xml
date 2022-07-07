@@ -230,6 +230,13 @@
             <groupId>org.apache.fluo</groupId>
             <artifactId>fluo-api</artifactId>
             <version>1.2.0</version>
+            <!-- 排除掉guava,版本太低,不兼容,grpc默认也有guava依赖 -->
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
