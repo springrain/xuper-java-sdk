@@ -28,6 +28,7 @@ public class Config {
     public static void setConfigPath(String path) throws FileNotFoundException {
         confFilePath = path;
         setConfigInputStream(new FileInputStream(path));
+        getInstance();
     }
     public static void setConfigInputStream(InputStream inputStream) {
         confFileInputStream = inputStream;
