@@ -208,11 +208,14 @@
 
         <!--国密依赖包-->
         <!-- https://search.maven.org/artifact/org.bouncycastle/bcpkix-jdk15on/1.70/jar -->
+<!--
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>
             <version>1.56</version>
         </dependency>
+
+-->
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15to18</artifactId>

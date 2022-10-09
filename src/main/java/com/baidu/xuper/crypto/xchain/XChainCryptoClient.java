@@ -4,21 +4,30 @@ import com.baidu.xuper.crypto.AES;
 import com.baidu.xuper.crypto.Base58;
 import com.baidu.xuper.crypto.Common;
 import com.baidu.xuper.crypto.Crypto;
-import com.baidu.xuper.crypto.xchain.bip39.MnemonicCode;
-import com.baidu.xuper.crypto.wordlists.WordList;
-import com.baidu.xuper.crypto.xchain.hdWallet.Rand;
-import com.baidu.xuper.crypto.xchain.hash.Hash;
 import com.baidu.xuper.crypto.account.ECDSAAccount;
 import com.baidu.xuper.crypto.account.ECDSAInfo;
-import com.baidu.xuper.crypto.xchain.hdWallet.Key;
+import com.baidu.xuper.crypto.wordlists.WordList;
 import com.baidu.xuper.crypto.xchain.account.FileKey;
+import com.baidu.xuper.crypto.xchain.bip39.MnemonicCode;
+import com.baidu.xuper.crypto.xchain.hash.Hash;
+import com.baidu.xuper.crypto.xchain.hdWallet.Key;
+import com.baidu.xuper.crypto.xchain.hdWallet.Rand;
 import com.baidu.xuper.crypto.xchain.sign.ECKeyPair;
 import com.baidu.xuper.crypto.xchain.sign.Ecc;
-import com.google.gson.internal.$Gson$Types;
+import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.bouncycastle.jce.spec.ECParameterSpec;
+import org.bouncycastle.jce.spec.ECPublicKeySpec;
 import org.bouncycastle.math.ec.ECPoint;
 
+import javax.crypto.Cipher;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.security.AlgorithmParameters;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.Security;
+import java.security.spec.ECGenParameterSpec;
+
 
 public class XChainCryptoClient implements Crypto {
     /**
@@ -146,8 +155,20 @@ public class XChainCryptoClient implements Crypto {
     }
 
     @Override
-    public byte[] encryptByEcdsaKey(byte[] msg, ECPoint publicKey) throws Exception {
-        return new byte[0];
+    public byte[] encryptByEcdsaKey(byte[] msg, ECPoint ecPoint) throws Exception {
+        AlgorithmParameters parameters=AlgorithmParameters.getInstance("EC");
+        parameters.init(new ECGenParameterSpec("P-256"));
+        ECParameterSpec ecParameterSpec=parameters.getParameterSpec(ECParameterSpec.class);
+
+        ECPublicKeyParameters parameters2 = new ECPublicKeyParameters(ecPoint, Ecc.domain);
+
+        ECPublicKeySpec ecPublicKeySpec=new ECPublicKeySpec(ecPoint,ecParameterSpec);
+        KeyFactory kf=KeyFactory.getInstance("EC");
+        PublicKey publicKey = kf.generatePublic(ecPublicKeySpec);
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        Cipher cipher = Cipher.getInstance("ECIES","BC");//写不写 BC都可以，都是会选择BC实现来做
+        cipher.init(Cipher.ENCRYPT_MODE,publicKey);
+        return cipher.doFinal(msg);
     }
 
     @Override
