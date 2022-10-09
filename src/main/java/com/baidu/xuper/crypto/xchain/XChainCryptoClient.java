@@ -15,7 +15,9 @@ import com.baidu.xuper.crypto.xchain.hdWallet.Rand;
 import com.baidu.xuper.crypto.xchain.sign.ECKeyPair;
 import com.baidu.xuper.crypto.xchain.sign.Ecc;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.bouncycastle.jce.interfaces.ECPrivateKey;
 import org.bouncycastle.jce.spec.ECParameterSpec;
+import org.bouncycastle.jce.spec.ECPrivateKeySpec;
 import org.bouncycastle.jce.spec.ECPublicKeySpec;
 import org.bouncycastle.math.ec.ECPoint;
 
@@ -30,6 +32,9 @@ import java.security.spec.ECGenParameterSpec;
 
 
 public class XChainCryptoClient implements Crypto {
+    public XChainCryptoClient(){
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+    }
     /**
      * 产生随机熵
      *
@@ -165,7 +170,7 @@ public class XChainCryptoClient implements Crypto {
         ECPublicKeySpec ecPublicKeySpec=new ECPublicKeySpec(ecPoint,ecParameterSpec);
         KeyFactory kf=KeyFactory.getInstance("EC");
         PublicKey publicKey = kf.generatePublic(ecPublicKeySpec);
-        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+
         Cipher cipher = Cipher.getInstance("ECIES","BC");//写不写 BC都可以，都是会选择BC实现来做
         cipher.init(Cipher.ENCRYPT_MODE,publicKey);
         return cipher.doFinal(msg);
@@ -173,7 +178,16 @@ public class XChainCryptoClient implements Crypto {
 
     @Override
     public byte[] decryptByEcdsaKey(byte[] cypherText, BigInteger privateKey) throws Exception {
-        return new byte[0];
+        AlgorithmParameters parameters=AlgorithmParameters.getInstance("EC");
+        parameters.init(new ECGenParameterSpec("secp256r1"));
+        ECParameterSpec ecParameterSpec=parameters.getParameterSpec(ECParameterSpec.class);
+        ECPrivateKeySpec privateSpec = new ECPrivateKeySpec(privateKey, ecParameterSpec);
+        KeyFactory kf = KeyFactory.getInstance("EC");
+        ECPrivateKey privateKey2 = (ECPrivateKey) kf.generatePrivate(privateSpec);
+        Cipher cipher = Cipher.getInstance("ECIES","BC");
+        cipher.init(Cipher.DECRYPT_MODE, privateKey2);
+        return cipher.doFinal(cypherText);
+
     }
 
 }
