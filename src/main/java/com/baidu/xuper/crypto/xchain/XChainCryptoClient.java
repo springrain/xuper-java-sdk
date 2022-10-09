@@ -157,7 +157,7 @@ public class XChainCryptoClient implements Crypto {
     @Override
     public byte[] encryptByEcdsaKey(byte[] msg, ECPoint ecPoint) throws Exception {
         AlgorithmParameters parameters=AlgorithmParameters.getInstance("EC");
-        parameters.init(new ECGenParameterSpec("P-256"));
+        parameters.init(new ECGenParameterSpec("secp256r1"));
         ECParameterSpec ecParameterSpec=parameters.getParameterSpec(ECParameterSpec.class);
 
         ECPublicKeyParameters parameters2 = new ECPublicKeyParameters(ecPoint, Ecc.domain);
