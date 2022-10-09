@@ -5,6 +5,7 @@ import com.baidu.xuper.crypto.Common;
 import com.baidu.xuper.crypto.Crypto;
 import com.baidu.xuper.crypto.account.ECDSAInfo;
 import com.baidu.xuper.crypto.gm.sign.SM2KeyPair;
+import com.baidu.xuper.crypto.gm.utils.sm2.SM2;
 import com.baidu.xuper.crypto.xchain.bip39.MnemonicCode;
 import com.baidu.xuper.crypto.wordlists.WordList;
 import com.baidu.xuper.crypto.gm.account.FileKey;
@@ -15,9 +16,15 @@ import com.baidu.xuper.crypto.gm.sign.Ecc;
 import com.baidu.xuper.crypto.AES;
 import com.baidu.xuper.crypto.gm.hdWallet.Key;
 import com.baidu.xuper.crypto.xchain.sign.ECKeyPair;
+import org.bouncycastle.crypto.engines.SM2Engine;
+import org.bouncycastle.crypto.params.ECDomainParameters;
+import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
+import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.bouncycastle.crypto.params.ParametersWithRandom;
 import org.bouncycastle.math.ec.ECPoint;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 
 public class GmCryptoClient implements Crypto {
     /**
@@ -155,5 +162,42 @@ public class GmCryptoClient implements Crypto {
         ecKeyPair.jsonPublicKey = sm2KeyPair.getJSONPublicKey();
         ecKeyPair.jsonPrivateKey = sm2KeyPair.getJSONPrivateKey();
         return ecKeyPair;
+    }
+
+    /**
+     *  国密公钥加密
+     * @param msg
+     * @param publicKey
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public byte[] encryptByEcdsaKey(byte[] msg, ECPoint publicKey) throws Exception {
+        SM2 instance = SM2.Instance();
+        ECDomainParameters domainParameters = instance.ecc_bc_spec;
+        ECPublicKeyParameters ecPublicKeyParameters = new ECPublicKeyParameters(publicKey, domainParameters);
+        SM2Engine engine = new SM2Engine(SM2Engine.Mode.C1C3C2);
+        engine.init(true, new ParametersWithRandom(ecPublicKeyParameters, new SecureRandom()));
+        byte[] bytes = engine.processBlock(msg, 0, msg.length);
+        return bytes ;
+    }
+
+    /**
+     * 国密私钥解密
+     * @param cipherData
+     * @param privateKey
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public byte[] decryptByEcdsaKey(byte[] cipherData, BigInteger privateKey) throws Exception {
+        SM2 instance = SM2.Instance();
+        //构造domain参数
+        ECDomainParameters domainParameters = instance.ecc_bc_spec;
+        ECPrivateKeyParameters privateKeyParameters = new ECPrivateKeyParameters(privateKey, domainParameters);
+        SM2Engine engine = new SM2Engine(SM2Engine.Mode.C1C3C2);
+        engine.init(false, privateKeyParameters);
+        byte[] bytes = engine.processBlock(cipherData, 0, cipherData.length);
+        return bytes;
     }
 }

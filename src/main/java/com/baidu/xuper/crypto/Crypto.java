@@ -96,4 +96,24 @@ public interface Crypto {
      * @return
      */
     ECKeyPair getECKeyPairFromPrivateKey(BigInteger privateKey);
+
+    /**
+     * 使用椭圆曲线非对称加密
+     * @param msg
+     * @param publicKey
+     * @return
+     * @throws Exception
+     */
+    byte[] encryptByEcdsaKey(byte[] msg, ECPoint publicKey) throws Exception;
+
+    /**
+     * 使用椭圆曲线非对称解密
+     * @param cypherText
+     * @param privateKey
+     * @return
+     * @throws Exception
+     */
+    byte[] decryptByEcdsaKey(byte[] cypherText,BigInteger privateKey)throws Exception;
+
+
 }

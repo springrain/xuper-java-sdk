@@ -145,4 +145,14 @@ public class XChainCryptoClient implements Crypto {
         return  ECKeyPair.create(privateKey);
     }
 
+    @Override
+    public byte[] encryptByEcdsaKey(byte[] msg, ECPoint publicKey) throws Exception {
+        return new byte[0];
+    }
+
+    @Override
+    public byte[] decryptByEcdsaKey(byte[] cypherText, BigInteger privateKey) throws Exception {
+        return new byte[0];
+    }
+
 }
