@@ -1,6 +1,5 @@
 package com.baidu.xuper.crypto.xchain;
 
-import com.baidu.xuper.api.Account;
 import com.baidu.xuper.crypto.AES;
 import com.baidu.xuper.crypto.Base58;
 import com.baidu.xuper.crypto.Common;
@@ -16,20 +15,18 @@ import com.baidu.xuper.crypto.xchain.hdWallet.Rand;
 import com.baidu.xuper.crypto.xchain.sign.ECKeyPair;
 import com.baidu.xuper.crypto.xchain.sign.Ecc;
 import org.bouncycastle.jce.ECNamedCurveTable;
-import org.bouncycastle.jce.interfaces.ECPrivateKey;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import org.bouncycastle.jce.spec.ECPrivateKeySpec;
 import org.bouncycastle.jce.spec.ECPublicKeySpec;
 import org.bouncycastle.math.ec.ECPoint;
 
 import javax.crypto.Cipher;
-import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.security.*;
-import java.security.spec.ECGenParameterSpec;
-import java.security.spec.ECParameterSpec;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Security;
 
 
 public class XChainCryptoClient implements Crypto {
@@ -184,6 +181,7 @@ public class XChainCryptoClient implements Crypto {
         return cipher.doFinal(cypherText);
     }
 
+    /*
      public static void main(String[] args) throws Exception {
          //Config.setConfigPath("src/main/resources/sdk.yaml");
          // TODO  此处修改路径  即加载不同的公私钥   对应不同银行
@@ -197,5 +195,6 @@ public class XChainCryptoClient implements Crypto {
          byte[] bytes1 = cryptoClient.decryptByEcdsaKey(bytes, account.getKeyPair().getPrivateKey());
          System.out.println(new String(bytes1));
     }
+     */
 
 }
