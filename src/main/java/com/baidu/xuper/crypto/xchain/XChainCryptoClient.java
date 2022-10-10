@@ -1,5 +1,6 @@
 package com.baidu.xuper.crypto.xchain;
 
+import com.baidu.xuper.api.Account;
 import com.baidu.xuper.crypto.AES;
 import com.baidu.xuper.crypto.Base58;
 import com.baidu.xuper.crypto.Common;
@@ -14,21 +15,21 @@ import com.baidu.xuper.crypto.xchain.hdWallet.Key;
 import com.baidu.xuper.crypto.xchain.hdWallet.Rand;
 import com.baidu.xuper.crypto.xchain.sign.ECKeyPair;
 import com.baidu.xuper.crypto.xchain.sign.Ecc;
-import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.interfaces.ECPrivateKey;
-import org.bouncycastle.jce.spec.ECParameterSpec;
+import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import org.bouncycastle.jce.spec.ECPrivateKeySpec;
 import org.bouncycastle.jce.spec.ECPublicKeySpec;
 import org.bouncycastle.math.ec.ECPoint;
 
 import javax.crypto.Cipher;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.security.AlgorithmParameters;
-import java.security.KeyFactory;
-import java.security.PublicKey;
-import java.security.Security;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
 import java.security.spec.ECGenParameterSpec;
+import java.security.spec.ECParameterSpec;
 
 
 public class XChainCryptoClient implements Crypto {
@@ -161,16 +162,12 @@ public class XChainCryptoClient implements Crypto {
 
     @Override
     public byte[] encryptByEcdsaKey(byte[] msg, ECPoint ecPoint) throws Exception {
-        AlgorithmParameters parameters=AlgorithmParameters.getInstance("EC");
-        parameters.init(new ECGenParameterSpec("secp256r1"));
-        ECParameterSpec ecParameterSpec=parameters.getParameterSpec(ECParameterSpec.class);
 
-        ECPublicKeyParameters parameters2 = new ECPublicKeyParameters(ecPoint, Ecc.domain);
+        ECNamedCurveParameterSpec ecSpec = ECNamedCurveTable.getParameterSpec("secp256r1");
+        ECPublicKeySpec cardKeySpec = new ECPublicKeySpec(ecPoint, ecSpec);
 
-        ECPublicKeySpec ecPublicKeySpec=new ECPublicKeySpec(ecPoint,ecParameterSpec);
         KeyFactory kf=KeyFactory.getInstance("EC");
-        PublicKey publicKey = kf.generatePublic(ecPublicKeySpec);
-
+        PublicKey publicKey = kf.generatePublic(cardKeySpec);
         Cipher cipher = Cipher.getInstance("ECIES","BC");//写不写 BC都可以，都是会选择BC实现来做
         cipher.init(Cipher.ENCRYPT_MODE,publicKey);
         return cipher.doFinal(msg);
@@ -178,16 +175,27 @@ public class XChainCryptoClient implements Crypto {
 
     @Override
     public byte[] decryptByEcdsaKey(byte[] cypherText, BigInteger privateKey) throws Exception {
-        AlgorithmParameters parameters=AlgorithmParameters.getInstance("EC");
-        parameters.init(new ECGenParameterSpec("secp256r1"));
-        ECParameterSpec ecParameterSpec=parameters.getParameterSpec(ECParameterSpec.class);
-        ECPrivateKeySpec privateSpec = new ECPrivateKeySpec(privateKey, ecParameterSpec);
-        KeyFactory kf = KeyFactory.getInstance("EC");
-        ECPrivateKey privateKey2 = (ECPrivateKey) kf.generatePrivate(privateSpec);
+        ECNamedCurveParameterSpec ecSpec = ECNamedCurveTable.getParameterSpec("secp256r1");
+        ECPrivateKeySpec cardKeySpec=new ECPrivateKeySpec(privateKey,ecSpec);
+        KeyFactory kf=KeyFactory.getInstance("EC");
+        PrivateKey ecPrivateKey =kf.generatePrivate(cardKeySpec);
         Cipher cipher = Cipher.getInstance("ECIES","BC");
-        cipher.init(Cipher.DECRYPT_MODE, privateKey2);
+        cipher.init(Cipher.DECRYPT_MODE, ecPrivateKey);
         return cipher.doFinal(cypherText);
+    }
 
+     public static void main(String[] args) throws Exception {
+         //Config.setConfigPath("src/main/resources/sdk.yaml");
+         // TODO  此处修改路径  即加载不同的公私钥   对应不同银行
+         File file = new File("E://keys");
+         //获取Account
+         Account account = Account.getAccountFromPlainFile(file.getPath());
+         System.out.println(account.getKeyPair().getJSONPrivateKey());
+         Crypto cryptoClient = new XChainCryptoClient();
+         String dajdkaljda = new String("dajdkaljda");
+         byte[] bytes = cryptoClient.encryptByEcdsaKey(dajdkaljda.getBytes(StandardCharsets.UTF_8), account.getKeyPair().getPublicKey());
+         byte[] bytes1 = cryptoClient.decryptByEcdsaKey(bytes, account.getKeyPair().getPrivateKey());
+         System.out.println(new String(bytes1));
     }
 
 }
