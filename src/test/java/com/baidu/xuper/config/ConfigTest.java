@@ -6,10 +6,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class ConfigTest {
+    String p = getClass().getResource("./conf/sdk.yaml").getPath();
     @Test
     public void testDefaultConfig() {
-        Config c = Config.getInstance();
-        assertFalse(Config.hasConfigFile());
+        Config c= Config.getInstance(p);
+        assertFalse(c.hasConfigFile());
         assertEquals(c.getCrypto(), "xchain");
         assertEquals(c.getMinNewChainAmount(), "100");
         assertFalse(c.getComplianceCheck().isNeedComplianceCheck());

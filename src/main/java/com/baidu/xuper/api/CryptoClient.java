@@ -11,10 +11,11 @@ public class CryptoClient {
      *
      * @return CryptoClient
      */
-    public static Crypto getCryptoClient() {
-        if (Config.CRYPTO_GM.equals(Config.getInstance().getCrypto())) {
+    public static Crypto getCryptoClient(Config config) {
+        if (Config.CRYPTO_GM.equals(config.getCrypto())) {
             return new GmCryptoClient();
         }
         return new XChainCryptoClient();
     }
+
 }

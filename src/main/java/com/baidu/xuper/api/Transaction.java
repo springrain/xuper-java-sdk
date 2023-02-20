@@ -20,6 +20,8 @@ public class Transaction {
     private byte[] txdigest;
     private ContractResponse contractResponse;
     private long gasUsed;
+    private Config config;
+
 
     /**
      * used to build a transaction from a protobuf tx
@@ -28,13 +30,15 @@ public class Transaction {
      * @param chainName the name of chain
      * @param tx        the protobuf transaction
      */
-    public Transaction(String chainName, XchainOuterClass.Transaction tx) {
+    public Transaction(Config config,String chainName, XchainOuterClass.Transaction tx) {
+        this.config = config;
         proposal = new Proposal().setChainName(chainName);
         txBuilder = tx.toBuilder();
         pbtx = tx;
     }
 
-    Transaction(XchainOuterClass.InvokeRPCResponse rpcResponse, Proposal proposal) {
+    Transaction(Config config,XchainOuterClass.InvokeRPCResponse rpcResponse, Proposal proposal) {
+        this.config = config;
         this.proposal = proposal;
         this.gasUsed = rpcResponse.getResponse().getGasUsed();
         if (rpcResponse.getResponse().getResponseCount() != 0) {
@@ -48,6 +52,7 @@ public class Transaction {
     }
 
     Transaction(XchainOuterClass.PreExecWithSelectUTXOResponse response, Proposal proposal, XuperClient client) throws Exception {
+        this.config = client.getConfig();
         XchainOuterClass.InvokeResponse invokeResponse = response.getResponse();
         this.proposal = proposal;
         this.gasUsed = invokeResponse.getGasUsed();
@@ -60,13 +65,13 @@ public class Transaction {
             }
         }
         try {
-            if (!Config.hasConfigFile() || !Config.getInstance().getComplianceCheck().isNeedComplianceCheck()) {
+            if (!config.hasConfigFile() || !config.getComplianceCheck().isNeedComplianceCheck()) {
                 genRealTxOnly(response, proposal);
                 return;
             }
 
             XchainOuterClass.Transaction complianceCheckTx = null;
-            if (Config.getInstance().getComplianceCheck().isNeedComplianceCheckFee()) {
+            if (config.getComplianceCheck().isNeedComplianceCheckFee()) {
                 complianceCheckTx = genComplianceCheckTx(response);
                 genRealTx(response, complianceCheckTx);
             } else {
@@ -94,7 +99,7 @@ public class Transaction {
         XchainOuterClass.Transaction.Builder txBuilder = XchainOuterClass.Transaction.newBuilder()
                 .setNonce(Common.newNonce())
                 .setTimestamp(Common.getTimestamp())
-                .setVersion(Config.getInstance().getTxVersion())
+                .setVersion(config.getTxVersion())
                 .setInitiator(initiator.getAKAddress());
 
         if (proposal.desc != null) {
@@ -163,7 +168,7 @@ public class Transaction {
 
         XchainOuterClass.Transaction.Builder txBuilder = XchainOuterClass.Transaction.newBuilder()
                 .setNonce(Common.newNonce())
-                .setVersion(Config.getInstance().getTxVersion())
+                .setVersion(config.getTxVersion())
                 .setCoinbase(false)
                 .setTimestamp(Common.getTimestamp())
                 .addAllTxInputs(Arrays.asList(txInputs))
@@ -341,14 +346,14 @@ public class Transaction {
 
     private XchainOuterClass.Transaction genComplianceCheckTx(XchainOuterClass.PreExecWithSelectUTXOResponse response) {
         try {
-            BigInteger totalNeed = new BigInteger(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceFee() + "");
+            BigInteger totalNeed = new BigInteger(config.getComplianceCheck().getComplianceCheckEndorseServiceFee() + "");
             XchainOuterClass.TxInput[] txInputs = genTxInput(response.getUtxoOutput());
             XchainOuterClass.TxOutput deltaTxOutput = getDeltaTxOutput(response.getUtxoOutput(), totalNeed, this.proposal.initiator.getAKAddress());
 
             XchainOuterClass.TxOutput[] txOutputs = genTxOutput(
-                    Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceFeeAddr(),
+                    config.getComplianceCheck().getComplianceCheckEndorseServiceFeeAddr(),
                     "0",
-                    Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceFee());
+                    config.getComplianceCheck().getComplianceCheckEndorseServiceFee());
 
             if (deltaTxOutput != null) {
                 List<XchainOuterClass.TxOutput> txOutputsTemp = Arrays.asList(txOutputs);
@@ -360,7 +365,7 @@ public class Transaction {
 
             XchainOuterClass.Transaction.Builder builder = XchainOuterClass.Transaction.newBuilder();
             builder.setNonce(Common.newNonce())
-                    .setVersion(Config.getInstance().getTxVersion())
+                    .setVersion(config.getTxVersion())
                     .setCoinbase(false)
                     .addAllTxInputs(Arrays.asList(txInputs))
                     .addAllTxOutputs(Arrays.asList(txOutputs))
@@ -372,7 +377,7 @@ public class Transaction {
 
 
 //            byte[] signBytes = this.proposal.initiator.getKeyPair().sign(bytes);
-            Crypto cli = CryptoClient.getCryptoClient();
+            Crypto cli = CryptoClient.getCryptoClient(config);
             byte[] signBytes = cli.signECDSA(bytes, this.proposal.initiator.getKeyPair().getPrivateKey());
 
 
@@ -455,7 +460,7 @@ public class Transaction {
             txdigest = TxEncoder.makeTxDigest(pbtx);
             ECKeyPair keyPair = singer.getKeyPair();
 //            byte[] sig = keyPair.sign(txdigest);
-            Crypto cli = CryptoClient.getCryptoClient();
+            Crypto cli = CryptoClient.getCryptoClient(config);
             byte[] sig = cli.signECDSA(txdigest, keyPair.getPrivateKey());
 
             XchainOuterClass.SignatureInfo siginfo = XchainOuterClass.SignatureInfo.newBuilder()

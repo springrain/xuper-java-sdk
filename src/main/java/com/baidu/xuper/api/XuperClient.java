@@ -34,52 +34,40 @@ public class XuperClient {
     private final String argContractDesc = "contract_desc";
     private final String argInitArgs = "init_args";
     private final String argContractAbi = "contract_abi";
+    private Config config;
+
+
 
     /**
      * @param target the address of xchain node, like 127.0.0.1:37101
      */
-    public XuperClient(String target) {
-        this(target,true);
+    public XuperClient(String target,Config config) {
+        this(target, Integer.MAX_VALUE, config);
     }
 
-    /**
-     * @param target the address of xchain node, like 127.0.0.1:37101
-     */
-    public XuperClient(String target,boolean xendorser) {
-        this(target, Integer.MAX_VALUE, xendorser);
-    }
-
-    /**
-     * @param target                the address of xchain node, like 127.0.0.1:37101
-     * @param maxInboundMessageSize Sets the maximum message size allowed to be received on the channel, like 52428800 (50M)
-     */
-
-    public XuperClient(String target,Integer maxInboundMessageSize) {
-        this(target,maxInboundMessageSize,true);
-    }
 
     /**
      * @param target the address of xchain node, like 127.0.0.1:37101
      * @param maxInboundMessageSize Sets the maximum message size allowed to be received on the channel, like 52428800 (50M)
      */
-    public XuperClient(String target,Integer maxInboundMessageSize,boolean xendorser) {
-
+    public XuperClient(String target,Integer maxInboundMessageSize,Config config) {
         this(ManagedChannelBuilder.forTarget(target)
                 .maxInboundMessageSize(maxInboundMessageSize)
                 .directExecutor()
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
                 .usePlaintext()
-                .build(),xendorser);
+                .build(),config);
     }
 
 
 
-    private XuperClient(ManagedChannel channel,boolean xendorser) {
+    private XuperClient(ManagedChannel channel,Config config) {
+        this.config = config;
         this.channel = channel;
         blockingClient = XchainGrpc.newBlockingStub(channel);
-        if (xendorser&&Config.hasConfigFile()) {
-            xendorserClient = new XendorserClient(Config.getInstance().getEndorseServiceHost());
+        if (config.getComplianceCheck().isNeedComplianceCheck()) {
+            xendorserClient = new XendorserClient(config.getEndorseServiceHost());
         } else {
             xendorserClient = null;
         }
@@ -108,6 +96,13 @@ public class XuperClient {
     public XendorserClient getXendorserClient() {
         return xendorserClient;
     }
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
+    }
 
     /**
      * @param from   from address
@@ -134,8 +129,8 @@ public class XuperClient {
             p.setDesc(desc);
         }
 
-        if (Config.getInstance().getComplianceCheck().isNeedComplianceCheck()) {
-            p.addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr());
+        if (config.getComplianceCheck().isNeedComplianceCheck()) {
+            p.addAuthRequire(config.getComplianceCheck().getComplianceCheckEndorseServiceAddr());
         }
         p.setInitiator(from);
         return p.transfer(to, amount).build(this).sign().send(this);
@@ -152,8 +147,8 @@ public class XuperClient {
      */
     public Transaction invokeContract(Account from, String module, String contract, String method, Map<String, byte[]> args) {
         Proposal p = new Proposal().setChainName(chainName);
-        if (Config.getInstance().getComplianceCheck().isNeedComplianceCheck()) {
-            p.addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr());
+        if (config.getComplianceCheck().isNeedComplianceCheck()) {
+            p.addAuthRequire(config.getComplianceCheck().getComplianceCheckEndorseServiceAddr());
         }
         p.setInitiator(from);
         return p.invokeContract(module, contract, method, args).build(this).sign().send(this);
@@ -171,7 +166,7 @@ public class XuperClient {
         return new Proposal()
                 .setChainName(chainName)
                 .setInitiator(from)
-                .addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr())
+                .addAuthRequire(config.getComplianceCheck().getComplianceCheckEndorseServiceAddr())
                 .invokeContract(module, contract, method, args)
                 .preExec(this);
     }
@@ -457,7 +452,7 @@ public class XuperClient {
         return new Proposal()
                 .setChainName(chainName)
                 .setInitiator(from)
-                .addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr())
+                .addAuthRequire(config.getComplianceCheck().getComplianceCheckEndorseServiceAddr())
                 .invokeContract(evmContract, contract, method, evmArgs)
                 .preExec(this);
     }
@@ -472,8 +467,8 @@ public class XuperClient {
      */
     public Transaction invokeEVMContract(Account from, String contract, String method, Map<String, String> args, BigInteger amount) {
         Proposal p = new Proposal().setChainName(chainName);
-        if (Config.getInstance().getComplianceCheck().isNeedComplianceCheck()) {
-            p.addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr());
+        if (config.getComplianceCheck().isNeedComplianceCheck()) {
+            p.addAuthRequire(config.getComplianceCheck().getComplianceCheckEndorseServiceAddr());
         }
         p.setInitiator(from);
 

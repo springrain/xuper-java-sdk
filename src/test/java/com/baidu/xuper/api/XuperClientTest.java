@@ -3,6 +3,7 @@ package com.baidu.xuper.api;
 import com.baidu.xuper.config.Config;
 import com.baidu.xuper.pb.XchainOuterClass;
 import org.bouncycastle.util.encoders.Hex;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,18 +21,21 @@ import static org.junit.Assume.assumeNoException;
 public class XuperClientTest {
     private Account account;
     private XuperClient client;
+    private Config config;
+    Account defaultAccount;
 
     @Before
     public void setUp() {
         try {
             String p = getClass().getResource("./conf/sdk.yaml").getPath();
-            Config.setConfigPath(p);
+            config= Config.getInstance(p);
 
-            client = new XuperClient("127.0.0.1:37101");
+            client = new XuperClient("127.0.0.1:37101",config);
             // test connection
             client.getBlockingClient().getSystemStatus(XchainOuterClass.CommonIn.newBuilder().build());
             String keyPath = Paths.get(getClass().getResource("keys").toURI()).toString();
-            account = Account.create(keyPath);
+             defaultAccount=new Account(config);
+            account = defaultAccount.create(keyPath);
         } catch (Exception e) {
             assumeNoException(e);
         }
@@ -50,7 +54,7 @@ public class XuperClientTest {
 
     @Test
     public void getBalance() throws Exception {
-        Account bob = Account.create();
+        Account bob = defaultAccount.create();
         BigInteger amount = BigInteger.valueOf(100);
         Transaction tx = client.transfer(account, bob.getAddress(), amount, "0");
         System.out.println("transfer to bob " + tx.getTxid());

@@ -1,5 +1,6 @@
 package com.baidu.xuper.api;
 
+import com.baidu.xuper.config.Config;
 import com.baidu.xuper.crypto.xchain.sign.ECKeyPair;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.google.common.io.ByteStreams;
@@ -20,15 +21,19 @@ public class TxEncoderTest {
     final String privateKey = "29079635126530934056640915735344231956621504557963207107451663058887647996601";
     Account account;
 
+    String p = getClass().getResource("./conf/sdk.yaml").getPath();
+    Config config= Config.getInstance(p);
+    Account defaultAccount=new Account(config);
+
     @Before
     public void setUp() throws Exception {
-        account = Account.create(ECKeyPair.create(new BigInteger(privateKey)));
+        account = defaultAccount.create(ECKeyPair.create(new BigInteger(privateKey)));
     }
 
     @Ignore
     @Test
     public void makeTransferTx() throws Exception {
-        XuperClient client = new XuperClient("127.0.0.1:37101");
+        XuperClient client = new XuperClient("127.0.0.1:37101",config);
         Transaction tx = new Proposal()
                 .setChainName("xuper")
                 .setInitiator(account)
@@ -44,7 +49,7 @@ public class TxEncoderTest {
     @Ignore
     @Test
     public void makeInvokeTx() throws Exception {
-        XuperClient client = new XuperClient("127.0.0.1:37101");
+        XuperClient client = new XuperClient("127.0.0.1:37101",config);
         Map<String, byte[]> args = new HashMap<>();
         Transaction tx = new Proposal()
                 .setChainName("xuper")

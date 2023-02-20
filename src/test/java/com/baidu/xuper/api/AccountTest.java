@@ -1,5 +1,6 @@
 package com.baidu.xuper.api;
 
+import com.baidu.xuper.config.Config;
 import com.baidu.xuper.crypto.Crypto;
 import com.baidu.xuper.crypto.xchain.sign.ECKeyPair;
 import com.baidu.xuper.crypto.gm.sign.SM2KeyPair;
@@ -8,16 +9,20 @@ import org.junit.Test;
 
 import java.io.File;
 import java.math.BigInteger;
+import java.net.URL;
 import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class AccountTest {
-
+    URL url=getClass().getResource("./conf/sdk.yaml");
+    String p = url.getPath();
+    Config config= Config.getInstance(p);
+    Account defaultAccount=new Account(config);
     @Test
     public void getAddress() {
-        Crypto cli = CryptoClient.getCryptoClient();
+        Crypto cli = CryptoClient.getCryptoClient(config);
 
         final String privateKey = "29079635126530934056640915735344231956621504557963207107451663058887647996601";
         final String expectAddress = "dpzuVdosQrF2kmzumhVeFQZa1aYcdgFpN";
@@ -27,7 +32,7 @@ public class AccountTest {
 //        final String expectAddress = "vKEJtquL9yEzPs2gvBDVrLSfNRSgaNDGj";
 
         ECKeyPair ecKeyPair = cli.getECKeyPairFromPrivateKey(new BigInteger(privateKey));
-        Account account = Account.create(ecKeyPair);
+        Account account = defaultAccount.create(ecKeyPair);
         assertEquals(expectAddress, account.getAddress());
 
     }
@@ -36,7 +41,7 @@ public class AccountTest {
     public void createFromPath() throws Exception {
         byte[] address = ByteStreams.toByteArray(getClass().getResourceAsStream("keys/address"));
         String keyPath = Paths.get(getClass().getResource("keys").toURI()).toString();
-        Account account = Account.create(keyPath);
+        Account account = defaultAccount.create(keyPath);
         assertEquals(new String(address), account.getAddress());
     }
 
@@ -47,22 +52,22 @@ public class AccountTest {
         deleteDir(new File("./test2"));
         deleteDir(new File("./test3"));
 
-        Account a = Account.createAndSaveToFile("./test", "test", 1, 1);
+        Account a = defaultAccount.createAndSaveToFile("./test", "test", 1, 1);
         assertNotNull(a.getAddress());
         assertNotNull(a.getKeyPair());
         assertNotNull(a.getMnemonic());
 
-        Account a1 = Account.createAndSaveToFile("./test1", "test", 1, 2);
+        Account a1 = defaultAccount.createAndSaveToFile("./test1", "test", 1, 2);
         assertNotNull(a1.getAddress());
         assertNotNull(a1.getKeyPair());
         assertNotNull(a1.getMnemonic());
 
-        Account a2 = Account.createAndSaveToFile("./test2", "test", 2, 1);
+        Account a2 = defaultAccount.createAndSaveToFile("./test2", "test", 2, 1);
         assertNotNull(a2.getAddress());
         assertNotNull(a2.getKeyPair());
         assertNotNull(a2.getMnemonic());
 
-        Account a3 = Account.createAndSaveToFile("./test3", "test", 2, 2);
+        Account a3 = defaultAccount.createAndSaveToFile("./test3", "test", 2, 2);
         assertNotNull(a3.getAddress());
         assertNotNull(a3.getKeyPair());
         assertNotNull(a3.getMnemonic());
@@ -78,8 +83,8 @@ public class AccountTest {
         String path = "./testFromFile";
         deleteDir(new File(path));
         String pw = "test";
-        Account a = Account.createAndSaveToFile(path, pw, 1, 1);
-        Account a1 = Account.getAccountFromFile(path, pw);
+        Account a = defaultAccount.createAndSaveToFile(path, pw, 1, 1);
+        Account a1 = defaultAccount.getAccountFromFile(path, pw);
         assertEquals(a.getAddress(), a1.getAddress());
         assertEquals(a.getKeyPair().getJSONPrivateKey(), a1.getKeyPair().getJSONPrivateKey());
         deleteDir(new File(path));
@@ -87,7 +92,7 @@ public class AccountTest {
 
     @Test
     public void create() throws Exception {
-        Account a = Account.create(1, 1);
+        Account a = defaultAccount.create(1, 1);
         System.out.println(a.getAddress());
         System.out.println(a.getMnemonic());
         System.out.println(a.getKeyPair().getPrivateKey().toString());
@@ -95,7 +100,7 @@ public class AccountTest {
         assertNotNull(a.getMnemonic());
         assertNotNull(a.getKeyPair().getJSONPrivateKey());
 
-        Account a1 = Account.create(1, 2);
+        Account a1 = defaultAccount.create(1, 2);
         System.out.println(a1.getAddress());
         System.out.println(a1.getMnemonic());
         System.out.println(a1.getKeyPair());
@@ -106,14 +111,14 @@ public class AccountTest {
 
     @Test
     public void retrieve() throws Exception {
-        Account a = Account.create(1, 1);
-        Account a1 = Account.retrieve(a.getMnemonic(), 1);
+        Account a = defaultAccount.create(1, 1);
+        Account a1 = defaultAccount.retrieve(a.getMnemonic(), 1);
         assertEquals(a.getMnemonic(), a1.getMnemonic());
         assertEquals(a.getAddress(), a1.getAddress());
         assertEquals(a.getKeyPair().getJSONPrivateKey(), a1.getKeyPair().getJSONPrivateKey());
 
-        Account b = Account.create(1, 2);
-        Account b1 = Account.retrieve(b.getMnemonic(), 2);
+        Account b = defaultAccount.create(1, 2);
+        Account b1 = defaultAccount.retrieve(b.getMnemonic(), 2);
         assertEquals(b.getMnemonic(), b1.getMnemonic());
         assertEquals(b.getAddress(), b1.getAddress());
         assertEquals(b.getKeyPair().getJSONPrivateKey(), b1.getKeyPair().getJSONPrivateKey());

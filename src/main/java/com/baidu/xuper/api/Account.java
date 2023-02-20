@@ -1,5 +1,6 @@
 package com.baidu.xuper.api;
 
+import com.baidu.xuper.config.Config;
 import com.baidu.xuper.crypto.Base58;
 import com.baidu.xuper.crypto.Crypto;
 import com.baidu.xuper.crypto.account.ECDSAAccount;
@@ -20,10 +21,15 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class Account {
-    private final ECKeyPair ecKeyPair;
-    private final String address;
+    private ECKeyPair ecKeyPair;
+    private String address;
     private String contractAccount;
     private String mnemonic;
+    private Config config;
+
+    public Account(Config config){
+        this.config=config;
+    }
 
     private Account(ECKeyPair ecKeyPair, String address) {
         this.ecKeyPair = ecKeyPair;
@@ -43,8 +49,8 @@ public class Account {
      * @param language 助记词语言，1中文，2英文。
      * @return Account 账户信息。
      */
-    public static Account create(int strength, int language) {
-        Crypto cli = CryptoClient.getCryptoClient();
+    public  Account create(int strength, int language) {
+        Crypto cli = CryptoClient.getCryptoClient(config);
         ECDSAAccount ecdsaAccount = cli.createNewAccountWithMnemonic(language, strength);
         return new Account(ecdsaAccount.ecKeyPair, ecdsaAccount.address, ecdsaAccount.mnemonic);
     }
@@ -56,8 +62,8 @@ public class Account {
      * @param language 助记词语言，1中文，2英文。
      * @return Account 账户信息。
      */
-    public static Account retrieve(String mnemonic, int language) {
-        Crypto cli = CryptoClient.getCryptoClient();
+    public  Account retrieve(String mnemonic, int language) {
+        Crypto cli = CryptoClient.getCryptoClient(config);
         ECDSAAccount ecdsaAccount = cli.retrieveAccountByMnemonic(mnemonic, language);
         return new Account(ecdsaAccount.ecKeyPair, ecdsaAccount.address, ecdsaAccount.mnemonic);
     }
@@ -69,8 +75,8 @@ public class Account {
      * @param language 助记词语言，1中文，2英文。
      * @return Account 账户信息。
      */
-    public static Account createAndSaveToFile(String path, String passwd, Integer strength, Integer language) {
-        Crypto cli = CryptoClient.getCryptoClient();
+    public  Account createAndSaveToFile(String path, String passwd, Integer strength, Integer language) {
+        Crypto cli = CryptoClient.getCryptoClient(config);
         ECDSAAccount ecdsaAccount = cli.createNewAccountWithMnemonic(language, strength);
 
         Common.mkdir(path);
@@ -91,7 +97,7 @@ public class Account {
      *             |-- mnemonic
      * @return Account 账户信息。
      */
-    public static Account getAccountFromPlainFile(String path) {
+    public  Account getAccountFromPlainFile(String path) {
         try {
             byte[] address = Files.readAllBytes(Paths.get(path + "/address"));
             byte[] pubKey = Files.readAllBytes(Paths.get(path + "/public.key"));
@@ -103,7 +109,7 @@ public class Account {
                 throw new RuntimeException("invalid private.key file");
             }
 
-            Crypto cli = CryptoClient.getCryptoClient();
+            Crypto cli = CryptoClient.getCryptoClient(config);
             Account account = create(cli.getECKeyPairFromPrivateKey(privatePubKey.D));
             if (!account.getAKAddress().equals(new String(address))) {
                 throw new RuntimeException("address and private key not match.");
@@ -204,8 +210,8 @@ public class Account {
      * @param password 密码。
      * @return Account 账户信息。
      */
-    public static Account getAccountFromFile(String path, String password) {
-        Crypto cli = CryptoClient.getCryptoClient();
+    public  Account getAccountFromFile(String path, String password) {
+        Crypto cli = CryptoClient.getCryptoClient(config);
         byte[] p = cli.getEcdsaPrivateKeyFromFileByPassword(path, password);
 
         Gson gson = new Gson();
@@ -221,7 +227,7 @@ public class Account {
      * @return
      * @throws Exception
      */
-    public static Account create(String keyPath) {
+    public  Account create(String keyPath) {
         try {
             String privateKeyPath = Paths.get(keyPath, "private.key").toString();
             File privateKeyFile = new File(privateKeyPath);
@@ -230,6 +236,49 @@ public class Account {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * @param inputStream ./data/keys/private.key fileInputStream
+     * @return
+     * @throws Exception
+     */
+    public  Account create(InputStream inputStream) {
+        Gson gson = new Gson();
+        PrivatePubKey json;
+        Crypto cli = CryptoClient.getCryptoClient(config);
+        try {
+            JsonReader reader = new JsonReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+            json = gson.fromJson(reader, PrivatePubKey.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        if (json.D == null) {
+            throw new RuntimeException("invalid private.key file");
+        }
+        return create(cli.getECKeyPairFromPrivateKey(json.D));
+    }
+
+    /**
+     * @param keyPair the private and public key of account
+     * @return
+     */
+    public  Account create(ECKeyPair keyPair) {
+        Crypto cli = CryptoClient.getCryptoClient(config);
+        String address = cli.getAddressFromPublicKey(keyPair.publicKey);
+        return new Account(keyPair, address);
+    }
+
+    /**
+     * Create a account using random private key
+     *
+     * @return
+     */
+    public  Account create() {
+        Crypto cli = CryptoClient.getCryptoClient(config);
+        return create(cli.createECKeyPair());
+    }
+
 
     /**
      * @return 账户地址，如果存在合约账户地址，返回合约账户地址。
@@ -262,47 +311,15 @@ public class Account {
         return this.contractAccount;
     }
 
-    /**
-     * @param inputStream ./data/keys/private.key fileInputStream
-     * @return
-     * @throws Exception
-     */
-    public static Account create(InputStream inputStream) {
-        Gson gson = new Gson();
-        PrivatePubKey json;
-        Crypto cli = CryptoClient.getCryptoClient();
-        try {
-            JsonReader reader = new JsonReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-            json = gson.fromJson(reader, PrivatePubKey.class);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
-        if (json.D == null) {
-            throw new RuntimeException("invalid private.key file");
-        }
-        return create(cli.getECKeyPairFromPrivateKey(json.D));
+    public Config getConfig() {
+        return config;
     }
 
-    /**
-     * @param keyPair the private and public key of account
-     * @return
-     */
-    public static Account create(ECKeyPair keyPair) {
-        Crypto cli = CryptoClient.getCryptoClient();
-        String address = cli.getAddressFromPublicKey(keyPair.publicKey);
-        return new Account(keyPair, address);
+    public void setConfig(Config config) {
+        this.config = config;
     }
 
-    /**
-     * Create a account using random private key
-     *
-     * @return
-     */
-    public static Account create() {
-        Crypto cli = CryptoClient.getCryptoClient();
-        return create(cli.createECKeyPair());
-    }
 
     /**
      * @return 公私钥相关。

@@ -12,9 +12,9 @@ public class Config {
     public static final String CRYPTO_CHAIN = "xchain";
     public static final String CRYPTO_GM = "gm";
 
-    private static Config singletonConfig;
-    private static String confFilePath;
-    private static InputStream confFileInputStream;
+    //private   Config singletonConfig;
+    private  String confFilePath;
+    private  InputStream confFileInputStream;
 
     private String endorseServiceHost;
     private ComplianceCheck complianceCheck;
@@ -25,37 +25,55 @@ public class Config {
     private Config() {
     }
 
-    public static void setConfigPath(String path) throws FileNotFoundException {
+
+
+    public  void setConfigPath(String path) throws FileNotFoundException {
         confFilePath = path;
         setConfigInputStream(new FileInputStream(path));
-        getInstance();
+        //getInstance();
     }
-    public static void setConfigInputStream(InputStream inputStream) {
+    public  void setConfigInputStream(InputStream inputStream) {
         confFileInputStream = inputStream;
     }
-    public static boolean hasConfigFile() {
+    public  boolean hasConfigFile() {
         return confFilePath != null || confFileInputStream != null;
     }
 
-    public static Config getInstance() {
-        if (singletonConfig != null) {
+    /*
+    public  Config getInstance() {
+
+        if (singletonConfig!=null){
             return singletonConfig;
         }
 
-        if (hasConfigFile()) {
+        Config config=new Config();
+        if (config.hasConfigFile()) {
             try {
-                singletonConfig = getConfigFromYaml();
+                singletonConfig = config.getConfigFromYaml();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         } else {
-            singletonConfig = getDefaultConfig();
+            singletonConfig = config.getDefaultConfig();
         }
 
         return singletonConfig;
     }
+*/
+    public static Config getInstance(String configPath) {
+        try {
+            Yaml yaml = new Yaml(new Constructor(Config.class));
+            Config config= yaml.load(new FileInputStream(new File(configPath)));
+            if (config.getTxVersion()==null){
+                config.setTxVersion(1);
+            }
+            return config;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    private static Config getConfigFromYaml() throws Exception {
+    private  Config getConfigFromYaml() throws Exception {
         Yaml yaml = new Yaml(new Constructor(Config.class));
         Config config= yaml.load(confFileInputStream!=null?confFileInputStream:new FileInputStream(new File(confFilePath)));
         if (config.getTxVersion()==null){
@@ -64,7 +82,8 @@ public class Config {
         return config;
     }
 
-    private static Config getDefaultConfig() {
+    /*
+    private  Config getDefaultConfig() {
         singletonConfig = new Config();
         singletonConfig.minNewChainAmount = "100";
         singletonConfig.crypto = CRYPTO_CHAIN;
@@ -82,6 +101,7 @@ public class Config {
         singletonConfig.txVersion = 1;
         return singletonConfig;
     }
+     */
 
     public String getEndorseServiceHost() {
         return endorseServiceHost;
@@ -123,7 +143,7 @@ public class Config {
         this.txVersion = txVersion;
     }
 
-    public static class ComplianceCheck {
+    public  class ComplianceCheck {
         private boolean isNeedComplianceCheck;
         private boolean isNeedComplianceCheckFee;
         private int complianceCheckEndorseServiceFee;

@@ -93,7 +93,7 @@ public class Proposal {
                 .addAllAuthRequire(this.authRequire)
                 .build();
         XchainOuterClass.InvokeRPCResponse invokeRPCResponse = client.getBlockingClient().preExec(request);
-        return new Transaction(invokeRPCResponse, this);
+        return new Transaction(client.getConfig(),invokeRPCResponse, this);
     }
 
     public Transaction build(XuperClient client) {
@@ -121,9 +121,9 @@ public class Proposal {
 
         int extAmount = 0;
         try {
-            if (Config.getInstance().getComplianceCheck().isNeedComplianceCheck()) {
-                if (Config.getInstance().getComplianceCheck().isNeedComplianceCheckFee()) {
-                    extAmount = Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceFee();
+            if (client.getConfig().getComplianceCheck().isNeedComplianceCheck()) {
+                if (client.getConfig().getComplianceCheck().isNeedComplianceCheckFee()) {
+                    extAmount = client.getConfig().getComplianceCheck().getComplianceCheckEndorseServiceFee();
                 }
             }
         } catch (Exception e) {
@@ -161,7 +161,7 @@ public class Proposal {
             byte[] hash = Hash.doubleSha256((chainName + initiator.getAKAddress() + amount + false).getBytes());
 
 //            byte[] sign = initiator.getKeyPair().sign(hash);
-            Crypto cli = CryptoClient.getCryptoClient();
+            Crypto cli = CryptoClient.getCryptoClient(client.getConfig());
             byte[] sign = cli.signECDSA(hash, initiator.getKeyPair().getPrivateKey());
 
             XchainOuterClass.SignatureInfo signature = XchainOuterClass.SignatureInfo.newBuilder()
@@ -179,7 +179,7 @@ public class Proposal {
                     .build();
 
             XchainOuterClass.PreExecWithSelectUTXOResponse pr;
-            if (Config.hasConfigFile() && Config.getInstance().getComplianceCheck().isNeedComplianceCheck()) {
+            if (client.getConfig().hasConfigFile() && client.getConfig().getComplianceCheck().isNeedComplianceCheck()) {
                 XendorserOuterClass.EndorserResponse r = client.getXendorserClient().getBlockingClient().endorserCall(XendorserOuterClass.EndorserRequest.newBuilder()
                         .setHeader(header)
                         .setBcName(chainName)
