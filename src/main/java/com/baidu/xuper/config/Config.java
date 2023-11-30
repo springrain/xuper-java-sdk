@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -56,7 +57,7 @@ public class Config {
     }
 
     private static Config getConfigFromYaml() throws Exception {
-        Yaml yaml = new Yaml(new Constructor(Config.class));
+        Yaml yaml = new Yaml(new Constructor(Config.class,new LoaderOptions()));
         Config config= yaml.load(confFileInputStream!=null?confFileInputStream:new FileInputStream(new File(confFilePath)));
         if (config.getTxVersion()==null){
             config.setTxVersion(1);
