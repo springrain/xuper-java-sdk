@@ -151,7 +151,7 @@ public class XuperClient {
      * @return
      */
     public Transaction invokeContract(Account from, String module, String contract, String method, Map<String, byte[]> args) {
-        return invokeContract(from,module,contract,method,args,"");
+        return invokeContract(from,module,contract,method,args,null);
     }
 
     public Transaction invokeContract(Account from, String module, String contract, String method, Map<String, byte[]> args, String desc) {
@@ -160,10 +160,9 @@ public class XuperClient {
             p.addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr());
         }
         p.setInitiator(from);
-        if (desc==null){
-            desc="";
+        if (desc!=null){
+            p.setDesc(desc);
         }
-        p.setDesc(desc);
         return p.invokeContract(module, contract, method, args).build(this).sign().send(this);
     }
 
