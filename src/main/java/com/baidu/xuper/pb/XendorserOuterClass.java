@@ -139,91 +139,6 @@ public final class XendorserOuterClass {
       return new EndorserRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private EndorserRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.baidu.xuper.pb.XchainOuterClass.Header.Builder subBuilder = null;
-              if (header_ != null) {
-                subBuilder = header_.toBuilder();
-              }
-              header_ = input.readMessage(com.baidu.xuper.pb.XchainOuterClass.Header.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(header_);
-                header_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              requestName_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              bcName_ = s;
-              break;
-            }
-            case 34: {
-              com.baidu.xuper.pb.XchainOuterClass.Transaction.Builder subBuilder = null;
-              if (fee_ != null) {
-                subBuilder = fee_.toBuilder();
-              }
-              fee_ = input.readMessage(com.baidu.xuper.pb.XchainOuterClass.Transaction.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(fee_);
-                fee_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 42: {
-
-              requestData_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.baidu.xuper.pb.XendorserOuterClass.internal_static_pb_EndorserRequest_descriptor;
@@ -260,11 +175,12 @@ public final class XendorserOuterClass {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.XchainOuterClass.HeaderOrBuilder getHeaderOrBuilder() {
-      return getHeader();
+      return header_ == null ? com.baidu.xuper.pb.XchainOuterClass.Header.getDefaultInstance() : header_;
     }
 
     public static final int REQUESTNAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object requestName_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object requestName_ = "";
     /**
      * <pre>
      * 请求名(类型)
@@ -310,7 +226,8 @@ public final class XendorserOuterClass {
     }
 
     public static final int BCNAME_FIELD_NUMBER = 3;
-    private volatile java.lang.Object bcName_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object bcName_ = "";
     /**
      * <pre>
      * 请求链名
@@ -390,11 +307,11 @@ public final class XendorserOuterClass {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.XchainOuterClass.TransactionOrBuilder getFeeOrBuilder() {
-      return getFee();
+      return fee_ == null ? com.baidu.xuper.pb.XchainOuterClass.Transaction.getDefaultInstance() : fee_;
     }
 
     public static final int REQUESTDATA_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString requestData_;
+    private com.google.protobuf.ByteString requestData_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * Json打包的数据
@@ -437,7 +354,7 @@ public final class XendorserOuterClass {
       if (!requestData_.isEmpty()) {
         output.writeBytes(5, requestData_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -464,7 +381,7 @@ public final class XendorserOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, requestData_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -495,7 +412,7 @@ public final class XendorserOuterClass {
       }
       if (!getRequestData()
           .equals(other.getRequestData())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -520,7 +437,7 @@ public final class XendorserOuterClass {
       }
       hash = (37 * hash) + REQUESTDATA_FIELD_NUMBER;
       hash = (53 * hash) + getRequestData().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -569,11 +486,13 @@ public final class XendorserOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -641,40 +560,31 @@ public final class XendorserOuterClass {
 
       // Construct using com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (headerBuilder_ == null) {
-          header_ = null;
-        } else {
-          header_ = null;
+        bitField0_ = 0;
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
           headerBuilder_ = null;
         }
         requestName_ = "";
-
         bcName_ = "";
-
-        if (feeBuilder_ == null) {
-          fee_ = null;
-        } else {
-          fee_ = null;
+        fee_ = null;
+        if (feeBuilder_ != null) {
+          feeBuilder_.dispose();
           feeBuilder_ = null;
         }
         requestData_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -701,55 +611,34 @@ public final class XendorserOuterClass {
       @java.lang.Override
       public com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest buildPartial() {
         com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest result = new com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest(this);
-        if (headerBuilder_ == null) {
-          result.header_ = header_;
-        } else {
-          result.header_ = headerBuilder_.build();
-        }
-        result.requestName_ = requestName_;
-        result.bcName_ = bcName_;
-        if (feeBuilder_ == null) {
-          result.fee_ = fee_;
-        } else {
-          result.fee_ = feeBuilder_.build();
-        }
-        result.requestData_ = requestData_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.header_ = headerBuilder_ == null
+              ? header_
+              : headerBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.requestName_ = requestName_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.bcName_ = bcName_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.fee_ = feeBuilder_ == null
+              ? fee_
+              : feeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.requestData_ = requestData_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest) {
@@ -767,10 +656,12 @@ public final class XendorserOuterClass {
         }
         if (!other.getRequestName().isEmpty()) {
           requestName_ = other.requestName_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getBcName().isEmpty()) {
           bcName_ = other.bcName_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (other.hasFee()) {
@@ -779,7 +670,7 @@ public final class XendorserOuterClass {
         if (other.getRequestData() != com.google.protobuf.ByteString.EMPTY) {
           setRequestData(other.getRequestData());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -794,19 +685,62 @@ public final class XendorserOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getHeaderFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                requestName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                bcName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                input.readMessage(
+                    getFeeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                requestData_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.baidu.xuper.pb.XchainOuterClass.Header header_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -816,7 +750,7 @@ public final class XendorserOuterClass {
        * @return Whether the header field is set.
        */
       public boolean hasHeader() {
-        return headerBuilder_ != null || header_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.pb.Header header = 1;</code>
@@ -838,11 +772,11 @@ public final class XendorserOuterClass {
             throw new NullPointerException();
           }
           header_ = value;
-          onChanged();
         } else {
           headerBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -852,11 +786,11 @@ public final class XendorserOuterClass {
           com.baidu.xuper.pb.XchainOuterClass.Header.Builder builderForValue) {
         if (headerBuilder_ == null) {
           header_ = builderForValue.build();
-          onChanged();
         } else {
           headerBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -864,38 +798,38 @@ public final class XendorserOuterClass {
        */
       public Builder mergeHeader(com.baidu.xuper.pb.XchainOuterClass.Header value) {
         if (headerBuilder_ == null) {
-          if (header_ != null) {
-            header_ =
-              com.baidu.xuper.pb.XchainOuterClass.Header.newBuilder(header_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            header_ != null &&
+            header_ != com.baidu.xuper.pb.XchainOuterClass.Header.getDefaultInstance()) {
+            getHeaderBuilder().mergeFrom(value);
           } else {
             header_ = value;
           }
-          onChanged();
         } else {
           headerBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.pb.Header header = 1;</code>
        */
       public Builder clearHeader() {
-        if (headerBuilder_ == null) {
-          header_ = null;
-          onChanged();
-        } else {
-          header_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
           headerBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.pb.Header header = 1;</code>
        */
       public com.baidu.xuper.pb.XchainOuterClass.Header.Builder getHeaderBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getHeaderFieldBuilder().getBuilder();
       }
@@ -980,11 +914,9 @@ public final class XendorserOuterClass {
        */
       public Builder setRequestName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         requestName_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -997,8 +929,8 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearRequestName() {
-        
         requestName_ = getDefaultInstance().getRequestName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1013,12 +945,10 @@ public final class XendorserOuterClass {
        */
       public Builder setRequestNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         requestName_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1076,11 +1006,9 @@ public final class XendorserOuterClass {
        */
       public Builder setBcName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         bcName_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1093,8 +1021,8 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearBcName() {
-        
         bcName_ = getDefaultInstance().getBcName();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -1109,12 +1037,10 @@ public final class XendorserOuterClass {
        */
       public Builder setBcNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         bcName_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1131,7 +1057,7 @@ public final class XendorserOuterClass {
        * @return Whether the fee field is set.
        */
       public boolean hasFee() {
-        return feeBuilder_ != null || fee_ != null;
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <pre>
@@ -1161,11 +1087,11 @@ public final class XendorserOuterClass {
             throw new NullPointerException();
           }
           fee_ = value;
-          onChanged();
         } else {
           feeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -1179,11 +1105,11 @@ public final class XendorserOuterClass {
           com.baidu.xuper.pb.XchainOuterClass.Transaction.Builder builderForValue) {
         if (feeBuilder_ == null) {
           fee_ = builderForValue.build();
-          onChanged();
         } else {
           feeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -1195,17 +1121,18 @@ public final class XendorserOuterClass {
        */
       public Builder mergeFee(com.baidu.xuper.pb.XchainOuterClass.Transaction value) {
         if (feeBuilder_ == null) {
-          if (fee_ != null) {
-            fee_ =
-              com.baidu.xuper.pb.XchainOuterClass.Transaction.newBuilder(fee_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000008) != 0) &&
+            fee_ != null &&
+            fee_ != com.baidu.xuper.pb.XchainOuterClass.Transaction.getDefaultInstance()) {
+            getFeeBuilder().mergeFrom(value);
           } else {
             fee_ = value;
           }
-          onChanged();
         } else {
           feeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -1216,14 +1143,13 @@ public final class XendorserOuterClass {
        * <code>.pb.Transaction Fee = 4;</code>
        */
       public Builder clearFee() {
-        if (feeBuilder_ == null) {
-          fee_ = null;
-          onChanged();
-        } else {
-          fee_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        fee_ = null;
+        if (feeBuilder_ != null) {
+          feeBuilder_.dispose();
           feeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1234,7 +1160,7 @@ public final class XendorserOuterClass {
        * <code>.pb.Transaction Fee = 4;</code>
        */
       public com.baidu.xuper.pb.XchainOuterClass.Transaction.Builder getFeeBuilder() {
-        
+        bitField0_ |= 0x00000008;
         onChanged();
         return getFeeFieldBuilder().getBuilder();
       }
@@ -1297,11 +1223,9 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder setRequestData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         requestData_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1314,7 +1238,7 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearRequestData() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         requestData_ = getDefaultInstance().getRequestData();
         onChanged();
         return this;
@@ -1352,7 +1276,18 @@ public final class XendorserOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new EndorserRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1481,91 +1416,6 @@ public final class XendorserOuterClass {
       return new EndorserResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private EndorserResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.baidu.xuper.pb.XchainOuterClass.Header.Builder subBuilder = null;
-              if (header_ != null) {
-                subBuilder = header_.toBuilder();
-              }
-              header_ = input.readMessage(com.baidu.xuper.pb.XchainOuterClass.Header.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(header_);
-                header_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              responseName_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              endorserAddress_ = s;
-              break;
-            }
-            case 34: {
-              com.baidu.xuper.pb.XchainOuterClass.SignatureInfo.Builder subBuilder = null;
-              if (endorserSign_ != null) {
-                subBuilder = endorserSign_.toBuilder();
-              }
-              endorserSign_ = input.readMessage(com.baidu.xuper.pb.XchainOuterClass.SignatureInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(endorserSign_);
-                endorserSign_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 42: {
-
-              responseData_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.baidu.xuper.pb.XendorserOuterClass.internal_static_pb_EndorserResponse_descriptor;
@@ -1602,11 +1452,12 @@ public final class XendorserOuterClass {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.XchainOuterClass.HeaderOrBuilder getHeaderOrBuilder() {
-      return getHeader();
+      return header_ == null ? com.baidu.xuper.pb.XchainOuterClass.Header.getDefaultInstance() : header_;
     }
 
     public static final int RESPONSENAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object responseName_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object responseName_ = "";
     /**
      * <code>string ResponseName = 2;</code>
      * @return The responseName.
@@ -1644,7 +1495,8 @@ public final class XendorserOuterClass {
     }
 
     public static final int ENDORSERADDRESS_FIELD_NUMBER = 3;
-    private volatile java.lang.Object endorserAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object endorserAddress_ = "";
     /**
      * <pre>
      * 背书服务地址
@@ -1724,11 +1576,11 @@ public final class XendorserOuterClass {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.XchainOuterClass.SignatureInfoOrBuilder getEndorserSignOrBuilder() {
-      return getEndorserSign();
+      return endorserSign_ == null ? com.baidu.xuper.pb.XchainOuterClass.SignatureInfo.getDefaultInstance() : endorserSign_;
     }
 
     public static final int RESPONSEDATA_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString responseData_;
+    private com.google.protobuf.ByteString responseData_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes ResponseData = 5;</code>
      * @return The responseData.
@@ -1767,7 +1619,7 @@ public final class XendorserOuterClass {
       if (!responseData_.isEmpty()) {
         output.writeBytes(5, responseData_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1794,7 +1646,7 @@ public final class XendorserOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, responseData_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1825,7 +1677,7 @@ public final class XendorserOuterClass {
       }
       if (!getResponseData()
           .equals(other.getResponseData())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1850,7 +1702,7 @@ public final class XendorserOuterClass {
       }
       hash = (37 * hash) + RESPONSEDATA_FIELD_NUMBER;
       hash = (53 * hash) + getResponseData().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1899,11 +1751,13 @@ public final class XendorserOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1967,40 +1821,31 @@ public final class XendorserOuterClass {
 
       // Construct using com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (headerBuilder_ == null) {
-          header_ = null;
-        } else {
-          header_ = null;
+        bitField0_ = 0;
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
           headerBuilder_ = null;
         }
         responseName_ = "";
-
         endorserAddress_ = "";
-
-        if (endorserSignBuilder_ == null) {
-          endorserSign_ = null;
-        } else {
-          endorserSign_ = null;
+        endorserSign_ = null;
+        if (endorserSignBuilder_ != null) {
+          endorserSignBuilder_.dispose();
           endorserSignBuilder_ = null;
         }
         responseData_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -2027,55 +1872,34 @@ public final class XendorserOuterClass {
       @java.lang.Override
       public com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse buildPartial() {
         com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse result = new com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse(this);
-        if (headerBuilder_ == null) {
-          result.header_ = header_;
-        } else {
-          result.header_ = headerBuilder_.build();
-        }
-        result.responseName_ = responseName_;
-        result.endorserAddress_ = endorserAddress_;
-        if (endorserSignBuilder_ == null) {
-          result.endorserSign_ = endorserSign_;
-        } else {
-          result.endorserSign_ = endorserSignBuilder_.build();
-        }
-        result.responseData_ = responseData_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.header_ = headerBuilder_ == null
+              ? header_
+              : headerBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.responseName_ = responseName_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.endorserAddress_ = endorserAddress_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.endorserSign_ = endorserSignBuilder_ == null
+              ? endorserSign_
+              : endorserSignBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.responseData_ = responseData_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse) {
@@ -2093,10 +1917,12 @@ public final class XendorserOuterClass {
         }
         if (!other.getResponseName().isEmpty()) {
           responseName_ = other.responseName_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getEndorserAddress().isEmpty()) {
           endorserAddress_ = other.endorserAddress_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (other.hasEndorserSign()) {
@@ -2105,7 +1931,7 @@ public final class XendorserOuterClass {
         if (other.getResponseData() != com.google.protobuf.ByteString.EMPTY) {
           setResponseData(other.getResponseData());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2120,19 +1946,62 @@ public final class XendorserOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getHeaderFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                responseName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                endorserAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                input.readMessage(
+                    getEndorserSignFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                responseData_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.baidu.xuper.pb.XchainOuterClass.Header header_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2142,7 +2011,7 @@ public final class XendorserOuterClass {
        * @return Whether the header field is set.
        */
       public boolean hasHeader() {
-        return headerBuilder_ != null || header_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.pb.Header header = 1;</code>
@@ -2164,11 +2033,11 @@ public final class XendorserOuterClass {
             throw new NullPointerException();
           }
           header_ = value;
-          onChanged();
         } else {
           headerBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2178,11 +2047,11 @@ public final class XendorserOuterClass {
           com.baidu.xuper.pb.XchainOuterClass.Header.Builder builderForValue) {
         if (headerBuilder_ == null) {
           header_ = builderForValue.build();
-          onChanged();
         } else {
           headerBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2190,38 +2059,38 @@ public final class XendorserOuterClass {
        */
       public Builder mergeHeader(com.baidu.xuper.pb.XchainOuterClass.Header value) {
         if (headerBuilder_ == null) {
-          if (header_ != null) {
-            header_ =
-              com.baidu.xuper.pb.XchainOuterClass.Header.newBuilder(header_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            header_ != null &&
+            header_ != com.baidu.xuper.pb.XchainOuterClass.Header.getDefaultInstance()) {
+            getHeaderBuilder().mergeFrom(value);
           } else {
             header_ = value;
           }
-          onChanged();
         } else {
           headerBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.pb.Header header = 1;</code>
        */
       public Builder clearHeader() {
-        if (headerBuilder_ == null) {
-          header_ = null;
-          onChanged();
-        } else {
-          header_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
           headerBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.pb.Header header = 1;</code>
        */
       public com.baidu.xuper.pb.XchainOuterClass.Header.Builder getHeaderBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getHeaderFieldBuilder().getBuilder();
       }
@@ -2294,11 +2163,9 @@ public final class XendorserOuterClass {
        */
       public Builder setResponseName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         responseName_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2307,8 +2174,8 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearResponseName() {
-        
         responseName_ = getDefaultInstance().getResponseName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2319,12 +2186,10 @@ public final class XendorserOuterClass {
        */
       public Builder setResponseNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         responseName_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2382,11 +2247,9 @@ public final class XendorserOuterClass {
        */
       public Builder setEndorserAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         endorserAddress_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2399,8 +2262,8 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearEndorserAddress() {
-        
         endorserAddress_ = getDefaultInstance().getEndorserAddress();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -2415,12 +2278,10 @@ public final class XendorserOuterClass {
        */
       public Builder setEndorserAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         endorserAddress_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2437,7 +2298,7 @@ public final class XendorserOuterClass {
        * @return Whether the endorserSign field is set.
        */
       public boolean hasEndorserSign() {
-        return endorserSignBuilder_ != null || endorserSign_ != null;
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <pre>
@@ -2467,11 +2328,11 @@ public final class XendorserOuterClass {
             throw new NullPointerException();
           }
           endorserSign_ = value;
-          onChanged();
         } else {
           endorserSignBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2485,11 +2346,11 @@ public final class XendorserOuterClass {
           com.baidu.xuper.pb.XchainOuterClass.SignatureInfo.Builder builderForValue) {
         if (endorserSignBuilder_ == null) {
           endorserSign_ = builderForValue.build();
-          onChanged();
         } else {
           endorserSignBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2501,17 +2362,18 @@ public final class XendorserOuterClass {
        */
       public Builder mergeEndorserSign(com.baidu.xuper.pb.XchainOuterClass.SignatureInfo value) {
         if (endorserSignBuilder_ == null) {
-          if (endorserSign_ != null) {
-            endorserSign_ =
-              com.baidu.xuper.pb.XchainOuterClass.SignatureInfo.newBuilder(endorserSign_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000008) != 0) &&
+            endorserSign_ != null &&
+            endorserSign_ != com.baidu.xuper.pb.XchainOuterClass.SignatureInfo.getDefaultInstance()) {
+            getEndorserSignBuilder().mergeFrom(value);
           } else {
             endorserSign_ = value;
           }
-          onChanged();
         } else {
           endorserSignBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2522,14 +2384,13 @@ public final class XendorserOuterClass {
        * <code>.pb.SignatureInfo EndorserSign = 4;</code>
        */
       public Builder clearEndorserSign() {
-        if (endorserSignBuilder_ == null) {
-          endorserSign_ = null;
-          onChanged();
-        } else {
-          endorserSign_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        endorserSign_ = null;
+        if (endorserSignBuilder_ != null) {
+          endorserSignBuilder_.dispose();
           endorserSignBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2540,7 +2401,7 @@ public final class XendorserOuterClass {
        * <code>.pb.SignatureInfo EndorserSign = 4;</code>
        */
       public com.baidu.xuper.pb.XchainOuterClass.SignatureInfo.Builder getEndorserSignBuilder() {
-        
+        bitField0_ |= 0x00000008;
         onChanged();
         return getEndorserSignFieldBuilder().getBuilder();
       }
@@ -2595,11 +2456,9 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder setResponseData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         responseData_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -2608,7 +2467,7 @@ public final class XendorserOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearResponseData() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         responseData_ = getDefaultInstance().getResponseData();
         onChanged();
         return this;
@@ -2646,7 +2505,18 @@ public final class XendorserOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new EndorserResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

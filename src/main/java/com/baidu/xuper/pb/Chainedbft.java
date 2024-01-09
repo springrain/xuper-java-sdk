@@ -267,82 +267,6 @@ public final class Chainedbft {
       return new QuorumCert();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QuorumCert(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              proposalId_ = input.readBytes();
-              break;
-            }
-            case 18: {
-
-              proposalMsg_ = input.readBytes();
-              break;
-            }
-            case 24: {
-              int rawValue = input.readEnum();
-
-              type_ = rawValue;
-              break;
-            }
-            case 32: {
-
-              viewNumber_ = input.readInt64();
-              break;
-            }
-            case 42: {
-              com.baidu.xuper.pb.Chainedbft.QCSignInfos.Builder subBuilder = null;
-              if (signInfos_ != null) {
-                subBuilder = signInfos_.toBuilder();
-              }
-              signInfos_ = input.readMessage(com.baidu.xuper.pb.Chainedbft.QCSignInfos.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(signInfos_);
-                signInfos_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.baidu.xuper.pb.Chainedbft.internal_static_pb_QuorumCert_descriptor;
@@ -357,7 +281,7 @@ public final class Chainedbft {
     }
 
     public static final int PROPOSALID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString proposalId_;
+    private com.google.protobuf.ByteString proposalId_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * The id of Proposal this QC certified.
@@ -372,7 +296,7 @@ public final class Chainedbft {
     }
 
     public static final int PROPOSALMSG_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString proposalMsg_;
+    private com.google.protobuf.ByteString proposalMsg_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * The msg of Proposal this QC certified. 
@@ -387,7 +311,7 @@ public final class Chainedbft {
     }
 
     public static final int TYPE_FIELD_NUMBER = 3;
-    private int type_;
+    private int type_ = 0;
     /**
      * <pre>
      * The current type of this QC certified.
@@ -410,13 +334,12 @@ public final class Chainedbft {
      * @return The type.
      */
     @java.lang.Override public com.baidu.xuper.pb.Chainedbft.QCState getType() {
-      @SuppressWarnings("deprecation")
-      com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.valueOf(type_);
+      com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.forNumber(type_);
       return result == null ? com.baidu.xuper.pb.Chainedbft.QCState.UNRECOGNIZED : result;
     }
 
     public static final int VIEWNUMBER_FIELD_NUMBER = 4;
-    private long viewNumber_;
+    private long viewNumber_ = 0L;
     /**
      * <pre>
      * The view number of this QC certified.
@@ -468,7 +391,7 @@ public final class Chainedbft {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.Chainedbft.QCSignInfosOrBuilder getSignInfosOrBuilder() {
-      return getSignInfos();
+      return signInfos_ == null ? com.baidu.xuper.pb.Chainedbft.QCSignInfos.getDefaultInstance() : signInfos_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -500,7 +423,7 @@ public final class Chainedbft {
       if (signInfos_ != null) {
         output.writeMessage(5, getSignInfos());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -529,7 +452,7 @@ public final class Chainedbft {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getSignInfos());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -556,7 +479,7 @@ public final class Chainedbft {
         if (!getSignInfos()
             .equals(other.getSignInfos())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -580,7 +503,7 @@ public final class Chainedbft {
         hash = (37 * hash) + SIGNINFOS_FIELD_NUMBER;
         hash = (53 * hash) + getSignInfos().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -629,11 +552,13 @@ public final class Chainedbft {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.QuorumCert parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.QuorumCert parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -701,34 +626,25 @@ public final class Chainedbft {
 
       // Construct using com.baidu.xuper.pb.Chainedbft.QuorumCert.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = com.google.protobuf.ByteString.EMPTY;
-
         proposalMsg_ = com.google.protobuf.ByteString.EMPTY;
-
         type_ = 0;
-
         viewNumber_ = 0L;
-
-        if (signInfosBuilder_ == null) {
-          signInfos_ = null;
-        } else {
-          signInfos_ = null;
+        signInfos_ = null;
+        if (signInfosBuilder_ != null) {
+          signInfosBuilder_.dispose();
           signInfosBuilder_ = null;
         }
         return this;
@@ -757,51 +673,32 @@ public final class Chainedbft {
       @java.lang.Override
       public com.baidu.xuper.pb.Chainedbft.QuorumCert buildPartial() {
         com.baidu.xuper.pb.Chainedbft.QuorumCert result = new com.baidu.xuper.pb.Chainedbft.QuorumCert(this);
-        result.proposalId_ = proposalId_;
-        result.proposalMsg_ = proposalMsg_;
-        result.type_ = type_;
-        result.viewNumber_ = viewNumber_;
-        if (signInfosBuilder_ == null) {
-          result.signInfos_ = signInfos_;
-        } else {
-          result.signInfos_ = signInfosBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.baidu.xuper.pb.Chainedbft.QuorumCert result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.proposalMsg_ = proposalMsg_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.viewNumber_ = viewNumber_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.signInfos_ = signInfosBuilder_ == null
+              ? signInfos_
+              : signInfosBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.baidu.xuper.pb.Chainedbft.QuorumCert) {
@@ -829,7 +726,7 @@ public final class Chainedbft {
         if (other.hasSignInfos()) {
           mergeSignInfos(other.getSignInfos());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -844,19 +741,60 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.baidu.xuper.pb.Chainedbft.QuorumCert parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                proposalId_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                proposalMsg_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                type_ = input.readEnum();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                viewNumber_ = input.readInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 42: {
+                input.readMessage(
+                    getSignInfosFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.baidu.xuper.pb.Chainedbft.QuorumCert) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.ByteString proposalId_ = com.google.protobuf.ByteString.EMPTY;
       /**
@@ -881,11 +819,9 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setProposalId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -898,7 +834,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = getDefaultInstance().getProposalId();
         onChanged();
         return this;
@@ -927,11 +863,9 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setProposalMsg(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         proposalMsg_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -944,7 +878,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearProposalMsg() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         proposalMsg_ = getDefaultInstance().getProposalMsg();
         onChanged();
         return this;
@@ -974,8 +908,8 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setTypeValue(int value) {
-        
         type_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -990,8 +924,7 @@ public final class Chainedbft {
        */
       @java.lang.Override
       public com.baidu.xuper.pb.Chainedbft.QCState getType() {
-        @SuppressWarnings("deprecation")
-        com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.valueOf(type_);
+        com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.forNumber(type_);
         return result == null ? com.baidu.xuper.pb.Chainedbft.QCState.UNRECOGNIZED : result;
       }
       /**
@@ -1008,7 +941,7 @@ public final class Chainedbft {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000004;
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -1023,7 +956,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         type_ = 0;
         onChanged();
         return this;
@@ -1052,8 +985,9 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setViewNumber(long value) {
-        
+
         viewNumber_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1066,7 +1000,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearViewNumber() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         viewNumber_ = 0L;
         onChanged();
         return this;
@@ -1085,7 +1019,7 @@ public final class Chainedbft {
        * @return Whether the signInfos field is set.
        */
       public boolean hasSignInfos() {
-        return signInfosBuilder_ != null || signInfos_ != null;
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <pre>
@@ -1117,11 +1051,11 @@ public final class Chainedbft {
             throw new NullPointerException();
           }
           signInfos_ = value;
-          onChanged();
         } else {
           signInfosBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1136,11 +1070,11 @@ public final class Chainedbft {
           com.baidu.xuper.pb.Chainedbft.QCSignInfos.Builder builderForValue) {
         if (signInfosBuilder_ == null) {
           signInfos_ = builderForValue.build();
-          onChanged();
         } else {
           signInfosBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1153,17 +1087,18 @@ public final class Chainedbft {
        */
       public Builder mergeSignInfos(com.baidu.xuper.pb.Chainedbft.QCSignInfos value) {
         if (signInfosBuilder_ == null) {
-          if (signInfos_ != null) {
-            signInfos_ =
-              com.baidu.xuper.pb.Chainedbft.QCSignInfos.newBuilder(signInfos_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000010) != 0) &&
+            signInfos_ != null &&
+            signInfos_ != com.baidu.xuper.pb.Chainedbft.QCSignInfos.getDefaultInstance()) {
+            getSignInfosBuilder().mergeFrom(value);
           } else {
             signInfos_ = value;
           }
-          onChanged();
         } else {
           signInfosBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1175,14 +1110,13 @@ public final class Chainedbft {
        * <code>.pb.QCSignInfos SignInfos = 5;</code>
        */
       public Builder clearSignInfos() {
-        if (signInfosBuilder_ == null) {
-          signInfos_ = null;
-          onChanged();
-        } else {
-          signInfos_ = null;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        signInfos_ = null;
+        if (signInfosBuilder_ != null) {
+          signInfosBuilder_.dispose();
           signInfosBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1194,7 +1128,7 @@ public final class Chainedbft {
        * <code>.pb.QCSignInfos SignInfos = 5;</code>
        */
       public com.baidu.xuper.pb.Chainedbft.QCSignInfos.Builder getSignInfosBuilder() {
-        
+        bitField0_ |= 0x00000010;
         onChanged();
         return getSignInfosFieldBuilder().getBuilder();
       }
@@ -1268,7 +1202,18 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QuorumCert(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1366,61 +1311,6 @@ public final class Chainedbft {
       return new QCSignInfos();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QCSignInfos(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                qCSignInfos_ = new java.util.ArrayList<com.baidu.xuper.pb.Chainedbft.SignInfo>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              qCSignInfos_.add(
-                  input.readMessage(com.baidu.xuper.pb.Chainedbft.SignInfo.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          qCSignInfos_ = java.util.Collections.unmodifiableList(qCSignInfos_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.baidu.xuper.pb.Chainedbft.internal_static_pb_QCSignInfos_descriptor;
@@ -1435,6 +1325,7 @@ public final class Chainedbft {
     }
 
     public static final int QCSIGNINFOS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.baidu.xuper.pb.Chainedbft.SignInfo> qCSignInfos_;
     /**
      * <pre>
@@ -1511,7 +1402,7 @@ public final class Chainedbft {
       for (int i = 0; i < qCSignInfos_.size(); i++) {
         output.writeMessage(1, qCSignInfos_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1524,7 +1415,7 @@ public final class Chainedbft {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, qCSignInfos_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1541,7 +1432,7 @@ public final class Chainedbft {
 
       if (!getQCSignInfosList()
           .equals(other.getQCSignInfosList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1556,7 +1447,7 @@ public final class Chainedbft {
         hash = (37 * hash) + QCSIGNINFOS_FIELD_NUMBER;
         hash = (53 * hash) + getQCSignInfosList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1605,11 +1496,13 @@ public final class Chainedbft {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.QCSignInfos parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.QCSignInfos parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1680,29 +1573,25 @@ public final class Chainedbft {
 
       // Construct using com.baidu.xuper.pb.Chainedbft.QCSignInfos.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getQCSignInfosFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (qCSignInfosBuilder_ == null) {
           qCSignInfos_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          qCSignInfos_ = null;
           qCSignInfosBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -1729,7 +1618,13 @@ public final class Chainedbft {
       @java.lang.Override
       public com.baidu.xuper.pb.Chainedbft.QCSignInfos buildPartial() {
         com.baidu.xuper.pb.Chainedbft.QCSignInfos result = new com.baidu.xuper.pb.Chainedbft.QCSignInfos(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(com.baidu.xuper.pb.Chainedbft.QCSignInfos result) {
         if (qCSignInfosBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             qCSignInfos_ = java.util.Collections.unmodifiableList(qCSignInfos_);
@@ -1739,42 +1634,12 @@ public final class Chainedbft {
         } else {
           result.qCSignInfos_ = qCSignInfosBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.baidu.xuper.pb.Chainedbft.QCSignInfos result) {
+        int from_bitField0_ = bitField0_;
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.baidu.xuper.pb.Chainedbft.QCSignInfos) {
@@ -1813,7 +1678,7 @@ public final class Chainedbft {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1828,17 +1693,43 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.baidu.xuper.pb.Chainedbft.QCSignInfos parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.baidu.xuper.pb.Chainedbft.SignInfo m =
+                    input.readMessage(
+                        com.baidu.xuper.pb.Chainedbft.SignInfo.parser(),
+                        extensionRegistry);
+                if (qCSignInfosBuilder_ == null) {
+                  ensureQCSignInfosIsMutable();
+                  qCSignInfos_.add(m);
+                } else {
+                  qCSignInfosBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.baidu.xuper.pb.Chainedbft.QCSignInfos) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2187,7 +2078,18 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QCSignInfos(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2270,65 +2172,6 @@ public final class Chainedbft {
       return new SignInfo();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SignInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              address_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              publicKey_ = s;
-              break;
-            }
-            case 26: {
-
-              sign_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.baidu.xuper.pb.Chainedbft.internal_static_pb_SignInfo_descriptor;
@@ -2343,7 +2186,8 @@ public final class Chainedbft {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object address_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object address_ = "";
     /**
      * <code>string Address = 1;</code>
      * @return The address.
@@ -2381,7 +2225,8 @@ public final class Chainedbft {
     }
 
     public static final int PUBLICKEY_FIELD_NUMBER = 2;
-    private volatile java.lang.Object publicKey_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object publicKey_ = "";
     /**
      * <code>string PublicKey = 2;</code>
      * @return The publicKey.
@@ -2419,7 +2264,7 @@ public final class Chainedbft {
     }
 
     public static final int SIGN_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString sign_;
+    private com.google.protobuf.ByteString sign_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes Sign = 3;</code>
      * @return The sign.
@@ -2452,7 +2297,7 @@ public final class Chainedbft {
       if (!sign_.isEmpty()) {
         output.writeBytes(3, sign_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2471,7 +2316,7 @@ public final class Chainedbft {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, sign_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2492,7 +2337,7 @@ public final class Chainedbft {
           .equals(other.getPublicKey())) return false;
       if (!getSign()
           .equals(other.getSign())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2509,7 +2354,7 @@ public final class Chainedbft {
       hash = (53 * hash) + getPublicKey().hashCode();
       hash = (37 * hash) + SIGN_FIELD_NUMBER;
       hash = (53 * hash) + getSign().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2558,11 +2403,13 @@ public final class Chainedbft {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.SignInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.SignInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2630,28 +2477,21 @@ public final class Chainedbft {
 
       // Construct using com.baidu.xuper.pb.Chainedbft.SignInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         address_ = "";
-
         publicKey_ = "";
-
         sign_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -2678,45 +2518,24 @@ public final class Chainedbft {
       @java.lang.Override
       public com.baidu.xuper.pb.Chainedbft.SignInfo buildPartial() {
         com.baidu.xuper.pb.Chainedbft.SignInfo result = new com.baidu.xuper.pb.Chainedbft.SignInfo(this);
-        result.address_ = address_;
-        result.publicKey_ = publicKey_;
-        result.sign_ = sign_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.baidu.xuper.pb.Chainedbft.SignInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.address_ = address_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.publicKey_ = publicKey_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.sign_ = sign_;
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.baidu.xuper.pb.Chainedbft.SignInfo) {
@@ -2731,16 +2550,18 @@ public final class Chainedbft {
         if (other == com.baidu.xuper.pb.Chainedbft.SignInfo.getDefaultInstance()) return this;
         if (!other.getAddress().isEmpty()) {
           address_ = other.address_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getPublicKey().isEmpty()) {
           publicKey_ = other.publicKey_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.getSign() != com.google.protobuf.ByteString.EMPTY) {
           setSign(other.getSign());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2755,19 +2576,48 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.baidu.xuper.pb.Chainedbft.SignInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                address_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                publicKey_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                sign_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.baidu.xuper.pb.Chainedbft.SignInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object address_ = "";
       /**
@@ -2810,11 +2660,9 @@ public final class Chainedbft {
        */
       public Builder setAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         address_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2823,8 +2671,8 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
-        
         address_ = getDefaultInstance().getAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -2835,12 +2683,10 @@ public final class Chainedbft {
        */
       public Builder setAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         address_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2886,11 +2732,9 @@ public final class Chainedbft {
        */
       public Builder setPublicKey(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         publicKey_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2899,8 +2743,8 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearPublicKey() {
-        
         publicKey_ = getDefaultInstance().getPublicKey();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2911,12 +2755,10 @@ public final class Chainedbft {
        */
       public Builder setPublicKeyBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         publicKey_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2936,11 +2778,9 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setSign(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         sign_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2949,7 +2789,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearSign() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         sign_ = getDefaultInstance().getSign();
         onChanged();
         return this;
@@ -2987,7 +2827,18 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SignInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3161,103 +3012,6 @@ public final class Chainedbft {
       return new ChainedBftPhaseMessage();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ChainedBftPhaseMessage(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              int rawValue = input.readEnum();
-
-              type_ = rawValue;
-              break;
-            }
-            case 16: {
-
-              viewNumber_ = input.readInt64();
-              break;
-            }
-            case 26: {
-              com.baidu.xuper.pb.Chainedbft.QuorumCert.Builder subBuilder = null;
-              if (proposalQC_ != null) {
-                subBuilder = proposalQC_.toBuilder();
-              }
-              proposalQC_ = input.readMessage(com.baidu.xuper.pb.Chainedbft.QuorumCert.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(proposalQC_);
-                proposalQC_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 34: {
-              com.baidu.xuper.pb.Chainedbft.QuorumCert.Builder subBuilder = null;
-              if (justifyQC_ != null) {
-                subBuilder = justifyQC_.toBuilder();
-              }
-              justifyQC_ = input.readMessage(com.baidu.xuper.pb.Chainedbft.QuorumCert.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(justifyQC_);
-                justifyQC_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 42: {
-
-              msgDigest_ = input.readBytes();
-              break;
-            }
-            case 50: {
-              com.baidu.xuper.pb.Chainedbft.SignInfo.Builder subBuilder = null;
-              if (signature_ != null) {
-                subBuilder = signature_.toBuilder();
-              }
-              signature_ = input.readMessage(com.baidu.xuper.pb.Chainedbft.SignInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(signature_);
-                signature_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.baidu.xuper.pb.Chainedbft.internal_static_pb_ChainedBftPhaseMessage_descriptor;
@@ -3272,7 +3026,7 @@ public final class Chainedbft {
     }
 
     public static final int TYPE_FIELD_NUMBER = 1;
-    private int type_;
+    private int type_ = 0;
     /**
      * <pre>
      * Message Type: NEW_VIEW_MESSAGE or QC_MESSAGE
@@ -3293,13 +3047,12 @@ public final class Chainedbft {
      * @return The type.
      */
     @java.lang.Override public com.baidu.xuper.pb.Chainedbft.QCState getType() {
-      @SuppressWarnings("deprecation")
-      com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.valueOf(type_);
+      com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.forNumber(type_);
       return result == null ? com.baidu.xuper.pb.Chainedbft.QCState.UNRECOGNIZED : result;
     }
 
     public static final int VIEWNUMBER_FIELD_NUMBER = 2;
-    private long viewNumber_;
+    private long viewNumber_ = 0L;
     /**
      * <pre>
      * ViewNumber the current view number 
@@ -3348,7 +3101,7 @@ public final class Chainedbft {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.Chainedbft.QuorumCertOrBuilder getProposalQCOrBuilder() {
-      return getProposalQC();
+      return proposalQC_ == null ? com.baidu.xuper.pb.Chainedbft.QuorumCert.getDefaultInstance() : proposalQC_;
     }
 
     public static final int JUSTIFYQC_FIELD_NUMBER = 4;
@@ -3386,11 +3139,11 @@ public final class Chainedbft {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.Chainedbft.QuorumCertOrBuilder getJustifyQCOrBuilder() {
-      return getJustifyQC();
+      return justifyQC_ == null ? com.baidu.xuper.pb.Chainedbft.QuorumCert.getDefaultInstance() : justifyQC_;
     }
 
     public static final int MSGDIGEST_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString msgDigest_;
+    private com.google.protobuf.ByteString msgDigest_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * MsgDigest is the digest of the msgg
@@ -3439,7 +3192,7 @@ public final class Chainedbft {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.Chainedbft.SignInfoOrBuilder getSignatureOrBuilder() {
-      return getSignature();
+      return signature_ == null ? com.baidu.xuper.pb.Chainedbft.SignInfo.getDefaultInstance() : signature_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3474,7 +3227,7 @@ public final class Chainedbft {
       if (signature_ != null) {
         output.writeMessage(6, getSignature());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3507,7 +3260,7 @@ public final class Chainedbft {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, getSignature());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3542,7 +3295,7 @@ public final class Chainedbft {
         if (!getSignature()
             .equals(other.getSignature())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3572,7 +3325,7 @@ public final class Chainedbft {
         hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
         hash = (53 * hash) + getSignature().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3621,11 +3374,13 @@ public final class Chainedbft {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3695,44 +3450,34 @@ public final class Chainedbft {
 
       // Construct using com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         type_ = 0;
-
         viewNumber_ = 0L;
-
-        if (proposalQCBuilder_ == null) {
-          proposalQC_ = null;
-        } else {
-          proposalQC_ = null;
+        proposalQC_ = null;
+        if (proposalQCBuilder_ != null) {
+          proposalQCBuilder_.dispose();
           proposalQCBuilder_ = null;
         }
-        if (justifyQCBuilder_ == null) {
-          justifyQC_ = null;
-        } else {
-          justifyQC_ = null;
+        justifyQC_ = null;
+        if (justifyQCBuilder_ != null) {
+          justifyQCBuilder_.dispose();
           justifyQCBuilder_ = null;
         }
         msgDigest_ = com.google.protobuf.ByteString.EMPTY;
-
-        if (signatureBuilder_ == null) {
-          signature_ = null;
-        } else {
-          signature_ = null;
+        signature_ = null;
+        if (signatureBuilder_ != null) {
+          signatureBuilder_.dispose();
           signatureBuilder_ = null;
         }
         return this;
@@ -3761,60 +3506,39 @@ public final class Chainedbft {
       @java.lang.Override
       public com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage buildPartial() {
         com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage result = new com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage(this);
-        result.type_ = type_;
-        result.viewNumber_ = viewNumber_;
-        if (proposalQCBuilder_ == null) {
-          result.proposalQC_ = proposalQC_;
-        } else {
-          result.proposalQC_ = proposalQCBuilder_.build();
-        }
-        if (justifyQCBuilder_ == null) {
-          result.justifyQC_ = justifyQC_;
-        } else {
-          result.justifyQC_ = justifyQCBuilder_.build();
-        }
-        result.msgDigest_ = msgDigest_;
-        if (signatureBuilder_ == null) {
-          result.signature_ = signature_;
-        } else {
-          result.signature_ = signatureBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.viewNumber_ = viewNumber_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.proposalQC_ = proposalQCBuilder_ == null
+              ? proposalQC_
+              : proposalQCBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.justifyQC_ = justifyQCBuilder_ == null
+              ? justifyQC_
+              : justifyQCBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.msgDigest_ = msgDigest_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.signature_ = signatureBuilder_ == null
+              ? signature_
+              : signatureBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage) {
@@ -3845,7 +3569,7 @@ public final class Chainedbft {
         if (other.hasSignature()) {
           mergeSignature(other.getSignature());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3860,19 +3584,69 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                type_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                viewNumber_ = input.readInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                input.readMessage(
+                    getProposalQCFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                input.readMessage(
+                    getJustifyQCFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                msgDigest_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                input.readMessage(
+                    getSignatureFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.baidu.xuper.pb.Chainedbft.ChainedBftPhaseMessage) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private int type_ = 0;
       /**
@@ -3896,8 +3670,8 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setTypeValue(int value) {
-        
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3911,8 +3685,7 @@ public final class Chainedbft {
        */
       @java.lang.Override
       public com.baidu.xuper.pb.Chainedbft.QCState getType() {
-        @SuppressWarnings("deprecation")
-        com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.valueOf(type_);
+        com.baidu.xuper.pb.Chainedbft.QCState result = com.baidu.xuper.pb.Chainedbft.QCState.forNumber(type_);
         return result == null ? com.baidu.xuper.pb.Chainedbft.QCState.UNRECOGNIZED : result;
       }
       /**
@@ -3928,7 +3701,7 @@ public final class Chainedbft {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -3942,7 +3715,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         type_ = 0;
         onChanged();
         return this;
@@ -3971,8 +3744,9 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setViewNumber(long value) {
-        
+
         viewNumber_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3985,7 +3759,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearViewNumber() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         viewNumber_ = 0L;
         onChanged();
         return this;
@@ -4003,7 +3777,7 @@ public final class Chainedbft {
        * @return Whether the proposalQC field is set.
        */
       public boolean hasProposalQC() {
-        return proposalQCBuilder_ != null || proposalQC_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <pre>
@@ -4033,11 +3807,11 @@ public final class Chainedbft {
             throw new NullPointerException();
           }
           proposalQC_ = value;
-          onChanged();
         } else {
           proposalQCBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -4051,11 +3825,11 @@ public final class Chainedbft {
           com.baidu.xuper.pb.Chainedbft.QuorumCert.Builder builderForValue) {
         if (proposalQCBuilder_ == null) {
           proposalQC_ = builderForValue.build();
-          onChanged();
         } else {
           proposalQCBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -4067,17 +3841,18 @@ public final class Chainedbft {
        */
       public Builder mergeProposalQC(com.baidu.xuper.pb.Chainedbft.QuorumCert value) {
         if (proposalQCBuilder_ == null) {
-          if (proposalQC_ != null) {
-            proposalQC_ =
-              com.baidu.xuper.pb.Chainedbft.QuorumCert.newBuilder(proposalQC_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            proposalQC_ != null &&
+            proposalQC_ != com.baidu.xuper.pb.Chainedbft.QuorumCert.getDefaultInstance()) {
+            getProposalQCBuilder().mergeFrom(value);
           } else {
             proposalQC_ = value;
           }
-          onChanged();
         } else {
           proposalQCBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -4088,14 +3863,13 @@ public final class Chainedbft {
        * <code>.pb.QuorumCert ProposalQC = 3;</code>
        */
       public Builder clearProposalQC() {
-        if (proposalQCBuilder_ == null) {
-          proposalQC_ = null;
-          onChanged();
-        } else {
-          proposalQC_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        proposalQC_ = null;
+        if (proposalQCBuilder_ != null) {
+          proposalQCBuilder_.dispose();
           proposalQCBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -4106,7 +3880,7 @@ public final class Chainedbft {
        * <code>.pb.QuorumCert ProposalQC = 3;</code>
        */
       public com.baidu.xuper.pb.Chainedbft.QuorumCert.Builder getProposalQCBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getProposalQCFieldBuilder().getBuilder();
       }
@@ -4158,7 +3932,7 @@ public final class Chainedbft {
        * @return Whether the justifyQC field is set.
        */
       public boolean hasJustifyQC() {
-        return justifyQCBuilder_ != null || justifyQC_ != null;
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <pre>
@@ -4188,11 +3962,11 @@ public final class Chainedbft {
             throw new NullPointerException();
           }
           justifyQC_ = value;
-          onChanged();
         } else {
           justifyQCBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -4206,11 +3980,11 @@ public final class Chainedbft {
           com.baidu.xuper.pb.Chainedbft.QuorumCert.Builder builderForValue) {
         if (justifyQCBuilder_ == null) {
           justifyQC_ = builderForValue.build();
-          onChanged();
         } else {
           justifyQCBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -4222,17 +3996,18 @@ public final class Chainedbft {
        */
       public Builder mergeJustifyQC(com.baidu.xuper.pb.Chainedbft.QuorumCert value) {
         if (justifyQCBuilder_ == null) {
-          if (justifyQC_ != null) {
-            justifyQC_ =
-              com.baidu.xuper.pb.Chainedbft.QuorumCert.newBuilder(justifyQC_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000008) != 0) &&
+            justifyQC_ != null &&
+            justifyQC_ != com.baidu.xuper.pb.Chainedbft.QuorumCert.getDefaultInstance()) {
+            getJustifyQCBuilder().mergeFrom(value);
           } else {
             justifyQC_ = value;
           }
-          onChanged();
         } else {
           justifyQCBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -4243,14 +4018,13 @@ public final class Chainedbft {
        * <code>.pb.QuorumCert JustifyQC = 4;</code>
        */
       public Builder clearJustifyQC() {
-        if (justifyQCBuilder_ == null) {
-          justifyQC_ = null;
-          onChanged();
-        } else {
-          justifyQC_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        justifyQC_ = null;
+        if (justifyQCBuilder_ != null) {
+          justifyQCBuilder_.dispose();
           justifyQCBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -4261,7 +4035,7 @@ public final class Chainedbft {
        * <code>.pb.QuorumCert JustifyQC = 4;</code>
        */
       public com.baidu.xuper.pb.Chainedbft.QuorumCert.Builder getJustifyQCBuilder() {
-        
+        bitField0_ |= 0x00000008;
         onChanged();
         return getJustifyQCFieldBuilder().getBuilder();
       }
@@ -4324,11 +4098,9 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setMsgDigest(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         msgDigest_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -4341,7 +4113,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearMsgDigest() {
-        
+        bitField0_ = (bitField0_ & ~0x00000010);
         msgDigest_ = getDefaultInstance().getMsgDigest();
         onChanged();
         return this;
@@ -4359,7 +4131,7 @@ public final class Chainedbft {
        * @return Whether the signature field is set.
        */
       public boolean hasSignature() {
-        return signatureBuilder_ != null || signature_ != null;
+        return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <pre>
@@ -4389,11 +4161,11 @@ public final class Chainedbft {
             throw new NullPointerException();
           }
           signature_ = value;
-          onChanged();
         } else {
           signatureBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -4407,11 +4179,11 @@ public final class Chainedbft {
           com.baidu.xuper.pb.Chainedbft.SignInfo.Builder builderForValue) {
         if (signatureBuilder_ == null) {
           signature_ = builderForValue.build();
-          onChanged();
         } else {
           signatureBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -4423,17 +4195,18 @@ public final class Chainedbft {
        */
       public Builder mergeSignature(com.baidu.xuper.pb.Chainedbft.SignInfo value) {
         if (signatureBuilder_ == null) {
-          if (signature_ != null) {
-            signature_ =
-              com.baidu.xuper.pb.Chainedbft.SignInfo.newBuilder(signature_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000020) != 0) &&
+            signature_ != null &&
+            signature_ != com.baidu.xuper.pb.Chainedbft.SignInfo.getDefaultInstance()) {
+            getSignatureBuilder().mergeFrom(value);
           } else {
             signature_ = value;
           }
-          onChanged();
         } else {
           signatureBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -4444,14 +4217,13 @@ public final class Chainedbft {
        * <code>.pb.SignInfo Signature = 6;</code>
        */
       public Builder clearSignature() {
-        if (signatureBuilder_ == null) {
-          signature_ = null;
-          onChanged();
-        } else {
-          signature_ = null;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        signature_ = null;
+        if (signatureBuilder_ != null) {
+          signatureBuilder_.dispose();
           signatureBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -4462,7 +4234,7 @@ public final class Chainedbft {
        * <code>.pb.SignInfo Signature = 6;</code>
        */
       public com.baidu.xuper.pb.Chainedbft.SignInfo.Builder getSignatureBuilder() {
-        
+        bitField0_ |= 0x00000020;
         onChanged();
         return getSignatureFieldBuilder().getBuilder();
       }
@@ -4534,7 +4306,18 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChainedBftPhaseMessage(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4622,66 +4405,6 @@ public final class Chainedbft {
       return new ChainedBftVoteMessage();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ChainedBftVoteMessage(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              proposalId_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              com.baidu.xuper.pb.Chainedbft.SignInfo.Builder subBuilder = null;
-              if (signature_ != null) {
-                subBuilder = signature_.toBuilder();
-              }
-              signature_ = input.readMessage(com.baidu.xuper.pb.Chainedbft.SignInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(signature_);
-                signature_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.baidu.xuper.pb.Chainedbft.internal_static_pb_ChainedBftVoteMessage_descriptor;
@@ -4696,7 +4419,7 @@ public final class Chainedbft {
     }
 
     public static final int PROPOSALID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString proposalId_;
+    private com.google.protobuf.ByteString proposalId_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * The id of this message votes for.
@@ -4745,7 +4468,7 @@ public final class Chainedbft {
      */
     @java.lang.Override
     public com.baidu.xuper.pb.Chainedbft.SignInfoOrBuilder getSignatureOrBuilder() {
-      return getSignature();
+      return signature_ == null ? com.baidu.xuper.pb.Chainedbft.SignInfo.getDefaultInstance() : signature_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4768,7 +4491,7 @@ public final class Chainedbft {
       if (signature_ != null) {
         output.writeMessage(2, getSignature());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4785,7 +4508,7 @@ public final class Chainedbft {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getSignature());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4807,7 +4530,7 @@ public final class Chainedbft {
         if (!getSignature()
             .equals(other.getSignature())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -4824,7 +4547,7 @@ public final class Chainedbft {
         hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
         hash = (53 * hash) + getSignature().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4873,11 +4596,13 @@ public final class Chainedbft {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4945,28 +4670,22 @@ public final class Chainedbft {
 
       // Construct using com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = com.google.protobuf.ByteString.EMPTY;
-
-        if (signatureBuilder_ == null) {
-          signature_ = null;
-        } else {
-          signature_ = null;
+        signature_ = null;
+        if (signatureBuilder_ != null) {
+          signatureBuilder_.dispose();
           signatureBuilder_ = null;
         }
         return this;
@@ -4995,48 +4714,23 @@ public final class Chainedbft {
       @java.lang.Override
       public com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage buildPartial() {
         com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage result = new com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage(this);
-        result.proposalId_ = proposalId_;
-        if (signatureBuilder_ == null) {
-          result.signature_ = signature_;
-        } else {
-          result.signature_ = signatureBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
+      private void buildPartial0(com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.signature_ = signatureBuilder_ == null
+              ? signature_
+              : signatureBuilder_.build();
+        }
       }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage) {
@@ -5055,7 +4749,7 @@ public final class Chainedbft {
         if (other.hasSignature()) {
           mergeSignature(other.getSignature());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -5070,19 +4764,45 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                proposalId_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getSignatureFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.baidu.xuper.pb.Chainedbft.ChainedBftVoteMessage) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.ByteString proposalId_ = com.google.protobuf.ByteString.EMPTY;
       /**
@@ -5107,11 +4827,9 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder setProposalId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5124,7 +4842,7 @@ public final class Chainedbft {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = getDefaultInstance().getProposalId();
         onChanged();
         return this;
@@ -5142,7 +4860,7 @@ public final class Chainedbft {
        * @return Whether the signature field is set.
        */
       public boolean hasSignature() {
-        return signatureBuilder_ != null || signature_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -5172,11 +4890,11 @@ public final class Chainedbft {
             throw new NullPointerException();
           }
           signature_ = value;
-          onChanged();
         } else {
           signatureBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -5190,11 +4908,11 @@ public final class Chainedbft {
           com.baidu.xuper.pb.Chainedbft.SignInfo.Builder builderForValue) {
         if (signatureBuilder_ == null) {
           signature_ = builderForValue.build();
-          onChanged();
         } else {
           signatureBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -5206,17 +4924,18 @@ public final class Chainedbft {
        */
       public Builder mergeSignature(com.baidu.xuper.pb.Chainedbft.SignInfo value) {
         if (signatureBuilder_ == null) {
-          if (signature_ != null) {
-            signature_ =
-              com.baidu.xuper.pb.Chainedbft.SignInfo.newBuilder(signature_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            signature_ != null &&
+            signature_ != com.baidu.xuper.pb.Chainedbft.SignInfo.getDefaultInstance()) {
+            getSignatureBuilder().mergeFrom(value);
           } else {
             signature_ = value;
           }
-          onChanged();
         } else {
           signatureBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -5227,14 +4946,13 @@ public final class Chainedbft {
        * <code>.pb.SignInfo Signature = 2;</code>
        */
       public Builder clearSignature() {
-        if (signatureBuilder_ == null) {
-          signature_ = null;
-          onChanged();
-        } else {
-          signature_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        signature_ = null;
+        if (signatureBuilder_ != null) {
+          signatureBuilder_.dispose();
           signatureBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -5245,7 +4963,7 @@ public final class Chainedbft {
        * <code>.pb.SignInfo Signature = 2;</code>
        */
       public com.baidu.xuper.pb.Chainedbft.SignInfo.Builder getSignatureBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getSignatureFieldBuilder().getBuilder();
       }
@@ -5317,7 +5035,18 @@ public final class Chainedbft {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChainedBftVoteMessage(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

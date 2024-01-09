@@ -5,7 +5,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.46.0)",
+    value = "by gRPC proto compiler (version 1.60.0)",
     comments = "Source: xendorser.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class XendorserGrpc {
@@ -92,31 +92,32 @@ public final class XendorserGrpc {
 
   /**
    */
-  public static abstract class XendorserImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void endorserCall(com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest request,
+    default void endorserCall(com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEndorserCallMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getEndorserCallMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest,
-                com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse>(
-                  this, METHODID_ENDORSER_CALL)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service Xendorser.
    */
-  public static final class XendorserStub extends io.grpc.stub.AbstractAsyncStub<XendorserStub> {
+  public static abstract class XendorserImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return XendorserGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Xendorser.
+   */
+  public static final class XendorserStub
+      extends io.grpc.stub.AbstractAsyncStub<XendorserStub> {
     private XendorserStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -138,8 +139,10 @@ public final class XendorserGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Xendorser.
    */
-  public static final class XendorserBlockingStub extends io.grpc.stub.AbstractBlockingStub<XendorserBlockingStub> {
+  public static final class XendorserBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<XendorserBlockingStub> {
     private XendorserBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -160,8 +163,10 @@ public final class XendorserGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Xendorser.
    */
-  public static final class XendorserFutureStub extends io.grpc.stub.AbstractFutureStub<XendorserFutureStub> {
+  public static final class XendorserFutureStub
+      extends io.grpc.stub.AbstractFutureStub<XendorserFutureStub> {
     private XendorserFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -189,10 +194,10 @@ public final class XendorserGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final XendorserImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(XendorserImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -221,6 +226,18 @@ public final class XendorserGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getEndorserCallMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XendorserOuterClass.EndorserRequest,
+              com.baidu.xuper.pb.XendorserOuterClass.EndorserResponse>(
+                service, METHODID_ENDORSER_CALL)))
+        .build();
+  }
+
   private static abstract class XendorserBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     XendorserBaseDescriptorSupplier() {}
@@ -244,9 +261,9 @@ public final class XendorserGrpc {
   private static final class XendorserMethodDescriptorSupplier
       extends XendorserBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    XendorserMethodDescriptorSupplier(String methodName) {
+    XendorserMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 

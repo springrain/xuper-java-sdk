@@ -8,16 +8,47 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.46.0)",
+    value = "by gRPC proto compiler (version 1.60.0)",
     comments = "Source: xchain.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class XchainGrpc {
 
   private XchainGrpc() {}
 
-  public static final String SERVICE_NAME = "pb.Xchain";
+  public static final java.lang.String SERVICE_NAME = "pb.Xchain";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.UtxoInput,
+      com.baidu.xuper.pb.XchainOuterClass.UtxoOutput> getSelectUTXOBySizeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SelectUTXOBySize",
+      requestType = com.baidu.xuper.pb.XchainOuterClass.UtxoInput.class,
+      responseType = com.baidu.xuper.pb.XchainOuterClass.UtxoOutput.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.UtxoInput,
+      com.baidu.xuper.pb.XchainOuterClass.UtxoOutput> getSelectUTXOBySizeMethod() {
+    io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.UtxoInput, com.baidu.xuper.pb.XchainOuterClass.UtxoOutput> getSelectUTXOBySizeMethod;
+    if ((getSelectUTXOBySizeMethod = XchainGrpc.getSelectUTXOBySizeMethod) == null) {
+      synchronized (XchainGrpc.class) {
+        if ((getSelectUTXOBySizeMethod = XchainGrpc.getSelectUTXOBySizeMethod) == null) {
+          XchainGrpc.getSelectUTXOBySizeMethod = getSelectUTXOBySizeMethod =
+              io.grpc.MethodDescriptor.<com.baidu.xuper.pb.XchainOuterClass.UtxoInput, com.baidu.xuper.pb.XchainOuterClass.UtxoOutput>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SelectUTXOBySize"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.UtxoInput.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.UtxoOutput.getDefaultInstance()))
+              .setSchemaDescriptor(new XchainMethodDescriptorSupplier("SelectUTXOBySize"))
+              .build();
+        }
+      }
+    }
+    return getSelectUTXOBySizeMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.TxStatus,
       com.baidu.xuper.pb.XchainOuterClass.CommonReply> getPostTxMethod;
 
@@ -78,6 +109,68 @@ public final class XchainGrpc {
       }
     }
     return getQueryACLMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail,
+      com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail> getQueryUtxoRecordMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "QueryUtxoRecord",
+      requestType = com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail.class,
+      responseType = com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail,
+      com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail> getQueryUtxoRecordMethod() {
+    io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail, com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail> getQueryUtxoRecordMethod;
+    if ((getQueryUtxoRecordMethod = XchainGrpc.getQueryUtxoRecordMethod) == null) {
+      synchronized (XchainGrpc.class) {
+        if ((getQueryUtxoRecordMethod = XchainGrpc.getQueryUtxoRecordMethod) == null) {
+          XchainGrpc.getQueryUtxoRecordMethod = getQueryUtxoRecordMethod =
+              io.grpc.MethodDescriptor.<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail, com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "QueryUtxoRecord"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail.getDefaultInstance()))
+              .setSchemaDescriptor(new XchainMethodDescriptorSupplier("QueryUtxoRecord"))
+              .build();
+        }
+      }
+    }
+    return getQueryUtxoRecordMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest,
+      com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse> getQueryContractStatDataMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "QueryContractStatData",
+      requestType = com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest.class,
+      responseType = com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest,
+      com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse> getQueryContractStatDataMethod() {
+    io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest, com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse> getQueryContractStatDataMethod;
+    if ((getQueryContractStatDataMethod = XchainGrpc.getQueryContractStatDataMethod) == null) {
+      synchronized (XchainGrpc.class) {
+        if ((getQueryContractStatDataMethod = XchainGrpc.getQueryContractStatDataMethod) == null) {
+          XchainGrpc.getQueryContractStatDataMethod = getQueryContractStatDataMethod =
+              io.grpc.MethodDescriptor.<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest, com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "QueryContractStatData"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new XchainMethodDescriptorSupplier("QueryContractStatData"))
+              .build();
+        }
+      }
+    }
+    return getQueryContractStatDataMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsRequest,
@@ -390,6 +483,37 @@ public final class XchainGrpc {
     return getGetSystemStatusMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest,
+      com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus> getGetConsensusStatusMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetConsensusStatus",
+      requestType = com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest.class,
+      responseType = com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest,
+      com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus> getGetConsensusStatusMethod() {
+    io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest, com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus> getGetConsensusStatusMethod;
+    if ((getGetConsensusStatusMethod = XchainGrpc.getGetConsensusStatusMethod) == null) {
+      synchronized (XchainGrpc.class) {
+        if ((getGetConsensusStatusMethod = XchainGrpc.getGetConsensusStatusMethod) == null) {
+          XchainGrpc.getGetConsensusStatusMethod = getGetConsensusStatusMethod =
+              io.grpc.MethodDescriptor.<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest, com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetConsensusStatus"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus.getDefaultInstance()))
+              .setSchemaDescriptor(new XchainMethodDescriptorSupplier("GetConsensusStatus"))
+              .build();
+        }
+      }
+    }
+    return getGetConsensusStatusMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.CommonIn,
       com.baidu.xuper.pb.XchainOuterClass.RawUrl> getGetNetURLMethod;
 
@@ -481,68 +605,6 @@ public final class XchainGrpc {
       }
     }
     return getPreExecWithSelectUTXOMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest,
-      com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse> getDeployNativeCodeMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "DeployNativeCode",
-      requestType = com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest.class,
-      responseType = com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest,
-      com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse> getDeployNativeCodeMethod() {
-    io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest, com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse> getDeployNativeCodeMethod;
-    if ((getDeployNativeCodeMethod = XchainGrpc.getDeployNativeCodeMethod) == null) {
-      synchronized (XchainGrpc.class) {
-        if ((getDeployNativeCodeMethod = XchainGrpc.getDeployNativeCodeMethod) == null) {
-          XchainGrpc.getDeployNativeCodeMethod = getDeployNativeCodeMethod =
-              io.grpc.MethodDescriptor.<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest, com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeployNativeCode"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new XchainMethodDescriptorSupplier("DeployNativeCode"))
-              .build();
-        }
-      }
-    }
-    return getDeployNativeCodeMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest,
-      com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse> getNativeCodeStatusMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "NativeCodeStatus",
-      requestType = com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest.class,
-      responseType = com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest,
-      com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse> getNativeCodeStatusMethod() {
-    io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest, com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse> getNativeCodeStatusMethod;
-    if ((getNativeCodeStatusMethod = XchainGrpc.getNativeCodeStatusMethod) == null) {
-      synchronized (XchainGrpc.class) {
-        if ((getNativeCodeStatusMethod = XchainGrpc.getNativeCodeStatusMethod) == null) {
-          XchainGrpc.getNativeCodeStatusMethod = getNativeCodeStatusMethod =
-              io.grpc.MethodDescriptor.<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest, com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "NativeCodeStatus"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new XchainMethodDescriptorSupplier("NativeCodeStatus"))
-              .build();
-        }
-      }
-    }
-    return getNativeCodeStatusMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.DposCandidatesRequest,
@@ -793,6 +855,37 @@ public final class XchainGrpc {
     return getGetAccountByAKMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest,
+      com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse> getGetAddressContractsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetAddressContracts",
+      requestType = com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest.class,
+      responseType = com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest,
+      com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse> getGetAddressContractsMethod() {
+    io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest, com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse> getGetAddressContractsMethod;
+    if ((getGetAddressContractsMethod = XchainGrpc.getGetAddressContractsMethod) == null) {
+      synchronized (XchainGrpc.class) {
+        if ((getGetAddressContractsMethod = XchainGrpc.getGetAddressContractsMethod) == null) {
+          XchainGrpc.getGetAddressContractsMethod = getGetAddressContractsMethod =
+              io.grpc.MethodDescriptor.<com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest, com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetAddressContracts"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new XchainMethodDescriptorSupplier("GetAddressContracts"))
+              .build();
+        }
+      }
+    }
+    return getGetAddressContractsMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.baidu.xuper.pb.XchainOuterClass.InvokeRPCRequest,
       com.baidu.xuper.pb.XchainOuterClass.InvokeRPCResponse> getPreExecMethod;
 
@@ -873,28 +966,52 @@ public final class XchainGrpc {
    * Xchain is the main interfaces
    * </pre>
    */
-  public static abstract class XchainImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
+
+    /**
+     * <pre>
+     * SelectUTXOBySize merge many utxos into a few of utxos
+     * </pre>
+     */
+    default void selectUTXOBySize(com.baidu.xuper.pb.XchainOuterClass.UtxoInput request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.UtxoOutput> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSelectUTXOBySizeMethod(), responseObserver);
+    }
 
     /**
      * <pre>
      * PostTx post Transaction to a node
      * </pre>
      */
-    public void postTx(com.baidu.xuper.pb.XchainOuterClass.TxStatus request,
+    default void postTx(com.baidu.xuper.pb.XchainOuterClass.TxStatus request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.CommonReply> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPostTxMethod(), responseObserver);
     }
 
     /**
      */
-    public void queryACL(com.baidu.xuper.pb.XchainOuterClass.AclStatus request,
+    default void queryACL(com.baidu.xuper.pb.XchainOuterClass.AclStatus request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AclStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getQueryACLMethod(), responseObserver);
     }
 
     /**
      */
-    public void getAccountContracts(com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsRequest request,
+    default void queryUtxoRecord(com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getQueryUtxoRecordMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void queryContractStatData(com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getQueryContractStatDataMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void getAccountContracts(com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAccountContractsMethod(), responseObserver);
     }
@@ -905,7 +1022,7 @@ public final class XchainGrpc {
      * Bcname and Txid are required for this
      * </pre>
      */
-    public void queryTx(com.baidu.xuper.pb.XchainOuterClass.TxStatus request,
+    default void queryTx(com.baidu.xuper.pb.XchainOuterClass.TxStatus request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.TxStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getQueryTxMethod(), responseObserver);
     }
@@ -916,7 +1033,7 @@ public final class XchainGrpc {
      * Address is required for this
      * </pre>
      */
-    public void getBalance(com.baidu.xuper.pb.XchainOuterClass.AddressStatus request,
+    default void getBalance(com.baidu.xuper.pb.XchainOuterClass.AddressStatus request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AddressStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBalanceMethod(), responseObserver);
     }
@@ -929,7 +1046,7 @@ public final class XchainGrpc {
      * Address is required for this
      * </pre>
      */
-    public void getBalanceDetail(com.baidu.xuper.pb.XchainOuterClass.AddressBalanceStatus request,
+    default void getBalanceDetail(com.baidu.xuper.pb.XchainOuterClass.AddressBalanceStatus request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AddressBalanceStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBalanceDetailMethod(), responseObserver);
     }
@@ -940,7 +1057,7 @@ public final class XchainGrpc {
      * Address is required for this
      * </pre>
      */
-    public void getFrozenBalance(com.baidu.xuper.pb.XchainOuterClass.AddressStatus request,
+    default void getFrozenBalance(com.baidu.xuper.pb.XchainOuterClass.AddressStatus request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AddressStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetFrozenBalanceMethod(), responseObserver);
     }
@@ -950,7 +1067,7 @@ public final class XchainGrpc {
      * GetBlock get block by blockid and return if the block in trunk or in branch
      * </pre>
      */
-    public void getBlock(com.baidu.xuper.pb.XchainOuterClass.BlockID request,
+    default void getBlock(com.baidu.xuper.pb.XchainOuterClass.BlockID request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.Block> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBlockMethod(), responseObserver);
     }
@@ -961,14 +1078,14 @@ public final class XchainGrpc {
      * branch
      * </pre>
      */
-    public void getBlockByHeight(com.baidu.xuper.pb.XchainOuterClass.BlockHeight request,
+    default void getBlockByHeight(com.baidu.xuper.pb.XchainOuterClass.BlockHeight request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.Block> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBlockByHeightMethod(), responseObserver);
     }
 
     /**
      */
-    public void getBlockChainStatus(com.baidu.xuper.pb.XchainOuterClass.BCStatus request,
+    default void getBlockChainStatus(com.baidu.xuper.pb.XchainOuterClass.BCStatus request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.BCStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBlockChainStatusMethod(), responseObserver);
     }
@@ -978,7 +1095,7 @@ public final class XchainGrpc {
      * Get blockchains query blockchains
      * </pre>
      */
-    public void getBlockChains(com.baidu.xuper.pb.XchainOuterClass.CommonIn request,
+    default void getBlockChains(com.baidu.xuper.pb.XchainOuterClass.CommonIn request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.BlockChains> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBlockChainsMethod(), responseObserver);
     }
@@ -988,9 +1105,19 @@ public final class XchainGrpc {
      * GetSystemStatus query system status
      * </pre>
      */
-    public void getSystemStatus(com.baidu.xuper.pb.XchainOuterClass.CommonIn request,
+    default void getSystemStatus(com.baidu.xuper.pb.XchainOuterClass.CommonIn request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.SystemsStatusReply> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetSystemStatusMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * GetConsensusChains query consensus status
+     * </pre>
+     */
+    default void getConsensusStatus(com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetConsensusStatusMethod(), responseObserver);
     }
 
     /**
@@ -998,7 +1125,7 @@ public final class XchainGrpc {
      * GetNetURL return net url
      * </pre>
      */
-    public void getNetURL(com.baidu.xuper.pb.XchainOuterClass.CommonIn request,
+    default void getNetURL(com.baidu.xuper.pb.XchainOuterClass.CommonIn request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.RawUrl> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetNetURLMethod(), responseObserver);
     }
@@ -1008,7 +1135,7 @@ public final class XchainGrpc {
      * 新的Select utxos接口, 不需要签名，可以支持选择账户的utxo
      * </pre>
      */
-    public void selectUTXO(com.baidu.xuper.pb.XchainOuterClass.UtxoInput request,
+    default void selectUTXO(com.baidu.xuper.pb.XchainOuterClass.UtxoInput request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.UtxoOutput> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSelectUTXOMethod(), responseObserver);
     }
@@ -1018,29 +1145,9 @@ public final class XchainGrpc {
      * PreExecWithSelectUTXO preExec &amp; selectUtxo
      * </pre>
      */
-    public void preExecWithSelectUTXO(com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXORequest request,
+    default void preExecWithSelectUTXO(com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXORequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXOResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPreExecWithSelectUTXOMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Native code deploy interface
-     * </pre>
-     */
-    public void deployNativeCode(com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest request,
-        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeployNativeCodeMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Native code status
-     * </pre>
-     */
-    public void nativeCodeStatus(com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest request,
-        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getNativeCodeStatusMethod(), responseObserver);
     }
 
     /**
@@ -1048,7 +1155,7 @@ public final class XchainGrpc {
      *  DposCandidates get all candidates of the tdpos consensus
      * </pre>
      */
-    public void dposCandidates(com.baidu.xuper.pb.XchainOuterClass.DposCandidatesRequest request,
+    default void dposCandidates(com.baidu.xuper.pb.XchainOuterClass.DposCandidatesRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DposCandidatesResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDposCandidatesMethod(), responseObserver);
     }
@@ -1058,7 +1165,7 @@ public final class XchainGrpc {
      *  DposNominateRecords get all records nominated by an user
      * </pre>
      */
-    public void dposNominateRecords(com.baidu.xuper.pb.XchainOuterClass.DposNominateRecordsRequest request,
+    default void dposNominateRecords(com.baidu.xuper.pb.XchainOuterClass.DposNominateRecordsRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DposNominateRecordsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDposNominateRecordsMethod(), responseObserver);
     }
@@ -1068,7 +1175,7 @@ public final class XchainGrpc {
      *  DposNomineeRecords get nominated record of a candidate
      * </pre>
      */
-    public void dposNomineeRecords(com.baidu.xuper.pb.XchainOuterClass.DposNomineeRecordsRequest request,
+    default void dposNomineeRecords(com.baidu.xuper.pb.XchainOuterClass.DposNomineeRecordsRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DposNomineeRecordsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDposNomineeRecordsMethod(), responseObserver);
     }
@@ -1078,7 +1185,7 @@ public final class XchainGrpc {
      *  DposVoteRecords get all vote records voted by an user
      * </pre>
      */
-    public void dposVoteRecords(com.baidu.xuper.pb.XchainOuterClass.DposVoteRecordsRequest request,
+    default void dposVoteRecords(com.baidu.xuper.pb.XchainOuterClass.DposVoteRecordsRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DposVoteRecordsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDposVoteRecordsMethod(), responseObserver);
     }
@@ -1088,7 +1195,7 @@ public final class XchainGrpc {
      *  DposVotedRecords get all vote records of a candidate
      * </pre>
      */
-    public void dposVotedRecords(com.baidu.xuper.pb.XchainOuterClass.DposVotedRecordsRequest request,
+    default void dposVotedRecords(com.baidu.xuper.pb.XchainOuterClass.DposVotedRecordsRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DposVotedRecordsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDposVotedRecordsMethod(), responseObserver);
     }
@@ -1098,7 +1205,7 @@ public final class XchainGrpc {
      *  DposCheckResults get check results of a specific term
      * </pre>
      */
-    public void dposCheckResults(com.baidu.xuper.pb.XchainOuterClass.DposCheckResultsRequest request,
+    default void dposCheckResults(com.baidu.xuper.pb.XchainOuterClass.DposCheckResultsRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DposCheckResultsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDposCheckResultsMethod(), responseObserver);
     }
@@ -1108,7 +1215,7 @@ public final class XchainGrpc {
      * DposStatus get dpos status
      * </pre>
      */
-    public void dposStatus(com.baidu.xuper.pb.XchainOuterClass.DposStatusRequest request,
+    default void dposStatus(com.baidu.xuper.pb.XchainOuterClass.DposStatusRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DposStatusResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDposStatusMethod(), responseObserver);
     }
@@ -1118,9 +1225,19 @@ public final class XchainGrpc {
      * GetAccountByAK get account sets contain a specific address
      * </pre>
      */
-    public void getAccountByAK(com.baidu.xuper.pb.XchainOuterClass.AK2AccountRequest request,
+    default void getAccountByAK(com.baidu.xuper.pb.XchainOuterClass.AK2AccountRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AK2AccountResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAccountByAKMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * GetAddressContracts get contracts of accounts contain a specific address
+     * </pre>
+     */
+    default void getAddressContracts(com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetAddressContractsMethod(), responseObserver);
     }
 
     /**
@@ -1128,205 +1245,34 @@ public final class XchainGrpc {
      *预执行合约
      * </pre>
      */
-    public void preExec(com.baidu.xuper.pb.XchainOuterClass.InvokeRPCRequest request,
+    default void preExec(com.baidu.xuper.pb.XchainOuterClass.InvokeRPCRequest request,
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.InvokeRPCResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPreExecMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getPostTxMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.TxStatus,
-                com.baidu.xuper.pb.XchainOuterClass.CommonReply>(
-                  this, METHODID_POST_TX)))
-          .addMethod(
-            getQueryACLMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.AclStatus,
-                com.baidu.xuper.pb.XchainOuterClass.AclStatus>(
-                  this, METHODID_QUERY_ACL)))
-          .addMethod(
-            getGetAccountContractsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsRequest,
-                com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsResponse>(
-                  this, METHODID_GET_ACCOUNT_CONTRACTS)))
-          .addMethod(
-            getQueryTxMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.TxStatus,
-                com.baidu.xuper.pb.XchainOuterClass.TxStatus>(
-                  this, METHODID_QUERY_TX)))
-          .addMethod(
-            getGetBalanceMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.AddressStatus,
-                com.baidu.xuper.pb.XchainOuterClass.AddressStatus>(
-                  this, METHODID_GET_BALANCE)))
-          .addMethod(
-            getGetBalanceDetailMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.AddressBalanceStatus,
-                com.baidu.xuper.pb.XchainOuterClass.AddressBalanceStatus>(
-                  this, METHODID_GET_BALANCE_DETAIL)))
-          .addMethod(
-            getGetFrozenBalanceMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.AddressStatus,
-                com.baidu.xuper.pb.XchainOuterClass.AddressStatus>(
-                  this, METHODID_GET_FROZEN_BALANCE)))
-          .addMethod(
-            getGetBlockMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.BlockID,
-                com.baidu.xuper.pb.XchainOuterClass.Block>(
-                  this, METHODID_GET_BLOCK)))
-          .addMethod(
-            getGetBlockByHeightMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.BlockHeight,
-                com.baidu.xuper.pb.XchainOuterClass.Block>(
-                  this, METHODID_GET_BLOCK_BY_HEIGHT)))
-          .addMethod(
-            getGetBlockChainStatusMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.BCStatus,
-                com.baidu.xuper.pb.XchainOuterClass.BCStatus>(
-                  this, METHODID_GET_BLOCK_CHAIN_STATUS)))
-          .addMethod(
-            getGetBlockChainsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.CommonIn,
-                com.baidu.xuper.pb.XchainOuterClass.BlockChains>(
-                  this, METHODID_GET_BLOCK_CHAINS)))
-          .addMethod(
-            getGetSystemStatusMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.CommonIn,
-                com.baidu.xuper.pb.XchainOuterClass.SystemsStatusReply>(
-                  this, METHODID_GET_SYSTEM_STATUS)))
-          .addMethod(
-            getGetNetURLMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.CommonIn,
-                com.baidu.xuper.pb.XchainOuterClass.RawUrl>(
-                  this, METHODID_GET_NET_URL)))
-          .addMethod(
-            getSelectUTXOMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.UtxoInput,
-                com.baidu.xuper.pb.XchainOuterClass.UtxoOutput>(
-                  this, METHODID_SELECT_UTXO)))
-          .addMethod(
-            getPreExecWithSelectUTXOMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXORequest,
-                com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXOResponse>(
-                  this, METHODID_PRE_EXEC_WITH_SELECT_UTXO)))
-          .addMethod(
-            getDeployNativeCodeMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse>(
-                  this, METHODID_DEPLOY_NATIVE_CODE)))
-          .addMethod(
-            getNativeCodeStatusMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest,
-                com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse>(
-                  this, METHODID_NATIVE_CODE_STATUS)))
-          .addMethod(
-            getDposCandidatesMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DposCandidatesRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DposCandidatesResponse>(
-                  this, METHODID_DPOS_CANDIDATES)))
-          .addMethod(
-            getDposNominateRecordsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DposNominateRecordsRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DposNominateRecordsResponse>(
-                  this, METHODID_DPOS_NOMINATE_RECORDS)))
-          .addMethod(
-            getDposNomineeRecordsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DposNomineeRecordsRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DposNomineeRecordsResponse>(
-                  this, METHODID_DPOS_NOMINEE_RECORDS)))
-          .addMethod(
-            getDposVoteRecordsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DposVoteRecordsRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DposVoteRecordsResponse>(
-                  this, METHODID_DPOS_VOTE_RECORDS)))
-          .addMethod(
-            getDposVotedRecordsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DposVotedRecordsRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DposVotedRecordsResponse>(
-                  this, METHODID_DPOS_VOTED_RECORDS)))
-          .addMethod(
-            getDposCheckResultsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DposCheckResultsRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DposCheckResultsResponse>(
-                  this, METHODID_DPOS_CHECK_RESULTS)))
-          .addMethod(
-            getDposStatusMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.DposStatusRequest,
-                com.baidu.xuper.pb.XchainOuterClass.DposStatusResponse>(
-                  this, METHODID_DPOS_STATUS)))
-          .addMethod(
-            getGetAccountByAKMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.AK2AccountRequest,
-                com.baidu.xuper.pb.XchainOuterClass.AK2AccountResponse>(
-                  this, METHODID_GET_ACCOUNT_BY_AK)))
-          .addMethod(
-            getPreExecMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                com.baidu.xuper.pb.XchainOuterClass.InvokeRPCRequest,
-                com.baidu.xuper.pb.XchainOuterClass.InvokeRPCResponse>(
-                  this, METHODID_PRE_EXEC)))
-          .build();
     }
   }
 
   /**
+   * Base class for the server implementation of the service Xchain.
    * <pre>
    * Xchain is the main interfaces
    * </pre>
    */
-  public static final class XchainStub extends io.grpc.stub.AbstractAsyncStub<XchainStub> {
+  public static abstract class XchainImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return XchainGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Xchain.
+   * <pre>
+   * Xchain is the main interfaces
+   * </pre>
+   */
+  public static final class XchainStub
+      extends io.grpc.stub.AbstractAsyncStub<XchainStub> {
     private XchainStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -1336,6 +1282,17 @@ public final class XchainGrpc {
     protected XchainStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new XchainStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     * SelectUTXOBySize merge many utxos into a few of utxos
+     * </pre>
+     */
+    public void selectUTXOBySize(com.baidu.xuper.pb.XchainOuterClass.UtxoInput request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.UtxoOutput> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSelectUTXOBySizeMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1355,6 +1312,22 @@ public final class XchainGrpc {
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AclStatus> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getQueryACLMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void queryUtxoRecord(com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getQueryUtxoRecordMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void queryContractStatData(com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getQueryContractStatDataMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1470,6 +1443,17 @@ public final class XchainGrpc {
 
     /**
      * <pre>
+     * GetConsensusChains query consensus status
+     * </pre>
+     */
+    public void getConsensusStatus(com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetConsensusStatusMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * GetNetURL return net url
      * </pre>
      */
@@ -1499,28 +1483,6 @@ public final class XchainGrpc {
         io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXOResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getPreExecWithSelectUTXOMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Native code deploy interface
-     * </pre>
-     */
-    public void deployNativeCode(com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest request,
-        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getDeployNativeCodeMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Native code status
-     * </pre>
-     */
-    public void nativeCodeStatus(com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest request,
-        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getNativeCodeStatusMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1613,6 +1575,17 @@ public final class XchainGrpc {
 
     /**
      * <pre>
+     * GetAddressContracts get contracts of accounts contain a specific address
+     * </pre>
+     */
+    public void getAddressContracts(com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest request,
+        io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetAddressContractsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      *预执行合约
      * </pre>
      */
@@ -1624,11 +1597,13 @@ public final class XchainGrpc {
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Xchain.
    * <pre>
    * Xchain is the main interfaces
    * </pre>
    */
-  public static final class XchainBlockingStub extends io.grpc.stub.AbstractBlockingStub<XchainBlockingStub> {
+  public static final class XchainBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<XchainBlockingStub> {
     private XchainBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -1638,6 +1613,16 @@ public final class XchainGrpc {
     protected XchainBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new XchainBlockingStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     * SelectUTXOBySize merge many utxos into a few of utxos
+     * </pre>
+     */
+    public com.baidu.xuper.pb.XchainOuterClass.UtxoOutput selectUTXOBySize(com.baidu.xuper.pb.XchainOuterClass.UtxoInput request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSelectUTXOBySizeMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1655,6 +1640,20 @@ public final class XchainGrpc {
     public com.baidu.xuper.pb.XchainOuterClass.AclStatus queryACL(com.baidu.xuper.pb.XchainOuterClass.AclStatus request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getQueryACLMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail queryUtxoRecord(com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryUtxoRecordMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse queryContractStatData(com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryContractStatDataMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1760,6 +1759,16 @@ public final class XchainGrpc {
 
     /**
      * <pre>
+     * GetConsensusChains query consensus status
+     * </pre>
+     */
+    public com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus getConsensusStatus(com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetConsensusStatusMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * GetNetURL return net url
      * </pre>
      */
@@ -1786,26 +1795,6 @@ public final class XchainGrpc {
     public com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXOResponse preExecWithSelectUTXO(com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXORequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getPreExecWithSelectUTXOMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Native code deploy interface
-     * </pre>
-     */
-    public com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse deployNativeCode(com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getDeployNativeCodeMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Native code status
-     * </pre>
-     */
-    public com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse nativeCodeStatus(com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getNativeCodeStatusMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1890,6 +1879,16 @@ public final class XchainGrpc {
 
     /**
      * <pre>
+     * GetAddressContracts get contracts of accounts contain a specific address
+     * </pre>
+     */
+    public com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse getAddressContracts(com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetAddressContractsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      *预执行合约
      * </pre>
      */
@@ -1900,11 +1899,13 @@ public final class XchainGrpc {
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Xchain.
    * <pre>
    * Xchain is the main interfaces
    * </pre>
    */
-  public static final class XchainFutureStub extends io.grpc.stub.AbstractFutureStub<XchainFutureStub> {
+  public static final class XchainFutureStub
+      extends io.grpc.stub.AbstractFutureStub<XchainFutureStub> {
     private XchainFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -1914,6 +1915,17 @@ public final class XchainGrpc {
     protected XchainFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new XchainFutureStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     * SelectUTXOBySize merge many utxos into a few of utxos
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.baidu.xuper.pb.XchainOuterClass.UtxoOutput> selectUTXOBySize(
+        com.baidu.xuper.pb.XchainOuterClass.UtxoInput request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSelectUTXOBySizeMethod(), getCallOptions()), request);
     }
 
     /**
@@ -1933,6 +1945,22 @@ public final class XchainGrpc {
         com.baidu.xuper.pb.XchainOuterClass.AclStatus request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getQueryACLMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail> queryUtxoRecord(
+        com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getQueryUtxoRecordMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse> queryContractStatData(
+        com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getQueryContractStatDataMethod(), getCallOptions()), request);
     }
 
     /**
@@ -2048,6 +2076,17 @@ public final class XchainGrpc {
 
     /**
      * <pre>
+     * GetConsensusChains query consensus status
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus> getConsensusStatus(
+        com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetConsensusStatusMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * GetNetURL return net url
      * </pre>
      */
@@ -2077,28 +2116,6 @@ public final class XchainGrpc {
         com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXORequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getPreExecWithSelectUTXOMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Native code deploy interface
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse> deployNativeCode(
-        com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getDeployNativeCodeMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Native code status
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse> nativeCodeStatus(
-        com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getNativeCodeStatusMethod(), getCallOptions()), request);
     }
 
     /**
@@ -2191,6 +2208,17 @@ public final class XchainGrpc {
 
     /**
      * <pre>
+     * GetAddressContracts get contracts of accounts contain a specific address
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse> getAddressContracts(
+        com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetAddressContractsMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      *预执行合约
      * </pre>
      */
@@ -2201,42 +2229,45 @@ public final class XchainGrpc {
     }
   }
 
-  private static final int METHODID_POST_TX = 0;
-  private static final int METHODID_QUERY_ACL = 1;
-  private static final int METHODID_GET_ACCOUNT_CONTRACTS = 2;
-  private static final int METHODID_QUERY_TX = 3;
-  private static final int METHODID_GET_BALANCE = 4;
-  private static final int METHODID_GET_BALANCE_DETAIL = 5;
-  private static final int METHODID_GET_FROZEN_BALANCE = 6;
-  private static final int METHODID_GET_BLOCK = 7;
-  private static final int METHODID_GET_BLOCK_BY_HEIGHT = 8;
-  private static final int METHODID_GET_BLOCK_CHAIN_STATUS = 9;
-  private static final int METHODID_GET_BLOCK_CHAINS = 10;
-  private static final int METHODID_GET_SYSTEM_STATUS = 11;
-  private static final int METHODID_GET_NET_URL = 12;
-  private static final int METHODID_SELECT_UTXO = 13;
-  private static final int METHODID_PRE_EXEC_WITH_SELECT_UTXO = 14;
-  private static final int METHODID_DEPLOY_NATIVE_CODE = 15;
-  private static final int METHODID_NATIVE_CODE_STATUS = 16;
-  private static final int METHODID_DPOS_CANDIDATES = 17;
-  private static final int METHODID_DPOS_NOMINATE_RECORDS = 18;
-  private static final int METHODID_DPOS_NOMINEE_RECORDS = 19;
-  private static final int METHODID_DPOS_VOTE_RECORDS = 20;
-  private static final int METHODID_DPOS_VOTED_RECORDS = 21;
-  private static final int METHODID_DPOS_CHECK_RESULTS = 22;
-  private static final int METHODID_DPOS_STATUS = 23;
-  private static final int METHODID_GET_ACCOUNT_BY_AK = 24;
-  private static final int METHODID_PRE_EXEC = 25;
+  private static final int METHODID_SELECT_UTXOBY_SIZE = 0;
+  private static final int METHODID_POST_TX = 1;
+  private static final int METHODID_QUERY_ACL = 2;
+  private static final int METHODID_QUERY_UTXO_RECORD = 3;
+  private static final int METHODID_QUERY_CONTRACT_STAT_DATA = 4;
+  private static final int METHODID_GET_ACCOUNT_CONTRACTS = 5;
+  private static final int METHODID_QUERY_TX = 6;
+  private static final int METHODID_GET_BALANCE = 7;
+  private static final int METHODID_GET_BALANCE_DETAIL = 8;
+  private static final int METHODID_GET_FROZEN_BALANCE = 9;
+  private static final int METHODID_GET_BLOCK = 10;
+  private static final int METHODID_GET_BLOCK_BY_HEIGHT = 11;
+  private static final int METHODID_GET_BLOCK_CHAIN_STATUS = 12;
+  private static final int METHODID_GET_BLOCK_CHAINS = 13;
+  private static final int METHODID_GET_SYSTEM_STATUS = 14;
+  private static final int METHODID_GET_CONSENSUS_STATUS = 15;
+  private static final int METHODID_GET_NET_URL = 16;
+  private static final int METHODID_SELECT_UTXO = 17;
+  private static final int METHODID_PRE_EXEC_WITH_SELECT_UTXO = 18;
+  private static final int METHODID_DPOS_CANDIDATES = 19;
+  private static final int METHODID_DPOS_NOMINATE_RECORDS = 20;
+  private static final int METHODID_DPOS_NOMINEE_RECORDS = 21;
+  private static final int METHODID_DPOS_VOTE_RECORDS = 22;
+  private static final int METHODID_DPOS_VOTED_RECORDS = 23;
+  private static final int METHODID_DPOS_CHECK_RESULTS = 24;
+  private static final int METHODID_DPOS_STATUS = 25;
+  private static final int METHODID_GET_ACCOUNT_BY_AK = 26;
+  private static final int METHODID_GET_ADDRESS_CONTRACTS = 27;
+  private static final int METHODID_PRE_EXEC = 28;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final XchainImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(XchainImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -2245,6 +2276,10 @@ public final class XchainGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_SELECT_UTXOBY_SIZE:
+          serviceImpl.selectUTXOBySize((com.baidu.xuper.pb.XchainOuterClass.UtxoInput) request,
+              (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.UtxoOutput>) responseObserver);
+          break;
         case METHODID_POST_TX:
           serviceImpl.postTx((com.baidu.xuper.pb.XchainOuterClass.TxStatus) request,
               (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.CommonReply>) responseObserver);
@@ -2252,6 +2287,14 @@ public final class XchainGrpc {
         case METHODID_QUERY_ACL:
           serviceImpl.queryACL((com.baidu.xuper.pb.XchainOuterClass.AclStatus) request,
               (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AclStatus>) responseObserver);
+          break;
+        case METHODID_QUERY_UTXO_RECORD:
+          serviceImpl.queryUtxoRecord((com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail) request,
+              (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail>) responseObserver);
+          break;
+        case METHODID_QUERY_CONTRACT_STAT_DATA:
+          serviceImpl.queryContractStatData((com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest) request,
+              (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse>) responseObserver);
           break;
         case METHODID_GET_ACCOUNT_CONTRACTS:
           serviceImpl.getAccountContracts((com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsRequest) request,
@@ -2293,6 +2336,10 @@ public final class XchainGrpc {
           serviceImpl.getSystemStatus((com.baidu.xuper.pb.XchainOuterClass.CommonIn) request,
               (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.SystemsStatusReply>) responseObserver);
           break;
+        case METHODID_GET_CONSENSUS_STATUS:
+          serviceImpl.getConsensusStatus((com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest) request,
+              (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus>) responseObserver);
+          break;
         case METHODID_GET_NET_URL:
           serviceImpl.getNetURL((com.baidu.xuper.pb.XchainOuterClass.CommonIn) request,
               (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.RawUrl>) responseObserver);
@@ -2304,14 +2351,6 @@ public final class XchainGrpc {
         case METHODID_PRE_EXEC_WITH_SELECT_UTXO:
           serviceImpl.preExecWithSelectUTXO((com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXORequest) request,
               (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXOResponse>) responseObserver);
-          break;
-        case METHODID_DEPLOY_NATIVE_CODE:
-          serviceImpl.deployNativeCode((com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeRequest) request,
-              (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.DeployNativeCodeResponse>) responseObserver);
-          break;
-        case METHODID_NATIVE_CODE_STATUS:
-          serviceImpl.nativeCodeStatus((com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusRequest) request,
-              (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.NativeCodeStatusResponse>) responseObserver);
           break;
         case METHODID_DPOS_CANDIDATES:
           serviceImpl.dposCandidates((com.baidu.xuper.pb.XchainOuterClass.DposCandidatesRequest) request,
@@ -2345,6 +2384,10 @@ public final class XchainGrpc {
           serviceImpl.getAccountByAK((com.baidu.xuper.pb.XchainOuterClass.AK2AccountRequest) request,
               (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AK2AccountResponse>) responseObserver);
           break;
+        case METHODID_GET_ADDRESS_CONTRACTS:
+          serviceImpl.getAddressContracts((com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest) request,
+              (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse>) responseObserver);
+          break;
         case METHODID_PRE_EXEC:
           serviceImpl.preExec((com.baidu.xuper.pb.XchainOuterClass.InvokeRPCRequest) request,
               (io.grpc.stub.StreamObserver<com.baidu.xuper.pb.XchainOuterClass.InvokeRPCResponse>) responseObserver);
@@ -2363,6 +2406,214 @@ public final class XchainGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getSelectUTXOBySizeMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.UtxoInput,
+              com.baidu.xuper.pb.XchainOuterClass.UtxoOutput>(
+                service, METHODID_SELECT_UTXOBY_SIZE)))
+        .addMethod(
+          getPostTxMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.TxStatus,
+              com.baidu.xuper.pb.XchainOuterClass.CommonReply>(
+                service, METHODID_POST_TX)))
+        .addMethod(
+          getQueryACLMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.AclStatus,
+              com.baidu.xuper.pb.XchainOuterClass.AclStatus>(
+                service, METHODID_QUERY_ACL)))
+        .addMethod(
+          getQueryUtxoRecordMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail,
+              com.baidu.xuper.pb.XchainOuterClass.UtxoRecordDetail>(
+                service, METHODID_QUERY_UTXO_RECORD)))
+        .addMethod(
+          getQueryContractStatDataMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.ContractStatDataRequest,
+              com.baidu.xuper.pb.XchainOuterClass.ContractStatDataResponse>(
+                service, METHODID_QUERY_CONTRACT_STAT_DATA)))
+        .addMethod(
+          getGetAccountContractsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsRequest,
+              com.baidu.xuper.pb.XchainOuterClass.GetAccountContractsResponse>(
+                service, METHODID_GET_ACCOUNT_CONTRACTS)))
+        .addMethod(
+          getQueryTxMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.TxStatus,
+              com.baidu.xuper.pb.XchainOuterClass.TxStatus>(
+                service, METHODID_QUERY_TX)))
+        .addMethod(
+          getGetBalanceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.AddressStatus,
+              com.baidu.xuper.pb.XchainOuterClass.AddressStatus>(
+                service, METHODID_GET_BALANCE)))
+        .addMethod(
+          getGetBalanceDetailMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.AddressBalanceStatus,
+              com.baidu.xuper.pb.XchainOuterClass.AddressBalanceStatus>(
+                service, METHODID_GET_BALANCE_DETAIL)))
+        .addMethod(
+          getGetFrozenBalanceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.AddressStatus,
+              com.baidu.xuper.pb.XchainOuterClass.AddressStatus>(
+                service, METHODID_GET_FROZEN_BALANCE)))
+        .addMethod(
+          getGetBlockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.BlockID,
+              com.baidu.xuper.pb.XchainOuterClass.Block>(
+                service, METHODID_GET_BLOCK)))
+        .addMethod(
+          getGetBlockByHeightMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.BlockHeight,
+              com.baidu.xuper.pb.XchainOuterClass.Block>(
+                service, METHODID_GET_BLOCK_BY_HEIGHT)))
+        .addMethod(
+          getGetBlockChainStatusMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.BCStatus,
+              com.baidu.xuper.pb.XchainOuterClass.BCStatus>(
+                service, METHODID_GET_BLOCK_CHAIN_STATUS)))
+        .addMethod(
+          getGetBlockChainsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.CommonIn,
+              com.baidu.xuper.pb.XchainOuterClass.BlockChains>(
+                service, METHODID_GET_BLOCK_CHAINS)))
+        .addMethod(
+          getGetSystemStatusMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.CommonIn,
+              com.baidu.xuper.pb.XchainOuterClass.SystemsStatusReply>(
+                service, METHODID_GET_SYSTEM_STATUS)))
+        .addMethod(
+          getGetConsensusStatusMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.ConsensusStatRequest,
+              com.baidu.xuper.pb.XchainOuterClass.ConsensusStatus>(
+                service, METHODID_GET_CONSENSUS_STATUS)))
+        .addMethod(
+          getGetNetURLMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.CommonIn,
+              com.baidu.xuper.pb.XchainOuterClass.RawUrl>(
+                service, METHODID_GET_NET_URL)))
+        .addMethod(
+          getSelectUTXOMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.UtxoInput,
+              com.baidu.xuper.pb.XchainOuterClass.UtxoOutput>(
+                service, METHODID_SELECT_UTXO)))
+        .addMethod(
+          getPreExecWithSelectUTXOMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXORequest,
+              com.baidu.xuper.pb.XchainOuterClass.PreExecWithSelectUTXOResponse>(
+                service, METHODID_PRE_EXEC_WITH_SELECT_UTXO)))
+        .addMethod(
+          getDposCandidatesMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.DposCandidatesRequest,
+              com.baidu.xuper.pb.XchainOuterClass.DposCandidatesResponse>(
+                service, METHODID_DPOS_CANDIDATES)))
+        .addMethod(
+          getDposNominateRecordsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.DposNominateRecordsRequest,
+              com.baidu.xuper.pb.XchainOuterClass.DposNominateRecordsResponse>(
+                service, METHODID_DPOS_NOMINATE_RECORDS)))
+        .addMethod(
+          getDposNomineeRecordsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.DposNomineeRecordsRequest,
+              com.baidu.xuper.pb.XchainOuterClass.DposNomineeRecordsResponse>(
+                service, METHODID_DPOS_NOMINEE_RECORDS)))
+        .addMethod(
+          getDposVoteRecordsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.DposVoteRecordsRequest,
+              com.baidu.xuper.pb.XchainOuterClass.DposVoteRecordsResponse>(
+                service, METHODID_DPOS_VOTE_RECORDS)))
+        .addMethod(
+          getDposVotedRecordsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.DposVotedRecordsRequest,
+              com.baidu.xuper.pb.XchainOuterClass.DposVotedRecordsResponse>(
+                service, METHODID_DPOS_VOTED_RECORDS)))
+        .addMethod(
+          getDposCheckResultsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.DposCheckResultsRequest,
+              com.baidu.xuper.pb.XchainOuterClass.DposCheckResultsResponse>(
+                service, METHODID_DPOS_CHECK_RESULTS)))
+        .addMethod(
+          getDposStatusMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.DposStatusRequest,
+              com.baidu.xuper.pb.XchainOuterClass.DposStatusResponse>(
+                service, METHODID_DPOS_STATUS)))
+        .addMethod(
+          getGetAccountByAKMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.AK2AccountRequest,
+              com.baidu.xuper.pb.XchainOuterClass.AK2AccountResponse>(
+                service, METHODID_GET_ACCOUNT_BY_AK)))
+        .addMethod(
+          getGetAddressContractsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.AddressContractsRequest,
+              com.baidu.xuper.pb.XchainOuterClass.AddressContractsResponse>(
+                service, METHODID_GET_ADDRESS_CONTRACTS)))
+        .addMethod(
+          getPreExecMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.baidu.xuper.pb.XchainOuterClass.InvokeRPCRequest,
+              com.baidu.xuper.pb.XchainOuterClass.InvokeRPCResponse>(
+                service, METHODID_PRE_EXEC)))
+        .build();
   }
 
   private static abstract class XchainBaseDescriptorSupplier
@@ -2388,9 +2639,9 @@ public final class XchainGrpc {
   private static final class XchainMethodDescriptorSupplier
       extends XchainBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    XchainMethodDescriptorSupplier(String methodName) {
+    XchainMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
@@ -2410,8 +2661,11 @@ public final class XchainGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new XchainFileDescriptorSupplier())
+              .addMethod(getSelectUTXOBySizeMethod())
               .addMethod(getPostTxMethod())
               .addMethod(getQueryACLMethod())
+              .addMethod(getQueryUtxoRecordMethod())
+              .addMethod(getQueryContractStatDataMethod())
               .addMethod(getGetAccountContractsMethod())
               .addMethod(getQueryTxMethod())
               .addMethod(getGetBalanceMethod())
@@ -2422,11 +2676,10 @@ public final class XchainGrpc {
               .addMethod(getGetBlockChainStatusMethod())
               .addMethod(getGetBlockChainsMethod())
               .addMethod(getGetSystemStatusMethod())
+              .addMethod(getGetConsensusStatusMethod())
               .addMethod(getGetNetURLMethod())
               .addMethod(getSelectUTXOMethod())
               .addMethod(getPreExecWithSelectUTXOMethod())
-              .addMethod(getDeployNativeCodeMethod())
-              .addMethod(getNativeCodeStatusMethod())
               .addMethod(getDposCandidatesMethod())
               .addMethod(getDposNominateRecordsMethod())
               .addMethod(getDposNomineeRecordsMethod())
@@ -2435,6 +2688,7 @@ public final class XchainGrpc {
               .addMethod(getDposCheckResultsMethod())
               .addMethod(getDposStatusMethod())
               .addMethod(getGetAccountByAKMethod())
+              .addMethod(getGetAddressContractsMethod())
               .addMethod(getPreExecMethod())
               .build();
         }

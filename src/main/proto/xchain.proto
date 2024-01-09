@@ -6,7 +6,6 @@ import "google/api/annotations.proto";
 import "chainedbft.proto";
 package pb;
 
-
 enum XChainErrorEnum {
   SUCCESS = 0;
   UNKNOW_ERROR = 1;
@@ -54,27 +53,67 @@ enum TransactionStatus {
   FURCATION = 3;
   // Transaction have not been confirmed
   UNCONFIRM = 4;
+  // Transaction occurs error
+  FAILED = 5;
+}
+
+// View option to be choosed (only used in status filter currently)
+enum ViewOption {
+  // Without any flag: Default
+  NONE = 0;
+  // Ledger flag: Get Ledger Info
+  LEDGER = 1;
+  // Utxo flag: Get UTXO Info
+  UTXOINFO = 2;
+  // Branch flag: Get BranchId Info
+  BRANCHINFO = 3;
+  // Peers flag: Get Peers Info
+  PEERS = 4;
 }
 
 // Xchain is the main interfaces
 service Xchain {
 
+  // SelectUTXOBySize merge many utxos into a few of utxos
+  rpc SelectUTXOBySize(UtxoInput) returns (UtxoOutput) {
+    option (google.api.http) = {
+      post : "/v1/select_utxo_by_size"
+      body : "*"
+    };
+  }
+
   // PostTx post Transaction to a node
-  rpc PostTx (TxStatus) returns (CommonReply) {
+  rpc PostTx(TxStatus) returns (CommonReply) {
     option (google.api.http) = {
       post : "/v1/post_tx"
       body : "*"
     };
   }
 
-  rpc QueryACL (AclStatus) returns (AclStatus) {
+  rpc QueryACL(AclStatus) returns (AclStatus) {
     option (google.api.http) = {
       post : "/v1/query_acl"
       body : "*"
     };
   }
 
-  rpc GetAccountContracts (GetAccountContractsRequest) returns (GetAccountContractsResponse) {
+  rpc QueryUtxoRecord(UtxoRecordDetail) returns (UtxoRecordDetail) {
+    option (google.api.http) = {
+      post : "/v1/query_utxo_record"
+      body : "*"
+    };
+  }
+
+  rpc QueryContractStatData(ContractStatDataRequest)
+      returns (ContractStatDataResponse) {
+    option (google.api.http) = {
+      post : "/v1/query_contract_stat_data"
+      body : "*"
+    };
+  }
+
+  rpc GetAccountContracts(GetAccountContractsRequest)
+      returns (GetAccountContractsResponse) {
     option (google.api.http) = {
       post : "/v1/get_account_contracts"
       body : "*"
@@ -83,7 +122,7 @@ service Xchain {
 
   // QueryTx query Transaction by TxStatus,
   // Bcname and Txid are required for this
-  rpc QueryTx (TxStatus) returns (TxStatus) {
+  rpc QueryTx(TxStatus) returns (TxStatus) {
     option (google.api.http) = {
       post : "/v1/query_tx"
       body : "*"
@@ -92,7 +131,7 @@ service Xchain {
 
   // GetBalance get balance of an address,
   // Address is required for this
-  rpc GetBalance (AddressStatus) returns (AddressStatus) {
+  rpc GetBalance(AddressStatus) returns (AddressStatus) {
     option (google.api.http) = {
       post : "/v1/get_balance"
       body : "*"
@@ -103,16 +142,16 @@ service Xchain {
   // 1. Still be frozen of an address
   // 2. Available now of an address
   // Address is required for this
-  rpc GetBalanceDetail (AddressBalanceStatus) returns (AddressBalanceStatus) {
+  rpc GetBalanceDetail(AddressBalanceStatus) returns (AddressBalanceStatus) {
     option (google.api.http) = {
-      post: "/v1/get_balance_detail"
-      body: "*"
+      post : "/v1/get_balance_detail"
+      body : "*"
     };
   }
 
   // GetFrozenBalance get balance that still be frozen of an address,
   // Address is required for this
-  rpc GetFrozenBalance (AddressStatus) returns (AddressStatus) {
+  rpc GetFrozenBalance(AddressStatus) returns (AddressStatus) {
     option (google.api.http) = {
       post : "/v1/get_frozen_balance"
       body : "*"
@@ -120,7 +159,7 @@ service Xchain {
   }
 
   // GetBlock get block by blockid and return if the block in trunk or in branch
-  rpc GetBlock (BlockID) returns (Block) {
+  rpc GetBlock(BlockID) returns (Block) {
     option (google.api.http) = {
       post : "/v1/get_block"
       body : "*"
@@ -129,14 +168,14 @@ service Xchain {
 
   // GetBlockByHeight get block by height and return if the block in trunk or in
   // branch
-  rpc GetBlockByHeight (BlockHeight) returns (Block) {
+  rpc GetBlockByHeight(BlockHeight) returns (Block) {
     option (google.api.http) = {
       post : "/v1/get_block_by_height"
       body : "*"
     };
   }
 
-  rpc GetBlockChainStatus (BCStatus) returns (BCStatus) {
+  rpc GetBlockChainStatus(BCStatus) returns (BCStatus) {
     option (google.api.http) = {
       post : "/v1/get_bcstatus"
       body : "*"
@@ -144,7 +183,7 @@ service Xchain {
   }
 
   // Get blockchains query blockchains
-  rpc GetBlockChains (CommonIn) returns (BlockChains) {
+  rpc GetBlockChains(CommonIn) returns (BlockChains) {
     option (google.api.http) = {
       get : "/v1/get_bcchains"
       // body: "*"
@@ -152,19 +191,26 @@ service Xchain {
   }
 
   // GetSystemStatus query system status
-  rpc GetSystemStatus (CommonIn) returns (SystemsStatusReply) {
+  rpc GetSystemStatus(CommonIn) returns (SystemsStatusReply) {
     option (google.api.http) = {
       post : "/v1/get_sysstatus"
       body : "*"
     };
   }
 
-  // GetNetURL return net url
-  rpc GetNetURL (CommonIn) returns (RawUrl) {
+  // GetConsensusChains query consensus status
+  rpc GetConsensusStatus(ConsensusStatRequest) returns (ConsensusStatus) {
+    option (google.api.http) = {
+      post : "/v1/get_consensusstatus"
+      body : "*"
+    };
   }
 
+  // GetNetURL return net url
+  rpc GetNetURL(CommonIn) returns (RawUrl) {}
+
   // 新的Select utxos接口, 不需要签名，可以支持选择账户的utxo
-  rpc SelectUTXO (UtxoInput) returns (UtxoOutput) {
+  rpc SelectUTXO(UtxoInput) returns (UtxoOutput) {
     option (google.api.http) = {
       post : "/v1/select_utxos_v2"
       body : "*"
@@ -172,47 +218,56 @@ service Xchain {
   }
 
   // PreExecWithSelectUTXO preExec & selectUtxo
-  rpc PreExecWithSelectUTXO (PreExecWithSelectUTXORequest) returns (PreExecWithSelectUTXOResponse) {
+  rpc PreExecWithSelectUTXO(PreExecWithSelectUTXORequest)
+      returns (PreExecWithSelectUTXOResponse) {
     option (google.api.http) = {
       post : "/v1/preexec_select_utxo"
       body : "*"
     };
   }
 
-  // Native code deploy interface
-  rpc DeployNativeCode (DeployNativeCodeRequest) returns (DeployNativeCodeResponse);
-  // Native code status
-  rpc NativeCodeStatus (NativeCodeStatusRequest) returns (NativeCodeStatusResponse);
-
   /*
    * DPoS query interface
    */
   //  DposCandidates get all candidates of the tdpos consensus
-  rpc DposCandidates (DposCandidatesRequest) returns (DposCandidatesResponse);
+  rpc DposCandidates(DposCandidatesRequest) returns (DposCandidatesResponse);
   //  DposNominateRecords get all records nominated by an user
-  rpc DposNominateRecords (DposNominateRecordsRequest) returns (DposNominateRecordsResponse);
+  rpc DposNominateRecords(DposNominateRecordsRequest)
+      returns (DposNominateRecordsResponse);
   //  DposNomineeRecords get nominated record of a candidate
-  rpc DposNomineeRecords (DposNomineeRecordsRequest) returns (DposNomineeRecordsResponse);
+  rpc DposNomineeRecords(DposNomineeRecordsRequest)
+      returns (DposNomineeRecordsResponse);
   //  DposVoteRecords get all vote records voted by an user
-  rpc DposVoteRecords (DposVoteRecordsRequest) returns (DposVoteRecordsResponse);
+  rpc DposVoteRecords(DposVoteRecordsRequest) returns (DposVoteRecordsResponse);
   //  DposVotedRecords get all vote records of a candidate
-  rpc DposVotedRecords (DposVotedRecordsRequest) returns (DposVotedRecordsResponse);
+  rpc DposVotedRecords(DposVotedRecordsRequest)
+      returns (DposVotedRecordsResponse);
   //  DposCheckResults get check results of a specific term
-  rpc DposCheckResults (DposCheckResultsRequest) returns (DposCheckResultsResponse);
+  rpc DposCheckResults(DposCheckResultsRequest)
+      returns (DposCheckResultsResponse);
 
   // DposStatus get dpos status
-  rpc DposStatus (DposStatusRequest) returns (DposStatusResponse);
+  rpc DposStatus(DposStatusRequest) returns (DposStatusResponse);
 
   // GetAccountByAK get account sets contain a specific address
-  rpc GetAccountByAK (AK2AccountRequest) returns (AK2AccountResponse) {
+  rpc GetAccountByAK(AK2AccountRequest) returns (AK2AccountResponse) {
     option (google.api.http) = {
       post : "/v1/get_account_by_ak"
       body : "*"
     };
   }
 
+  // GetAddressContracts get contracts of accounts contain a specific address
+  rpc GetAddressContracts(AddressContractsRequest)
+      returns (AddressContractsResponse) {
+    option (google.api.http) = {
+      post : "/v1/get_address_contracts"
+      body : "*"
+    };
+  }
+
   //预执行合约
-  rpc PreExec (InvokeRPCRequest) returns (InvokeRPCResponse) {
+  rpc PreExec(InvokeRPCRequest) returns (InvokeRPCResponse) {
     option (google.api.http) = {
       post : "/v1/preexec"
       body : "*"
@@ -222,13 +277,14 @@ service Xchain {
 
 message Header {
   string logid = 1; //如果logid没填写，生成一个
-  string from_node = 2; //call rpc client address，客户端可以为空，节点一定要写自己的address
+  string from_node =
+      2; // call rpc client address，客户端可以为空，节点一定要写自己的address
   XChainErrorEnum error = 3;
 }
 
 message TxDataAccount {
-  string address = 1; //地址
-  string amount = 2; //金额
+  string address = 1;      //地址
+  string amount = 2;       //金额
   int64 frozen_height = 3; //冻结高度
 }
 
@@ -263,7 +319,7 @@ message TxStatus {
   string bcname = 2;
   bytes txid = 3;
   TransactionStatus status = 4; //当前状态
-  int64 distance = 5; //离主干末端的距离（如果在主干上)
+  int64 distance = 5;           //离主干末端的距离（如果在主干上)
   Transaction tx = 7;
 }
 
@@ -300,12 +356,11 @@ message BlockHeight {
   int64 height = 2;
 }
 
-message CommonReply {
-  Header header = 1;
-}
+message CommonReply { Header header = 1; }
 
-message CommonIn {
-  Header header = 1;
+message CommonIn { 
+  Header header = 1; 
+  ViewOption view_option = 2;
 }
 
 message TokenDetail {
@@ -359,13 +414,6 @@ message TxOutput {
   bytes to_addr = 2;
   // Fronzen height
   int64 frozen_height = 4;
-}
-
-message HDInfo {
-    // HDPublickey
-    bytes hd_public_key = 1;
-    // original_hash
-    bytes original_hash = 2;
 }
 
 // Unified Xuper Signature
@@ -434,16 +482,19 @@ message LedgerMeta {
 message UtxoMeta {
   bytes latest_blockid = 1; // utxo vm目前执行到的blockid
   repeated string lock_key_list = 2;
-  string utxo_total = 3; // 当前utxo vm上的总资产
-  int64 avgDelay = 4; // 平均上链延时
-  int64 unconfirmTxAmount = 5; // 待确认交易量
-  int64 max_block_size = 6; // max block size
+  string utxo_total = 3;                         // 当前utxo vm上的总资产
+  int64 avgDelay = 4;                            // 平均上链延时
+  int64 unconfirmTxAmount = 5;                   // 待确认交易量
+  int64 max_block_size = 6;                      // max block size
   repeated InvokeRequest reserved_contracts = 7; // preset contracts
-  InvokeRequest forbidden_contract = 8; // reset forbidden contract configuration
-  int64 new_account_resource_amount = 9; // the resource amount of creating an account
+  InvokeRequest forbidden_contract =
+      8; // reset forbidden contract configuration
+  int64 new_account_resource_amount =
+      9; // the resource amount of creating an account
   int64 irreversibleBlockHeight = 10; // 当前不可逆区块高度，与utxo对齐
   int64 irreversibleSlideWindow = 11; // 当前不可逆区块高度调整窗口
   GasPrice gasPrice = 12;
+  InvokeRequest group_chain_contract = 13; // 群组合约相关
 }
 
 message GasPrice {
@@ -527,9 +578,7 @@ message Speeds {
   map<string, BCSpeeds> BcSpeeds = 2;
 }
 
-message BCSpeeds {
-  map<string, double> BcSpeed = 1;
-}
+message BCSpeeds { map<string, double> BcSpeed = 1; }
 
 message SystemsStatus {
   Header header = 1;
@@ -541,6 +590,24 @@ message SystemsStatus {
 message SystemsStatusReply {
   Header header = 1;
   SystemsStatus systems_status = 2;
+}
+
+message ConsensusStatRequest {
+  Header header = 1;
+  string bcname = 2;
+}
+
+// Consensus status
+message ConsensusStatus {
+  Header header = 1;
+  // version
+  string version = 2;
+  // consensus name
+  string consensus_name = 3;
+  // consensus start height
+  string start_height = 4;
+  // consensus validators info
+  string validators_info = 5;
 }
 
 // RawUrl return the node's  connect url
@@ -606,40 +673,10 @@ message WasmCodeDesc {
   string contract_type = 5;
 }
 
-message DeployNativeCodeRequest {
-  Header header = 1;
-  // chain name
-  string bcname = 2;
-  // native code desc
-  NativeCodeDesc desc = 3;
-  // code is the bytes of binary code
-  bytes code = 4;
-  // the address of deployer
-  string address = 5;
-  // the public key of deployer
-  bytes pubkey = 6;
-  // the sign of desc
-  bytes sign = 7;
-}
-
-message DeployNativeCodeResponse {
-  Header header = 1;
-}
-
 message NativeCodeStatus {
   NativeCodeDesc desc = 1;
   int32 status = 2;
   bool healthy = 3;
-}
-
-message NativeCodeStatusRequest {
-  Header header = 1;
-  string bcname = 2;
-}
-
-message NativeCodeStatusResponse {
-  Header header = 1;
-  repeated NativeCodeStatus status = 2;
 }
 
 /*
@@ -823,12 +860,12 @@ message SignatureInfo {
 
 // --------   Account and Permission Section --------
 enum PermissionRule {
-  NULL = 0; // 无权限控制
+  NULL = 0;           // 无权限控制
   SIGN_THRESHOLD = 1; // 签名阈值策略
-  SIGN_AKSET = 2; // AKSet签名策略
-  SIGN_RATE = 3; // 签名率策略
-  SIGN_SUM = 4; // 签名个数策略
-  CA_SERVER = 5; // CA服务器鉴权
+  SIGN_AKSET = 2;     // AKSet签名策略
+  SIGN_RATE = 3;      // 签名率策略
+  SIGN_SUM = 4;       // 签名个数策略
+  CA_SERVER = 5;      // CA服务器鉴权
   COMMUNITY_VOTE = 6; // 社区治理
 }
 
@@ -848,7 +885,7 @@ message AkSets {
 
 // Acl实际使用的结构
 message Acl {
-  PermissionModel pm = 1; // 采用的权限模型
+  PermissionModel pm = 1;            // 采用的权限模型
   map<string, double> aksWeight = 2; // 公钥or账户名  -> 权重
   AkSets akSets = 3;
 }
@@ -874,9 +911,7 @@ message IdentityAuth {
 }
 
 // Identity authentication requests
-message IdentityAuths {
-  repeated IdentityAuth auth = 1;
-}
+message IdentityAuths { repeated IdentityAuth auth = 1; }
 
 enum ResourceType {
   CPU = 0;
@@ -921,6 +956,8 @@ message ContractStatus {
   string txid = 2;
   bytes desc = 3;
   bool is_banned = 4;
+  int64 timestamp = 5;
+  string runtime = 6;
 }
 
 // PreExecWithSelectUTXORequest preExec + selectUtxo for request
@@ -963,3 +1000,104 @@ message ModifyBlock {
   string sign = 5;
 }
 
+message HDInfo {
+  // HDPublickey
+  bytes hd_public_key = 1;
+  // original_hash
+  bytes original_hash = 2;
+}
+
+message UtxoRecordDetail {
+  Header header = 1;
+  string bcname = 2;
+  string accountName = 3;
+  UtxoRecord openUtxoRecord = 4;
+  UtxoRecord lockedUtxoRecord = 5;
+  UtxoRecord frozenUtxoRecord = 6;
+  int64 displayCount = 7;
+}
+
+message UtxoRecord {
+  string utxoCount = 1;
+  string utxoAmount = 2;
+  repeated UtxoKey item = 3;
+}
+
+message UtxoKey {
+  string refTxid = 1;
+  string offset = 2;
+  string amount = 3;
+}
+
+message ContractStatDataRequest {
+  Header header = 1;
+  string bcname = 2;
+}
+
+message ContractStatDataResponse {
+  Header header = 1;
+  string bcname = 2;
+  ContractStatData data = 3;
+}
+
+message ContractStatData {
+  int64 accountCount = 1;
+  int64 contractCount = 2;
+}
+
+// Query address contracts request
+message AddressContractsRequest {
+  Header header = 1;
+  string bcname = 2;
+  string address = 3;
+  bool need_content = 4;
+}
+
+message ContractList { repeated ContractStatus contract_status = 1; }
+
+// Query address contracts response
+message AddressContractsResponse {
+  Header header = 1;
+  map<string, ContractList> contracts = 2;
+}
+
+message CrossQueryRequest {
+  string bcname = 1;
+  int64 timestamp = 2;
+  string initiator = 3;
+  repeated string auth_require = 4;
+  InvokeRequest request = 5;
+}
+
+message CrossQueryResponse {
+  ContractResponse response = 1;
+}
+
+message CrossChainMeta {
+  string type = 1;
+  int64 min_endorsor_num = 2;
+}
+
+message CrossEndorsor {
+  string address = 1;
+  string pub_key = 2;
+  // ip+port
+  string host = 3;
+}
+
+message CrossQueryMeta {
+  CrossChainMeta chain_meta = 1;
+  repeated CrossEndorsor endorsors = 2;
+}
+
+message CrossQueryInfo {
+  CrossQueryRequest request = 1;
+  CrossQueryResponse response = 2;
+  repeated SignatureInfo signs = 3;
+}
+
+message ContractEvent {
+    string contract = 1;
+    string name = 2;
+    bytes body = 3;
+}
