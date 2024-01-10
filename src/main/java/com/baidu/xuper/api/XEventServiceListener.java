@@ -20,7 +20,12 @@ public class XEventServiceListener {
     public void close() {
         channel.shutdownNow();
     }
-    public EventServiceGrpc.EventServiceStub getEventServiceStub() {
+     EventServiceGrpc.EventServiceStub getEventServiceStub() {
         return eventServiceStub;
+    }
+
+    public void subscribe(com.baidu.xuper.pb.EventOuterClass.SubscribeRequest request,
+                          io.grpc.stub.StreamObserver<com.baidu.xuper.pb.EventOuterClass.Event> responseObserver) {
+        getEventServiceStub().subscribe(request,responseObserver);
     }
 }
