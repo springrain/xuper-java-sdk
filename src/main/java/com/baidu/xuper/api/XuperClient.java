@@ -17,9 +17,8 @@ public class XuperClient {
     private final ManagedChannel channel;
     private final XchainGrpc.XchainBlockingStub blockingClient;
     private final XendorserClient xendorserClient;
-
+    private XEventServiceListener xeventServiceListener;
     private String chainName = "xuper";
-
     private final String evmContract = "evm";
     private final String xkernelModule = "xkernel";
     private final String evmJSONEncoded = "jsonEncoded";
@@ -63,27 +62,24 @@ public class XuperClient {
      * @param maxInboundMessageSize Sets the maximum message size allowed to be received on the channel, like 52428800 (50M)
      */
     public XuperClient(String target,Integer maxInboundMessageSize,boolean xendorser) {
-
-        this(ManagedChannelBuilder.forTarget(target)
+        this.channel = ManagedChannelBuilder.forTarget(target)
                 .maxInboundMessageSize(maxInboundMessageSize)
                 .directExecutor()
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
                 .usePlaintext()
-                .build(),xendorser);
-    }
-
-
-
-    private XuperClient(ManagedChannel channel,boolean xendorser) {
-        this.channel = channel;
+                .build();
         blockingClient = XchainGrpc.newBlockingStub(channel);
         if (xendorser&&Config.hasConfigFile()) {
             xendorserClient = new XendorserClient(Config.getInstance().getEndorseServiceHost());
         } else {
             xendorserClient = null;
         }
+        xeventServiceListener =new XEventServiceListener(target);
     }
+
+
+
 
     public void close() {
         channel.shutdownNow();
@@ -107,6 +103,10 @@ public class XuperClient {
 
     public XendorserClient getXendorserClient() {
         return xendorserClient;
+    }
+
+    public XEventServiceListener getXEventServiceListener() {
+        return xeventServiceListener;
     }
 
     /**

@@ -1,27 +1,26 @@
 package com.baidu.xuper.api;
 
-import com.baidu.xuper.pb.XendorserGrpc;
+import com.baidu.xuper.pb.EventServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 
-public class XendorserClient {
+public class XEventServiceListener {
     private final ManagedChannel channel;
-    private final XendorserGrpc.XendorserBlockingStub blockingClient;
+    private final EventServiceGrpc.EventServiceStub eventServiceStub;
 
-    public XendorserClient(String target) {
+    public XEventServiceListener(String target) {
         this.channel = ManagedChannelBuilder.forTarget(target)
                 .usePlaintext()
                 .directExecutor()
                 .build();
-        blockingClient = XendorserGrpc.newBlockingStub(channel);
+        eventServiceStub = EventServiceGrpc.newStub(channel);
     }
 
     public void close() {
         channel.shutdownNow();
     }
-
-    XendorserGrpc.XendorserBlockingStub getBlockingClient() {
-        return blockingClient;
+    public EventServiceGrpc.EventServiceStub getEventServiceStub() {
+        return eventServiceStub;
     }
 }
