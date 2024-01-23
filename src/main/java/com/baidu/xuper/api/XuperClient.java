@@ -1,15 +1,24 @@
 package com.baidu.xuper.api;
 
 import com.baidu.xuper.config.Config;
+import com.baidu.xuper.crypto.Crypto;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.bouncycastle.crypto.params.ECDomainParameters;
+import org.bouncycastle.crypto.params.ECPublicKeyParameters;
+import org.bouncycastle.crypto.signers.ECDSASigner;
+import org.bouncycastle.crypto.signers.RandomDSAKCalculator;
+import org.bouncycastle.jce.ECNamedCurveTable;
+import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
+import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +27,8 @@ public class XuperClient {
     private final XchainGrpc.XchainBlockingStub blockingClient;
     private final XendorserClient xendorserClient;
     private XEventServiceListener xeventServiceListener;
+
+    private Crypto cryptoClient ;
     private String chainName = "xuper";
     private final String evmContract = "evm";
     private final String xkernelModule = "xkernel";
@@ -76,6 +87,8 @@ public class XuperClient {
             xendorserClient = null;
         }
         xeventServiceListener =new XEventServiceListener(target);
+
+        cryptoClient=CryptoClient.getCryptoClient();
     }
 
 
@@ -540,6 +553,53 @@ public class XuperClient {
         args.put(argContractDesc, desc.toByteArray());
 
         return invokeContract(from, xkernelModule, "", xkernelUpgradeMethod, args);
+    }
+    public  boolean verifyXuperSignature(String chainAddress, String sig,String msg) throws Exception {
+        byte[] signature = Hex.decode(sig);
+        byte[] rBytes =Arrays.copyOfRange(signature, 0, 32);
+        byte[] sBytes= Arrays.copyOfRange(signature, 32, 64);
+        BigInteger r = new BigInteger(1, rBytes);
+        BigInteger s = new BigInteger(1, sBytes);
+
+        // 根据您的需求，可以提取公钥的 X 和 Y 值
+        BigInteger publicKeyX = new BigInteger(1, Arrays.copyOfRange(signature, 64, 96));
+        BigInteger publicKeyY = new BigInteger(1, Arrays.copyOfRange(signature, 96, 128));
+
+        byte[] data = Arrays.copyOfRange(signature, 128, signature.length);
+
+
+        // 使用 ECNamedCurveTable 获取 secp256r1 曲线参数
+        ECNamedCurveParameterSpec curveParams = ECNamedCurveTable.getParameterSpec("secp256r1");
+
+        // 构造 ECPoint 对象
+        ECPoint ecPoint = curveParams.getCurve().createPoint(publicKeyX, publicKeyY);
+
+
+        // 验证 address是否符合
+        String address=cryptoClient.getAddressFromPublicKey(ecPoint);
+        if (!address.equals(chainAddress)){
+            return false;
+        }
+        if (msg!=null&&!msg.equals(new String(data))){
+            return false;
+        }
+
+        // 构造 ECPoint 对象
+        // ECPoint ecPoint = new ECPoint(publicKeyX, publicKeyY);
+
+        // 构造 ECDomainParameters 对象
+        ECDomainParameters domainParameters = new ECDomainParameters(
+                curveParams.getCurve(), curveParams.getG(), curveParams.getN(), curveParams.getH());
+
+        // 构造 ECPublicKeyParameters 对象
+        ECPublicKeyParameters publicKeyParameters = new ECPublicKeyParameters(ecPoint, domainParameters);
+
+        // 使用 Bouncy Castle 的 ECDSASigner 进行签名验证
+        ECDSASigner ecdsaSigner = new ECDSASigner(new RandomDSAKCalculator());
+        ecdsaSigner.init(false, publicKeyParameters);
+
+        // 传递 R 和 S 值
+        return ecdsaSigner.verifySignature(data,r, s);
     }
 
 }
