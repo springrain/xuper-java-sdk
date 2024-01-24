@@ -562,10 +562,7 @@ public class XuperClient {
         // 根据您的需求，可以提取公钥的 X 和 Y 值
         BigInteger publicKeyX = new BigInteger(1, Arrays.copyOfRange(signature, 64, 96));
         BigInteger publicKeyY = new BigInteger(1, Arrays.copyOfRange(signature, 96, 128));
-        System.out.println(publicKeyX);
-        System.out.println(publicKeyY);
         byte[] data = Arrays.copyOfRange(signature, 128, signature.length);
-
 
         // 使用 ECNamedCurveTable 获取 secp256r1 曲线参数
         //ECNamedCurveParameterSpec curveParams = ECNamedCurveTable.getParameterSpec("secp256r1");
