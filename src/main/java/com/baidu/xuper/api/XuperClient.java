@@ -2,18 +2,16 @@ package com.baidu.xuper.api;
 
 import com.baidu.xuper.config.Config;
 import com.baidu.xuper.crypto.Crypto;
+import com.baidu.xuper.crypto.xchain.sign.Ecc;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import org.bouncycastle.crypto.params.ECDomainParameters;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.crypto.signers.ECDSASigner;
 import org.bouncycastle.crypto.signers.RandomDSAKCalculator;
-import org.bouncycastle.jce.ECNamedCurveTable;
-import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.util.encoders.Hex;
 
@@ -564,19 +562,32 @@ public class XuperClient {
         // 根据您的需求，可以提取公钥的 X 和 Y 值
         BigInteger publicKeyX = new BigInteger(1, Arrays.copyOfRange(signature, 64, 96));
         BigInteger publicKeyY = new BigInteger(1, Arrays.copyOfRange(signature, 96, 128));
-
+        System.out.println(publicKeyX);
+        System.out.println(publicKeyY);
         byte[] data = Arrays.copyOfRange(signature, 128, signature.length);
 
 
         // 使用 ECNamedCurveTable 获取 secp256r1 曲线参数
-        ECNamedCurveParameterSpec curveParams = ECNamedCurveTable.getParameterSpec("secp256r1");
+        //ECNamedCurveParameterSpec curveParams = ECNamedCurveTable.getParameterSpec("secp256r1");
 
         // 构造 ECPoint 对象
-        ECPoint ecPoint = curveParams.getCurve().createPoint(publicKeyX, publicKeyY);
+        //ECPoint ecPoint = curveParams.getCurve().createPoint(publicKeyX, publicKeyY);
 
+        ECPoint ecPoint =Ecc.curve.getCurve().createPoint(publicKeyX, publicKeyY);
+
+
+
+        // 构造 ECPoint 对象
+        // ECPoint ecPoint = new ECPoint(publicKeyX, publicKeyY);
+
+        // 构造 ECDomainParameters 对象
+        //ECDomainParameters domainParameters = new ECDomainParameters(curveParams.getCurve(), curveParams.getG(), curveParams.getN(), curveParams.getH());
+
+        // 构造 ECPublicKeyParameters 对象
+        ECPublicKeyParameters publicKeyParameters = new ECPublicKeyParameters(ecPoint, Ecc.domain);
 
         // 验证 address是否符合
-        String address=cryptoClient.getAddressFromPublicKey(ecPoint);
+        String address=cryptoClient.getAddressFromPublicKey(publicKeyParameters.getQ());
         if (!address.equals(chainAddress)){
             return false;
         }
@@ -584,15 +595,7 @@ public class XuperClient {
             return false;
         }
 
-        // 构造 ECPoint 对象
-        // ECPoint ecPoint = new ECPoint(publicKeyX, publicKeyY);
 
-        // 构造 ECDomainParameters 对象
-        ECDomainParameters domainParameters = new ECDomainParameters(
-                curveParams.getCurve(), curveParams.getG(), curveParams.getN(), curveParams.getH());
-
-        // 构造 ECPublicKeyParameters 对象
-        ECPublicKeyParameters publicKeyParameters = new ECPublicKeyParameters(ecPoint, domainParameters);
 
         // 使用 Bouncy Castle 的 ECDSASigner 进行签名验证
         ECDSASigner ecdsaSigner = new ECDSASigner(new RandomDSAKCalculator());
