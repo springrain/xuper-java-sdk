@@ -19,6 +19,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class XuperClient {
     private final ManagedChannel channel;
@@ -77,6 +78,10 @@ public class XuperClient {
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
                 .usePlaintext()
+                .enableRetry()
+                .defaultLoadBalancingPolicy("round_robin")
+                .keepAliveTime(10, TimeUnit.SECONDS)
+                .keepAliveTimeout(20, TimeUnit.SECONDS)
                 .build();
         blockingClient = XchainGrpc.newBlockingStub(channel);
         if (xendorser&&Config.hasConfigFile()) {

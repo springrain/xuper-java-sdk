@@ -4,6 +4,8 @@ import com.baidu.xuper.pb.EventServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class XEventServiceListener {
     private final ManagedChannel channel;
@@ -13,6 +15,10 @@ public class XEventServiceListener {
         this.channel = ManagedChannelBuilder.forTarget(target)
                 .usePlaintext()
                 .directExecutor()
+                .enableRetry()
+                .defaultLoadBalancingPolicy("round_robin")
+                .keepAliveTime(10, TimeUnit.SECONDS)
+                .keepAliveTimeout(20, TimeUnit.SECONDS)
                 .build();
         eventServiceStub = EventServiceGrpc.newStub(channel);
     }
