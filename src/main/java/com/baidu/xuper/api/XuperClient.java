@@ -102,6 +102,9 @@ public class XuperClient {
         if (xendorserClient != null) {
             xendorserClient.close();
         }
+        if(xeventServiceListener != null){
+            xeventServiceListener.close();
+        }
     }
 
     /**
