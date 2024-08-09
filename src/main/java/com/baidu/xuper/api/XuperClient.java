@@ -89,7 +89,7 @@ public class XuperClient {
         } else {
             xendorserClient = null;
         }
-        xeventServiceListener =new XEventServiceListener(target);
+        xeventServiceListener =new XEventServiceListener(target,maxInboundMessageSize);
 
         cryptoClient=CryptoClient.getCryptoClient();
     }

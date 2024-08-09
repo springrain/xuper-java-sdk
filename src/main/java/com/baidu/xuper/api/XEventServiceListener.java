@@ -11,9 +11,10 @@ public class XEventServiceListener {
     private final ManagedChannel channel;
     private final EventServiceGrpc.EventServiceStub eventServiceStub;
 
-    public XEventServiceListener(String target) {
+    public XEventServiceListener(String target,Integer maxInboundMessageSize) {
         this.channel = ManagedChannelBuilder.forTarget(target)
                 .usePlaintext()
+                .maxInboundMessageSize(maxInboundMessageSize)
                 .directExecutor()
                 .enableRetry()
                 .defaultLoadBalancingPolicy("round_robin")
