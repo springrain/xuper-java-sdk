@@ -15,6 +15,7 @@ public class XEventServiceListener {
         this.channel = ManagedChannelBuilder.forTarget(target)
                 .usePlaintext()
                 .maxInboundMessageSize(maxInboundMessageSize)
+                .maxInboundMessageSize(maxInboundMessageSize)
                 .directExecutor()
                 .enableRetry()
                 .defaultLoadBalancingPolicy("round_robin")
